@@ -130,8 +130,11 @@
       z-index: 60;
     }
     .editor-panel {
-      width: min(520px, 100%);
+      width: min(560px, calc(100% - 2rem));
+      max-height: min(90vh, 760px);
       border-radius: 1.5rem;
+      overflow-y: auto;
+      scrollbar-gutter: stable both-edges;
     }
     .emoji-overlay {
       position: fixed;
@@ -1542,6 +1545,7 @@
         const isNew = !id;
         const item = isNew ? { title: '', content: '', ingredients: '', professor: '', effects: '', incantation: '', location: '', usage: 'cuisine', emoteCode: '', emote: '' } : (library[key] || []).find((entry) => entry.id === id);
         const isRecipe = ingredientCategories.has(key);
+        document.body.classList.add('overflow-hidden');
         const titleLabel = isRecipe ? 'Nom de la recette' : key === 'cours' ? 'Cours' : 'Titre';
         const titlePlaceholder = isRecipe ? 'Nom captivant de la recette' : key === 'cours' ? 'Titre du cours' : 'Nom captivant';
         const contentLabel = isRecipe
@@ -1645,6 +1649,7 @@
         const overlay = document.getElementById('editorOverlay');
         if (overlay) {
           overlay.remove();
+          document.body.classList.remove('overflow-hidden');
         }
       }
 
