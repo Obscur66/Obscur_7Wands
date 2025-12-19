@@ -16,10 +16,57 @@
       background: linear-gradient(135deg, #20612D, #133B1B);
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
     }
+    .site-header.has-custom-bg {
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    .header-divider {
+      height: 6px;
+      background: #000;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    }
+    .header-outline {
+      -webkit-text-stroke: 1.4px rgba(0, 0, 0, 0.9);
+      text-shadow:
+        -2px 0 4px rgba(0, 0, 0, 0.85),
+        2px 0 4px rgba(0, 0, 0, 0.85),
+        0 -2px 4px rgba(0, 0, 0, 0.85),
+        0 2px 4px rgba(0, 0, 0, 0.85);
+    }
+    .header-outline .snake-emote {
+      -webkit-text-stroke: 0;
+      text-shadow: none;
+    }
+    button[data-section] {
+      background: linear-gradient(135deg, #20612D, #133B1B);
+      border: 1px solid rgba(0, 0, 0, 0.85);
+      color: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
+    }
+    button[data-section]:hover {
+      border-color: #000;
+      filter: brightness(1.1);
+    }
     .module-surface {
-      background: #26522D !important;
+      background: linear-gradient(140deg, #2f6840, #1d3c24) !important;
       border-color: rgba(255, 255, 255, 0.22) !important;
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 20px 45px rgba(0, 0, 0, 0.2);
+      outline: 1px solid rgba(0, 0, 0, 0.75);
+      outline-offset: -2px;
+    }
+    .module-surface :where(.rounded-3xl, .rounded-2xl, .rounded-xl, .rounded-lg, .rounded-md, .item-card, .map-thumb, .map-preview-frame) {
+      background: linear-gradient(145deg, rgba(74, 142, 92, 0.85), rgba(32, 66, 44, 0.85)) !important;
+      border-color: rgba(0, 0, 0, 0.6) !important;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 12px 28px rgba(0, 0, 0, 0.3);
+    }
+    .module-surface :where(.rounded-full) {
+      background: linear-gradient(145deg, rgba(123, 192, 140, 0.55), rgba(39, 72, 48, 0.78)) !important;
+      border-color: rgba(0, 0, 0, 0.5) !important;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 6px 16px rgba(0, 0, 0, 0.22);
+    }
+    .module-surface :where(table, thead, tbody tr) {
+      background: linear-gradient(145deg, rgba(52, 96, 64, 0.9), rgba(26, 48, 34, 0.9));
     }
     .animate-fade {
       animation: fade 0.6s ease forwards;
@@ -157,6 +204,10 @@
       display: flex;
       flex-direction: column;
     }
+    .bg-editor-panel {
+      width: min(620px, 100%);
+      max-height: 80vh;
+    }
     .emoji-scroll {
       overflow: auto;
       max-height: 60vh;
@@ -185,9 +236,9 @@
   <div class="min-h-screen flex flex-col">
     <header class="site-header sticky top-0 z-30 border-b border-white/10">
       <div class="relative mx-auto flex w-full max-w-6xl flex-col items-center gap-4 px-6 py-5 text-center">
-        <div>
-          <p class="text-sm tracking-[0.35em] text-lime-100/80">OBSCUR</p>
-          <h1 class="text-2xl font-bold text-white">🐍 7Wands 🐍</h1>
+        <div class="flex flex-col items-center">
+          <p class="text-4xl tracking-[0.35em] text-white header-outline">OBSCUR</p>
+          <h1 id="headerTitle" class="text-2xl font-bold text-white header-outline"><span class="snake-emote">🐍</span> 7Wands <span class="snake-emote">🐍</span></h1>
         </div>
         <nav class="flex flex-wrap justify-center gap-3 text-sm font-semibold">
           <button data-section="accueil" class="rounded-full border border-white/10 px-4 py-2 text-white/80 transition hover:border-white/40">🏠 Accueil 🏠</button>
@@ -200,17 +251,39 @@
         </nav>
       </div>
     </header>
+    <div class="header-divider"></div>
 
     <main class="flex-1 px-6 py-10">
       <div id="content" class="mx-auto max-w-5xl"></div>
     </main>
 
+    <input type="file" accept="image/*" id="headerBgInput" class="hidden" />
+    <input type="file" accept="image/*" id="bodyBgInput" class="hidden" />
+
     <footer class="border-t border-white/10 px-6 py-6 text-xs text-white/70">
       <div class="mx-auto max-w-5xl relative flex items-center justify-center">
         <button id="emojiToggle" class="absolute left-0 text-left text-white/80 underline-offset-4 hover:text-white hover:underline">Code Emoticone</button>
         <p class="w-full text-center">Obscur 7Wands · Propriété de ObscurCorp.</p>
+        <button id="bgEditorToggle" class="absolute right-0 text-right text-white/80 underline-offset-4 hover:text-white hover:underline">Image Arrière Plan</button>
       </div>
     </footer>
+
+  <div id="bgEditorOverlay" class="emoji-overlay">
+    <div class="emoji-panel bg-editor-panel module-surface border border-white/10 p-6 shadow-2xl shadow-black/40">
+      <div class="flex items-start justify-between gap-4">
+        <div>
+          <p class="text-xs uppercase tracking-[0.4em] text-white/70">Personnalisation</p>
+          <h3 class="mt-1 text-2xl font-semibold text-white">Arrière-plans personnalisés</h3>
+        </div>
+        <button id="closeBgEditor" class="rounded-full border border-white/30 px-3 py-1 text-xs font-semibold text-white/80 transition hover:border-cyan-300 hover:text-white">Fermer</button>
+      </div>
+      <p class="mt-4 text-sm text-white/80">Choisissez une image différente pour l’en-tête ou pour le fond général de l’application.</p>
+      <div class="mt-6 grid gap-4 sm:grid-cols-2">
+        <button id="editHeaderBg" class="module-surface rounded-2xl border border-white/20 px-4 py-3 text-sm font-semibold text-white/90 hover:border-cyan-200">En-tête</button>
+        <button id="editBodyBg" class="module-surface rounded-2xl border border-white/20 px-4 py-3 text-sm font-semibold text-white/90 hover:border-cyan-200">Fond</button>
+      </div>
+    </div>
+  </div>
 
   <div id="emojiOverlay" class="emoji-overlay">
     <div class="emoji-panel module-surface border border-white/10 p-8 shadow-2xl shadow-black/40">
@@ -754,6 +827,10 @@
       const content = document.getElementById('content');
       const navButtons = document.querySelectorAll('[data-section]');
       const toastStack = document.getElementById('toast-stack');
+      const siteHeader = document.querySelector('.site-header');
+      const headerTitle = document.getElementById('headerTitle');
+      const headerBgInput = document.getElementById('headerBgInput');
+      const bodyBgInput = document.getElementById('bodyBgInput');
       const mapImageUrl = 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80';
       let customMapGallery = [];
       let activeMapIndex = 0;
@@ -761,10 +838,12 @@
       let mapReplaceMode = false;
       let mapReplaceTargetIndex = null;
       let currentSection = 'accueil';
+      let headerBackgroundUrl = '';
+      let bodyBackgroundUrl = '';
 
       const persistState = () => {
         try {
-          const payload = JSON.stringify({ library, customMapGallery, activeMapIndex });
+          const payload = JSON.stringify({ library, customMapGallery, activeMapIndex, headerBackgroundUrl, bodyBackgroundUrl });
           localStorage.setItem(STORAGE_KEY, payload);
         } catch (error) {
           console.warn('Impossible d\'enregistrer la session', error);
@@ -789,6 +868,14 @@
             }
             if (typeof parsed.activeMapIndex === 'number') {
               activeMapIndex = Math.max(0, Math.min(parsed.activeMapIndex, Math.max(customMapGallery.length - 1, 0)));
+            }
+            if (typeof parsed.headerBackgroundUrl === 'string') {
+              headerBackgroundUrl = parsed.headerBackgroundUrl;
+              applyHeaderBackground();
+            }
+            if (typeof parsed.bodyBackgroundUrl === 'string') {
+              bodyBackgroundUrl = parsed.bodyBackgroundUrl;
+              applyBodyBackground();
             }
           }
         } catch (error) {
@@ -857,6 +944,32 @@
       hydrateState();
 
       const editingState = {};
+
+      function applyHeaderBackground() {
+        if (!siteHeader) return;
+        if (headerBackgroundUrl) {
+          siteHeader.style.setProperty('background-image', `url(${headerBackgroundUrl})`);
+          siteHeader.classList.add('has-custom-bg');
+        } else {
+          siteHeader.style.removeProperty('background-image');
+          siteHeader.classList.remove('has-custom-bg');
+        }
+      }
+
+      function applyBodyBackground() {
+        if (!document.body) return;
+        if (bodyBackgroundUrl) {
+          document.body.style.setProperty('background-image', `url(${bodyBackgroundUrl})`);
+          document.body.style.setProperty('background-size', 'cover');
+          document.body.style.setProperty('background-position', 'center');
+          document.body.style.setProperty('background-repeat', 'no-repeat');
+        } else {
+          document.body.style.removeProperty('background-image');
+          document.body.style.removeProperty('background-size');
+          document.body.style.removeProperty('background-position');
+          document.body.style.removeProperty('background-repeat');
+        }
+      }
 
       function escapeHtml(str = '') {
         return str
@@ -997,6 +1110,58 @@
         }
       }
 
+      function handleHeaderBackgroundUpload(event) {
+        const file = event.target.files && event.target.files[0];
+        if (!file) {
+          event.target.value = '';
+          return;
+        }
+        if (!file.type.startsWith('image/')) {
+          pushToast('Sélectionnez une image valide.', 'danger');
+          event.target.value = '';
+          return;
+        }
+        readFileAsDataURL(file)
+          .then((dataUrl) => {
+            headerBackgroundUrl = dataUrl;
+            applyHeaderBackground();
+            persistState();
+            pushToast('Fond de l’en-tête mis à jour.');
+          })
+          .catch(() => {
+            pushToast('Impossible de charger cette image.', 'danger');
+          })
+          .finally(() => {
+            event.target.value = '';
+          });
+      }
+
+      function handleBodyBackgroundUpload(event) {
+        const file = event.target.files && event.target.files[0];
+        if (!file) {
+          event.target.value = '';
+          return;
+        }
+        if (!file.type.startsWith('image/')) {
+          pushToast('Sélectionnez une image valide.', 'danger');
+          event.target.value = '';
+          return;
+        }
+        readFileAsDataURL(file)
+          .then((dataUrl) => {
+            bodyBackgroundUrl = dataUrl;
+            applyBodyBackground();
+            persistState();
+            pushToast('Fond général mis à jour.');
+          })
+          .catch(() => {
+            pushToast('Impossible de charger cette image.', 'danger');
+          })
+          .finally(() => {
+            event.target.value = '';
+          });
+      }
+
       function setActiveNav(section) {
         navButtons.forEach((btn) => {
           btn.classList.toggle('is-active', btn.dataset.section === section);
@@ -1114,17 +1279,13 @@
                 </div>`
               : `<p class="mt-4 text-sm text-white/70">Ajoutez votre premier élément pour commencer.</p>`;
             const mapThumbnail = key === 'carte'
-              ? `<div class="mt-4 flex justify-center">
-                  <div class="inline-flex items-center justify-center rounded-2xl border border-white/10 bg-slate-900/40 p-2">
-                    <img src="${getActiveMapUrl()}" alt="Aperçu carte" class="h-24 w-auto object-contain" />
-                  </div>
-                </div>`
+              ? ''
               : '';
             return `
             <article data-open-section="${key}" class="module-surface rounded-3xl border border-white/10 p-6 transition hover:-translate-y-1 hover:border-white/40 cursor-pointer">
               <h3 class="text-2xl font-semibold text-white">${bookMeta[key].label}</h3>
-              ${mapThumbnail}
               ${listMarkup}
+              ${mapThumbnail}
             </article>`;
           }).join('');
 
@@ -1138,12 +1299,11 @@
                 <div class="module-surface w-full rounded-2xl border border-white/10 p-4 md:w-72">
                   <h3 class="text-lg font-semibold text-white">Exporter</h3>
                   <p class="mt-1 text-xs text-white/80">Sauvegardez toutes vos données localement.</p>
-                  <button id="exportData" class="mt-4 inline-flex items-center gap-2 rounded-full bg-cyan-200/90 px-4 py-2 text-xs font-semibold text-slate-900 transition hover:bg-cyan-100">Crée une sauvegarde</button>
+                  <button id="exportData" class="mt-4 inline-flex items-center gap-2 rounded-full border border-black/70 bg-cyan-200/90 px-4 py-2 text-xs font-semibold text-white transition hover:bg-cyan-100">Crée une sauvegarde</button>
                 </div>
                 <div class="module-surface w-full rounded-2xl border border-white/10 p-4 md:w-72">
                   <h3 class="text-lg font-semibold text-white">Importer</h3>
                   <p class="mt-1 text-xs text-white/80">Chargez une sauvegarde précédente.</p>
-                  <p class="mt-1 text-[11px] text-amber-100">⚠️ ATTENTION : Toujours effectué une sauvegarde forcé après avoir importer une sauvegarde ⚠️</p>
                   <button id="importData" class="mt-4 inline-flex items-center gap-2 rounded-full border border-white/40 px-4 py-2 text-xs font-semibold text-white transition hover:border-cyan-300">Choisir un fichier</button>
                   <input type="file" accept="application/json" id="importInput" class="hidden" />
                 </div>
@@ -1396,6 +1556,7 @@
         const items = library[key] || [];
         const isEditing = !!editingState[key];
         const showEditTips = sectionsWithEditTips.has(key);
+        const formatCountLabel = (count) => `${count} élément${count > 1 ? 's' : ''}`;
         const chipList = items.length
           ? items.map((item) => `<span class="rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs text-white/90">${getDisplayTitle(item)}</span>`).join(' ')
           : '<span class="rounded-full border border-dashed border-white/20 px-3 py-1 text-xs text-white/80">Aucun élément pour l’instant</span>';
@@ -1493,12 +1654,14 @@
                 <div class="mt-4 grid grid-cols-1 gap-4 lg:grid-cols-2">
                   <div class="rounded-2xl border border-white/15 bg-white/5 p-4">
                     <p class="text-sm font-semibold text-white">Ingrédients Cuisine</p>
+                    <p class="text-xs uppercase tracking-[0.4em] text-white/80 mt-1">${formatCountLabel(cuisineItems.length)}</p>
                     <ul data-item-list data-usage="cuisine" class="mt-3 space-y-3${isEditing ? ' list-editing' : ''}">
                       ${cuisineMarkup}
                     </ul>
                   </div>
                   <div class="rounded-2xl border border-white/15 bg-white/5 p-4">
                     <p class="text-sm font-semibold text-white">Ingrédients Potion</p>
+                    <p class="text-xs uppercase tracking-[0.4em] text-white/80 mt-1">${formatCountLabel(potionItems.length)}</p>
                     <ul data-item-list data-usage="potion" class="mt-3 space-y-3${isEditing ? ' list-editing' : ''}">
                       ${potionMarkup}
                     </ul>
@@ -1517,8 +1680,8 @@
             <div class="module-surface rounded-2xl border border-white/10 p-6 backdrop-blur">
               <div class="flex flex-wrap items-center justify-between gap-4">
                 <div>
-                  <p class="text-xs uppercase tracking-[0.4em] text-white/80">${items.length} élément${items.length > 1 ? 's' : ''}</p>
-                  <h3 class="text-2xl font-semibold text-white mt-1">${inventoryLabel}</h3>
+                  <h3 class="text-2xl font-semibold text-white">${inventoryLabel}</h3>
+                  <p class="mt-1 text-xs uppercase tracking-[0.4em] text-white/80">${formatCountLabel(items.length)}</p>
                 </div>
                 ${showEditTips
                   ? `<div class="flex flex-col items-end gap-2 text-right">
@@ -1893,6 +2056,7 @@
       }
 
       showSection('accueil');
+      applyHeaderBackground();
 
       const emojiToggle = document.getElementById('emojiToggle');
       const emojiOverlay = document.getElementById('emojiOverlay');
@@ -1907,6 +2071,38 @@
       }
       if (closeEmoji) {
         closeEmoji.addEventListener('click', () => toggleEmojiOverlay(false));
+      }
+
+      const bgEditorToggle = document.getElementById('bgEditorToggle');
+      const bgEditorOverlay = document.getElementById('bgEditorOverlay');
+      const closeBgEditor = document.getElementById('closeBgEditor');
+      const editHeaderBgBtn = document.getElementById('editHeaderBg');
+      const editBodyBgBtn = document.getElementById('editBodyBg');
+
+      function toggleBgEditorOverlay(show) {
+        if (!bgEditorOverlay) return;
+        bgEditorOverlay.classList.toggle('is-visible', show);
+      }
+
+      if (bgEditorToggle && bgEditorOverlay) {
+        bgEditorToggle.addEventListener('click', () => toggleBgEditorOverlay(true));
+        bgEditorOverlay.addEventListener('click', () => toggleBgEditorOverlay(false));
+        const panel = bgEditorOverlay.querySelector('.emoji-panel');
+        if (panel) {
+          panel.addEventListener('click', (event) => event.stopPropagation());
+        }
+      }
+      if (closeBgEditor) {
+        closeBgEditor.addEventListener('click', () => toggleBgEditorOverlay(false));
+      }
+      if (editHeaderBgBtn && headerBgInput) {
+        editHeaderBgBtn.addEventListener('click', () => headerBgInput.click());
+      }
+      if (editBodyBgBtn && bodyBgInput) {
+        editBodyBgBtn.addEventListener('click', () => bodyBgInput.click());
+      }
+      if (bodyBgInput) {
+        bodyBgInput.addEventListener('change', handleBodyBackgroundUpload);
       }
     });
   </script>
