@@ -181,6 +181,1848 @@
 <body class="text-slate-100">
   <div class="min-h-screen flex flex-col">
     <header class="site-header sticky top-0 z-30 border-b border-white/10">
+      <div class="relative mx-auto flex w-full max-w-6xl flex-col items-center gap-4 px-6 py-5 text-center">
+        <p class="absolute right-0 top-2 text-xs font-semibold text-black md:text-sm">Faites Ctrl + R ou F5 pour mettre a jour l'application</p>
+        <div>
+          <p class="text-sm tracking-[0.35em] text-lime-100/80">OBSCUR</p>
+          <h1 class="text-2xl font-bold text-white">🐍 7Wands 🐍</h1>
+        </div>
+        <nav class="flex flex-wrap justify-center gap-3 text-sm font-semibold">
+          <button data-section="accueil" class="rounded-full border border-white/10 px-4 py-2 text-white/80 transition hover:border-white/40">🏠 Accueil 🏠</button>
+          <button data-section="recettes-cuisines" class="rounded-full border border-white/10 px-4 py-2 text-white/80 transition hover:border-white/40">🍳 Recettes cuisines 🍳</button>
+          <button data-section="recettes-potions" class="rounded-full border border-white/10 px-4 py-2 text-white/80 transition hover:border-white/40">🧪 Recettes potions 🧪</button>
+          <button data-section="cours" class="rounded-full border border-white/10 px-4 py-2 text-white/80 transition hover:border-white/40">💼 Cours 💼</button>
+          <button data-section="ingredients" class="rounded-full border border-white/10 px-4 py-2 text-white/80 transition hover:border-white/40">🌱 Ingrédients 🌱</button>
+          <button data-section="notes" class="rounded-full border border-white/10 px-4 py-2 text-white/80 transition hover:border-white/40">📝 Notes 📝</button>
+          <button data-section="carte" class="rounded-full border border-white/10 px-4 py-2 text-white/80 transition hover:border-white/40">🗺️ Cartes 🗺️</button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="flex-1 px-6 py-10">
+      <div id="content" class="mx-auto max-w-5xl"></div>
+    </main>
+
+    <footer class="border-t border-white/10 px-6 py-6 text-xs text-white/70">
+      <div class="mx-auto max-w-5xl relative flex items-center justify-center">
+        <button id="emojiToggle" class="absolute left-0 text-left text-white/80 underline-offset-4 hover:text-white hover:underline">Code Emoticone</button>
+        <p class="w-full text-center">Obscur 7Wands · Propriété de ObscurCorp.</p>
+      </div>
+    </footer>
+
+  <div id="emojiOverlay" class="emoji-overlay">
+    <div class="emoji-panel module-surface border border-white/10 p-8 shadow-2xl shadow-black/40">
+      <div class="flex items-start justify-between gap-4">
+        <div>
+          <p class="text-xs uppercase tracking-[0.4em] text-white/70">Référence secrète</p>
+          <h3 class="mt-1 text-2xl font-semibold text-white">Emoji Unicode Tables</h3>
+        </div>
+        <button id="closeEmoji" class="rounded-full border border-white/30 px-3 py-1 text-xs font-semibold text-white/80 transition hover:border-cyan-300 hover:text-white">Fermer</button>
+      </div>
+      <p class="mt-4 text-sm text-white/80">Explorez cette petite collection d’émoticônes mystiques et leurs codes Unicode.</p>
+      <div class="mt-6 emoji-scroll border border-white/10">
+        <table class="emoji-table w-full text-left text-sm text-white/90">
+          <thead class="bg-white/5 sticky top-0">
+            <tr>
+              <th scope="col">Emoji</th>
+              <th scope="col">Code Unicode</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="text-2xl">🌍</td><td>U+1F30D</td></tr>
+            <tr><td class="text-2xl">🌎</td><td>U+1F30E</td></tr>
+            <tr><td class="text-2xl">🌏</td><td>U+1F30F</td></tr>
+            <tr><td class="text-2xl">🌐</td><td>U+1F310</td></tr>
+            <tr><td class="text-2xl">🌑</td><td>U+1F311</td></tr>
+            <tr><td class="text-2xl">🌒</td><td>U+1F312</td></tr>
+            <tr><td class="text-2xl">🌓</td><td>U+1F313</td></tr>
+            <tr><td class="text-2xl">🌔</td><td>U+1F314</td></tr>
+            <tr><td class="text-2xl">🌕</td><td>U+1F315</td></tr>
+            <tr><td class="text-2xl">🌖</td><td>U+1F316</td></tr>
+            <tr><td class="text-2xl">🌗</td><td>U+1F317</td></tr>
+            <tr><td class="text-2xl">🌘</td><td>U+1F318</td></tr>
+            <tr><td class="text-2xl">🌙</td><td>U+1F319</td></tr>
+            <tr><td class="text-2xl">🌚</td><td>U+1F31A</td></tr>
+            <tr><td class="text-2xl">🌛</td><td>U+1F31B</td></tr>
+            <tr><td class="text-2xl">🌜</td><td>U+1F31C</td></tr>
+            <tr><td class="text-2xl">🌝</td><td>U+1F31D</td></tr>
+            <tr><td class="text-2xl">🌞</td><td>U+1F31E</td></tr>
+            <tr><td class="text-2xl">🌟</td><td>U+1F31F</td></tr>
+            <tr><td class="text-2xl">🌠</td><td>U+1F320</td></tr>
+            <tr><td class="text-2xl">🌰</td><td>U+1F330</td></tr>
+            <tr><td class="text-2xl">🌱</td><td>U+1F331</td></tr>
+            <tr><td class="text-2xl">🌲</td><td>U+1F332</td></tr>
+            <tr><td class="text-2xl">🌳</td><td>U+1F333</td></tr>
+            <tr><td class="text-2xl">🌴</td><td>U+1F334</td></tr>
+            <tr><td class="text-2xl">🌵</td><td>U+1F335</td></tr>
+            <tr><td class="text-2xl">🌷</td><td>U+1F337</td></tr>
+            <tr><td class="text-2xl">🌸</td><td>U+1F338</td></tr>
+            <tr><td class="text-2xl">🌹</td><td>U+1F339</td></tr>
+            <tr><td class="text-2xl">🌺</td><td>U+1F33A</td></tr>
+            <tr><td class="text-2xl">🌻</td><td>U+1F33B</td></tr>
+            <tr><td class="text-2xl">🌼</td><td>U+1F33C</td></tr>
+            <tr><td class="text-2xl">🌽</td><td>U+1F33D</td></tr>
+            <tr><td class="text-2xl">🌾</td><td>U+1F33E</td></tr>
+            <tr><td class="text-2xl">🌿</td><td>U+1F33F</td></tr>
+            <tr><td class="text-2xl">🍀</td><td>U+1F340</td></tr>
+            <tr><td class="text-2xl">🍁</td><td>U+1F341</td></tr>
+            <tr><td class="text-2xl">🍂</td><td>U+1F342</td></tr>
+            <tr><td class="text-2xl">🍃</td><td>U+1F343</td></tr>
+            <tr><td class="text-2xl">🍄</td><td>U+1F344</td></tr>
+            <tr><td class="text-2xl">🍅</td><td>U+1F345</td></tr>
+            <tr><td class="text-2xl">🍆</td><td>U+1F346</td></tr>
+            <tr><td class="text-2xl">🍇</td><td>U+1F347</td></tr>
+            <tr><td class="text-2xl">🍈</td><td>U+1F348</td></tr>
+            <tr><td class="text-2xl">🍉</td><td>U+1F349</td></tr>
+            <tr><td class="text-2xl">🍊</td><td>U+1F34A</td></tr>
+            <tr><td class="text-2xl">🍋</td><td>U+1F34B</td></tr>
+            <tr><td class="text-2xl">🍌</td><td>U+1F34C</td></tr>
+            <tr><td class="text-2xl">🍍</td><td>U+1F34D</td></tr>
+            <tr><td class="text-2xl">🍎</td><td>U+1F34E</td></tr>
+            <tr><td class="text-2xl">🍏</td><td>U+1F34F</td></tr>
+            <tr><td class="text-2xl">🍐</td><td>U+1F350</td></tr>
+            <tr><td class="text-2xl">🍑</td><td>U+1F351</td></tr>
+            <tr><td class="text-2xl">🍒</td><td>U+1F352</td></tr>
+            <tr><td class="text-2xl">🍓</td><td>U+1F353</td></tr>
+            <tr><td class="text-2xl">🍔</td><td>U+1F354</td></tr>
+            <tr><td class="text-2xl">🍕</td><td>U+1F355</td></tr>
+            <tr><td class="text-2xl">🍖</td><td>U+1F356</td></tr>
+            <tr><td class="text-2xl">🍗</td><td>U+1F357</td></tr>
+            <tr><td class="text-2xl">🍘</td><td>U+1F358</td></tr>
+            <tr><td class="text-2xl">🍙</td><td>U+1F359</td></tr>
+            <tr><td class="text-2xl">🍚</td><td>U+1F35A</td></tr>
+            <tr><td class="text-2xl">🍛</td><td>U+1F35B</td></tr>
+            <tr><td class="text-2xl">🍜</td><td>U+1F35C</td></tr>
+            <tr><td class="text-2xl">🍝</td><td>U+1F35D</td></tr>
+            <tr><td class="text-2xl">🍞</td><td>U+1F35E</td></tr>
+            <tr><td class="text-2xl">🍟</td><td>U+1F35F</td></tr>
+            <tr><td class="text-2xl">🍠</td><td>U+1F360</td></tr>
+            <tr><td class="text-2xl">🍡</td><td>U+1F361</td></tr>
+            <tr><td class="text-2xl">🍢</td><td>U+1F362</td></tr>
+            <tr><td class="text-2xl">🍣</td><td>U+1F363</td></tr>
+            <tr><td class="text-2xl">🍤</td><td>U+1F364</td></tr>
+            <tr><td class="text-2xl">🍥</td><td>U+1F365</td></tr>
+            <tr><td class="text-2xl">🍦</td><td>U+1F366</td></tr>
+            <tr><td class="text-2xl">🍧</td><td>U+1F367</td></tr>
+            <tr><td class="text-2xl">🍨</td><td>U+1F368</td></tr>
+            <tr><td class="text-2xl">🍩</td><td>U+1F369</td></tr>
+            <tr><td class="text-2xl">🍪</td><td>U+1F36A</td></tr>
+            <tr><td class="text-2xl">🍫</td><td>U+1F36B</td></tr>
+            <tr><td class="text-2xl">🍬</td><td>U+1F36C</td></tr>
+            <tr><td class="text-2xl">🍭</td><td>U+1F36D</td></tr>
+            <tr><td class="text-2xl">🍮</td><td>U+1F36E</td></tr>
+            <tr><td class="text-2xl">🍯</td><td>U+1F36F</td></tr>
+            <tr><td class="text-2xl">🍰</td><td>U+1F370</td></tr>
+            <tr><td class="text-2xl">🍱</td><td>U+1F371</td></tr>
+            <tr><td class="text-2xl">🍲</td><td>U+1F372</td></tr>
+            <tr><td class="text-2xl">🍳</td><td>U+1F373</td></tr>
+            <tr><td class="text-2xl">🍴</td><td>U+1F374</td></tr>
+            <tr><td class="text-2xl">🍵</td><td>U+1F375</td></tr>
+            <tr><td class="text-2xl">🍶</td><td>U+1F376</td></tr>
+            <tr><td class="text-2xl">🍷</td><td>U+1F377</td></tr>
+            <tr><td class="text-2xl">🍸</td><td>U+1F378</td></tr>
+            <tr><td class="text-2xl">🍹</td><td>U+1F379</td></tr>
+            <tr><td class="text-2xl">🍺</td><td>U+1F37A</td></tr>
+            <tr><td class="text-2xl">🍻</td><td>U+1F37B</td></tr>
+            <tr><td class="text-2xl">🍼</td><td>U+1F37C</td></tr>
+            <tr><td class="text-2xl">🎀</td><td>U+1F380</td></tr>
+            <tr><td class="text-2xl">🎁</td><td>U+1F381</td></tr>
+            <tr><td class="text-2xl">🎂</td><td>U+1F382</td></tr>
+            <tr><td class="text-2xl">🎃</td><td>U+1F383</td></tr>
+            <tr><td class="text-2xl">🎄</td><td>U+1F384</td></tr>
+            <tr><td class="text-2xl">🎅</td><td>U+1F385</td></tr>
+            <tr><td class="text-2xl">🎆</td><td>U+1F386</td></tr>
+            <tr><td class="text-2xl">🎇</td><td>U+1F387</td></tr>
+            <tr><td class="text-2xl">🎈</td><td>U+1F388</td></tr>
+            <tr><td class="text-2xl">🎉</td><td>U+1F389</td></tr>
+            <tr><td class="text-2xl">🎊</td><td>U+1F38A</td></tr>
+            <tr><td class="text-2xl">🎋</td><td>U+1F38B</td></tr>
+            <tr><td class="text-2xl">🎌</td><td>U+1F38C</td></tr>
+            <tr><td class="text-2xl">🎍</td><td>U+1F38D</td></tr>
+            <tr><td class="text-2xl">🎎</td><td>U+1F38E</td></tr>
+            <tr><td class="text-2xl">🎏</td><td>U+1F38F</td></tr>
+            <tr><td class="text-2xl">🎐</td><td>U+1F390</td></tr>
+            <tr><td class="text-2xl">🎑</td><td>U+1F391</td></tr>
+            <tr><td class="text-2xl">🎒</td><td>U+1F392</td></tr>
+            <tr><td class="text-2xl">🎓</td><td>U+1F393</td></tr>
+            <tr><td class="text-2xl">🎠</td><td>U+1F3A0</td></tr>
+            <tr><td class="text-2xl">🎡</td><td>U+1F3A1</td></tr>
+            <tr><td class="text-2xl">🎢</td><td>U+1F3A2</td></tr>
+            <tr><td class="text-2xl">🎣</td><td>U+1F3A3</td></tr>
+            <tr><td class="text-2xl">🎤</td><td>U+1F3A4</td></tr>
+            <tr><td class="text-2xl">🎥</td><td>U+1F3A5</td></tr>
+            <tr><td class="text-2xl">🎦</td><td>U+1F3A6</td></tr>
+            <tr><td class="text-2xl">🎧</td><td>U+1F3A7</td></tr>
+            <tr><td class="text-2xl">🎨</td><td>U+1F3A8</td></tr>
+            <tr><td class="text-2xl">🎩</td><td>U+1F3A9</td></tr>
+            <tr><td class="text-2xl">🎪</td><td>U+1F3AA</td></tr>
+            <tr><td class="text-2xl">🎫</td><td>U+1F3AB</td></tr>
+            <tr><td class="text-2xl">🎬</td><td>U+1F3AC</td></tr>
+            <tr><td class="text-2xl">🎭</td><td>U+1F3AD</td></tr>
+            <tr><td class="text-2xl">🎮</td><td>U+1F3AE</td></tr>
+            <tr><td class="text-2xl">🎯</td><td>U+1F3AF</td></tr>
+            <tr><td class="text-2xl">🎰</td><td>U+1F3B0</td></tr>
+            <tr><td class="text-2xl">🎱</td><td>U+1F3B1</td></tr>
+            <tr><td class="text-2xl">🎲</td><td>U+1F3B2</td></tr>
+            <tr><td class="text-2xl">🎳</td><td>U+1F3B3</td></tr>
+            <tr><td class="text-2xl">🎴</td><td>U+1F3B4</td></tr>
+            <tr><td class="text-2xl">🎵</td><td>U+1F3B5</td></tr>
+            <tr><td class="text-2xl">🎶</td><td>U+1F3B6</td></tr>
+            <tr><td class="text-2xl">🎷</td><td>U+1F3B7</td></tr>
+            <tr><td class="text-2xl">🎸</td><td>U+1F3B8</td></tr>
+            <tr><td class="text-2xl">🎹</td><td>U+1F3B9</td></tr>
+            <tr><td class="text-2xl">🎺</td><td>U+1F3BA</td></tr>
+            <tr><td class="text-2xl">🎻</td><td>U+1F3BB</td></tr>
+            <tr><td class="text-2xl">🎼</td><td>U+1F3BC</td></tr>
+            <tr><td class="text-2xl">🎽</td><td>U+1F3BD</td></tr>
+            <tr><td class="text-2xl">🎾</td><td>U+1F3BE</td></tr>
+            <tr><td class="text-2xl">🎿</td><td>U+1F3BF</td></tr>
+            <tr><td class="text-2xl">🏀</td><td>U+1F3C0</td></tr>
+            <tr><td class="text-2xl">🏁</td><td>U+1F3C1</td></tr>
+            <tr><td class="text-2xl">🏂</td><td>U+1F3C2</td></tr>
+            <tr><td class="text-2xl">🏃</td><td>U+1F3C3</td></tr>
+            <tr><td class="text-2xl">🏄</td><td>U+1F3C4</td></tr>
+            <tr><td class="text-2xl">🏆</td><td>U+1F3C6</td></tr>
+            <tr><td class="text-2xl">🏇</td><td>U+1F3C7</td></tr>
+            <tr><td class="text-2xl">🏈</td><td>U+1F3C8</td></tr>
+            <tr><td class="text-2xl">🏉</td><td>U+1F3C9</td></tr>
+            <tr><td class="text-2xl">🏊</td><td>U+1F3CA</td></tr>
+            <tr><td class="text-2xl">🏠</td><td>U+1F3E0</td></tr>
+            <tr><td class="text-2xl">🏡</td><td>U+1F3E1</td></tr>
+            <tr><td class="text-2xl">🏢</td><td>U+1F3E2</td></tr>
+            <tr><td class="text-2xl">🏣</td><td>U+1F3E3</td></tr>
+            <tr><td class="text-2xl">🏤</td><td>U+1F3E4</td></tr>
+            <tr><td class="text-2xl">🏥</td><td>U+1F3E5</td></tr>
+            <tr><td class="text-2xl">🏦</td><td>U+1F3E6</td></tr>
+            <tr><td class="text-2xl">🏧</td><td>U+1F3E7</td></tr>
+            <tr><td class="text-2xl">🏨</td><td>U+1F3E8</td></tr>
+            <tr><td class="text-2xl">🏩</td><td>U+1F3E9</td></tr>
+            <tr><td class="text-2xl">🏪</td><td>U+1F3EA</td></tr>
+            <tr><td class="text-2xl">🏫</td><td>U+1F3EB</td></tr>
+            <tr><td class="text-2xl">🏬</td><td>U+1F3EC</td></tr>
+            <tr><td class="text-2xl">🏭</td><td>U+1F3ED</td></tr>
+            <tr><td class="text-2xl">🏮</td><td>U+1F3EE</td></tr>
+            <tr><td class="text-2xl">🏯</td><td>U+1F3EF</td></tr>
+            <tr><td class="text-2xl">🏰</td><td>U+1F3F0</td></tr>
+            <tr><td class="text-2xl">🐀</td><td>U+1F400</td></tr>
+            <tr><td class="text-2xl">🐁</td><td>U+1F401</td></tr>
+            <tr><td class="text-2xl">🐂</td><td>U+1F402</td></tr>
+            <tr><td class="text-2xl">🐃</td><td>U+1F403</td></tr>
+            <tr><td class="text-2xl">🐄</td><td>U+1F404</td></tr>
+            <tr><td class="text-2xl">🐅</td><td>U+1F405</td></tr>
+            <tr><td class="text-2xl">🐆</td><td>U+1F406</td></tr>
+            <tr><td class="text-2xl">🐇</td><td>U+1F407</td></tr>
+            <tr><td class="text-2xl">🐈</td><td>U+1F408</td></tr>
+            <tr><td class="text-2xl">🐉</td><td>U+1F409</td></tr>
+            <tr><td class="text-2xl">🐊</td><td>U+1F40A</td></tr>
+            <tr><td class="text-2xl">🐋</td><td>U+1F40B</td></tr>
+            <tr><td class="text-2xl">🐌</td><td>U+1F40C</td></tr>
+            <tr><td class="text-2xl">🐍</td><td>U+1F40D</td></tr>
+            <tr><td class="text-2xl">🐎</td><td>U+1F40E</td></tr>
+            <tr><td class="text-2xl">🐏</td><td>U+1F40F</td></tr>
+            <tr><td class="text-2xl">🐐</td><td>U+1F410</td></tr>
+            <tr><td class="text-2xl">🐑</td><td>U+1F411</td></tr>
+            <tr><td class="text-2xl">🐒</td><td>U+1F412</td></tr>
+            <tr><td class="text-2xl">🐓</td><td>U+1F413</td></tr>
+            <tr><td class="text-2xl">🐔</td><td>U+1F414</td></tr>
+            <tr><td class="text-2xl">🐕</td><td>U+1F415</td></tr>
+            <tr><td class="text-2xl">🐖</td><td>U+1F416</td></tr>
+            <tr><td class="text-2xl">🐗</td><td>U+1F417</td></tr>
+            <tr><td class="text-2xl">🐘</td><td>U+1F418</td></tr>
+            <tr><td class="text-2xl">🐙</td><td>U+1F419</td></tr>
+            <tr><td class="text-2xl">🐚</td><td>U+1F41A</td></tr>
+            <tr><td class="text-2xl">🐛</td><td>U+1F41B</td></tr>
+            <tr><td class="text-2xl">🐜</td><td>U+1F41C</td></tr>
+            <tr><td class="text-2xl">🐝</td><td>U+1F41D</td></tr>
+            <tr><td class="text-2xl">🐞</td><td>U+1F41E</td></tr>
+            <tr><td class="text-2xl">🐟</td><td>U+1F41F</td></tr>
+            <tr><td class="text-2xl">🐠</td><td>U+1F420</td></tr>
+            <tr><td class="text-2xl">🐡</td><td>U+1F421</td></tr>
+            <tr><td class="text-2xl">🐢</td><td>U+1F422</td></tr>
+            <tr><td class="text-2xl">🐣</td><td>U+1F423</td></tr>
+            <tr><td class="text-2xl">🐤</td><td>U+1F424</td></tr>
+            <tr><td class="text-2xl">🐥</td><td>U+1F425</td></tr>
+            <tr><td class="text-2xl">🐦</td><td>U+1F426</td></tr>
+            <tr><td class="text-2xl">🐧</td><td>U+1F427</td></tr>
+            <tr><td class="text-2xl">🐨</td><td>U+1F428</td></tr>
+            <tr><td class="text-2xl">🐩</td><td>U+1F429</td></tr>
+            <tr><td class="text-2xl">🐪</td><td>U+1F42A</td></tr>
+            <tr><td class="text-2xl">🐫</td><td>U+1F42B</td></tr>
+            <tr><td class="text-2xl">🐬</td><td>U+1F42C</td></tr>
+            <tr><td class="text-2xl">🐭</td><td>U+1F42D</td></tr>
+            <tr><td class="text-2xl">🐮</td><td>U+1F42E</td></tr>
+            <tr><td class="text-2xl">🐯</td><td>U+1F42F</td></tr>
+            <tr><td class="text-2xl">🐰</td><td>U+1F430</td></tr>
+            <tr><td class="text-2xl">🐱</td><td>U+1F431</td></tr>
+            <tr><td class="text-2xl">🐲</td><td>U+1F432</td></tr>
+            <tr><td class="text-2xl">🐳</td><td>U+1F433</td></tr>
+            <tr><td class="text-2xl">🐴</td><td>U+1F434</td></tr>
+            <tr><td class="text-2xl">🐵</td><td>U+1F435</td></tr>
+            <tr><td class="text-2xl">🐶</td><td>U+1F436</td></tr>
+            <tr><td class="text-2xl">🐷</td><td>U+1F437</td></tr>
+            <tr><td class="text-2xl">🐸</td><td>U+1F438</td></tr>
+            <tr><td class="text-2xl">🐹</td><td>U+1F439</td></tr>
+            <tr><td class="text-2xl">🐺</td><td>U+1F43A</td></tr>
+            <tr><td class="text-2xl">🐻</td><td>U+1F43B</td></tr>
+            <tr><td class="text-2xl">🐼</td><td>U+1F43C</td></tr>
+            <tr><td class="text-2xl">🐽</td><td>U+1F43D</td></tr>
+            <tr><td class="text-2xl">🐾</td><td>U+1F43E</td></tr>
+            <tr><td class="text-2xl">👀</td><td>U+1F440</td></tr>
+            <tr><td class="text-2xl">👂</td><td>U+1F442</td></tr>
+            <tr><td class="text-2xl">👃</td><td>U+1F443</td></tr>
+            <tr><td class="text-2xl">👄</td><td>U+1F444</td></tr>
+            <tr><td class="text-2xl">👅</td><td>U+1F445</td></tr>
+            <tr><td class="text-2xl">👆</td><td>U+1F446</td></tr>
+            <tr><td class="text-2xl">👇</td><td>U+1F447</td></tr>
+            <tr><td class="text-2xl">👈</td><td>U+1F448</td></tr>
+            <tr><td class="text-2xl">👉</td><td>U+1F449</td></tr>
+            <tr><td class="text-2xl">👊</td><td>U+1F44A</td></tr>
+            <tr><td class="text-2xl">👋</td><td>U+1F44B</td></tr>
+            <tr><td class="text-2xl">👌</td><td>U+1F44C</td></tr>
+            <tr><td class="text-2xl">👍</td><td>U+1F44D</td></tr>
+            <tr><td class="text-2xl">👎</td><td>U+1F44E</td></tr>
+            <tr><td class="text-2xl">👏</td><td>U+1F44F</td></tr>
+            <tr><td class="text-2xl">👐</td><td>U+1F450</td></tr>
+            <tr><td class="text-2xl">👑</td><td>U+1F451</td></tr>
+            <tr><td class="text-2xl">👒</td><td>U+1F452</td></tr>
+            <tr><td class="text-2xl">👓</td><td>U+1F453</td></tr>
+            <tr><td class="text-2xl">👔</td><td>U+1F454</td></tr>
+            <tr><td class="text-2xl">👕</td><td>U+1F455</td></tr>
+            <tr><td class="text-2xl">👖</td><td>U+1F456</td></tr>
+            <tr><td class="text-2xl">👗</td><td>U+1F457</td></tr>
+            <tr><td class="text-2xl">👘</td><td>U+1F458</td></tr>
+            <tr><td class="text-2xl">👙</td><td>U+1F459</td></tr>
+            <tr><td class="text-2xl">👚</td><td>U+1F45A</td></tr>
+            <tr><td class="text-2xl">👛</td><td>U+1F45B</td></tr>
+            <tr><td class="text-2xl">👜</td><td>U+1F45C</td></tr>
+            <tr><td class="text-2xl">👝</td><td>U+1F45D</td></tr>
+            <tr><td class="text-2xl">👞</td><td>U+1F45E</td></tr>
+            <tr><td class="text-2xl">👟</td><td>U+1F45F</td></tr>
+            <tr><td class="text-2xl">👠</td><td>U+1F460</td></tr>
+            <tr><td class="text-2xl">👡</td><td>U+1F461</td></tr>
+            <tr><td class="text-2xl">👢</td><td>U+1F462</td></tr>
+            <tr><td class="text-2xl">👣</td><td>U+1F463</td></tr>
+            <tr><td class="text-2xl">👤</td><td>U+1F464</td></tr>
+            <tr><td class="text-2xl">👥</td><td>U+1F465</td></tr>
+            <tr><td class="text-2xl">👦</td><td>U+1F466</td></tr>
+            <tr><td class="text-2xl">👧</td><td>U+1F467</td></tr>
+            <tr><td class="text-2xl">👨</td><td>U+1F468</td></tr>
+            <tr><td class="text-2xl">👩</td><td>U+1F469</td></tr>
+            <tr><td class="text-2xl">👪</td><td>U+1F46A</td></tr>
+            <tr><td class="text-2xl">👫</td><td>U+1F46B</td></tr>
+            <tr><td class="text-2xl">👬</td><td>U+1F46C</td></tr>
+            <tr><td class="text-2xl">👭</td><td>U+1F46D</td></tr>
+            <tr><td class="text-2xl">👮</td><td>U+1F46E</td></tr>
+            <tr><td class="text-2xl">👯</td><td>U+1F46F</td></tr>
+            <tr><td class="text-2xl">👰</td><td>U+1F470</td></tr>
+            <tr><td class="text-2xl">👱</td><td>U+1F471</td></tr>
+            <tr><td class="text-2xl">👲</td><td>U+1F472</td></tr>
+            <tr><td class="text-2xl">👳</td><td>U+1F473</td></tr>
+            <tr><td class="text-2xl">👴</td><td>U+1F474</td></tr>
+            <tr><td class="text-2xl">👵</td><td>U+1F475</td></tr>
+            <tr><td class="text-2xl">👶</td><td>U+1F476</td></tr>
+            <tr><td class="text-2xl">👷</td><td>U+1F477</td></tr>
+            <tr><td class="text-2xl">👸</td><td>U+1F478</td></tr>
+            <tr><td class="text-2xl">👹</td><td>U+1F479</td></tr>
+            <tr><td class="text-2xl">👺</td><td>U+1F47A</td></tr>
+            <tr><td class="text-2xl">👻</td><td>U+1F47B</td></tr>
+            <tr><td class="text-2xl">👼</td><td>U+1F47C</td></tr>
+            <tr><td class="text-2xl">👽</td><td>U+1F47D</td></tr>
+            <tr><td class="text-2xl">👾</td><td>U+1F47E</td></tr>
+            <tr><td class="text-2xl">👿</td><td>U+1F47F</td></tr>
+            <tr><td class="text-2xl">💀</td><td>U+1F480</td></tr>
+            <tr><td class="text-2xl">💁</td><td>U+1F481</td></tr>
+            <tr><td class="text-2xl">💂</td><td>U+1F482</td></tr>
+            <tr><td class="text-2xl">💃</td><td>U+1F483</td></tr>
+            <tr><td class="text-2xl">💄</td><td>U+1F484</td></tr>
+            <tr><td class="text-2xl">💅</td><td>U+1F485</td></tr>
+            <tr><td class="text-2xl">💆</td><td>U+1F486</td></tr>
+            <tr><td class="text-2xl">💇</td><td>U+1F487</td></tr>
+            <tr><td class="text-2xl">💈</td><td>U+1F488</td></tr>
+            <tr><td class="text-2xl">💉</td><td>U+1F489</td></tr>
+            <tr><td class="text-2xl">💊</td><td>U+1F48A</td></tr>
+            <tr><td class="text-2xl">💋</td><td>U+1F48B</td></tr>
+            <tr><td class="text-2xl">💌</td><td>U+1F48C</td></tr>
+            <tr><td class="text-2xl">💍</td><td>U+1F48D</td></tr>
+            <tr><td class="text-2xl">💎</td><td>U+1F48E</td></tr>
+            <tr><td class="text-2xl">💏</td><td>U+1F48F</td></tr>
+            <tr><td class="text-2xl">💐</td><td>U+1F490</td></tr>
+            <tr><td class="text-2xl">💑</td><td>U+1F491</td></tr>
+            <tr><td class="text-2xl">💒</td><td>U+1F492</td></tr>
+            <tr><td class="text-2xl">💓</td><td>U+1F493</td></tr>
+            <tr><td class="text-2xl">💔</td><td>U+1F494</td></tr>
+            <tr><td class="text-2xl">💕</td><td>U+1F495</td></tr>
+            <tr><td class="text-2xl">💖</td><td>U+1F496</td></tr>
+            <tr><td class="text-2xl">💗</td><td>U+1F497</td></tr>
+            <tr><td class="text-2xl">💘</td><td>U+1F498</td></tr>
+            <tr><td class="text-2xl">💙</td><td>U+1F499</td></tr>
+            <tr><td class="text-2xl">💚</td><td>U+1F49A</td></tr>
+            <tr><td class="text-2xl">💛</td><td>U+1F49B</td></tr>
+            <tr><td class="text-2xl">💜</td><td>U+1F49C</td></tr>
+            <tr><td class="text-2xl">💝</td><td>U+1F49D</td></tr>
+            <tr><td class="text-2xl">💞</td><td>U+1F49E</td></tr>
+            <tr><td class="text-2xl">💟</td><td>U+1F49F</td></tr>
+            <tr><td class="text-2xl">💡</td><td>U+1F4A1</td></tr>
+            <tr><td class="text-2xl">💢</td><td>U+1F4A2</td></tr>
+            <tr><td class="text-2xl">💣</td><td>U+1F4A3</td></tr>
+            <tr><td class="text-2xl">💤</td><td>U+1F4A4</td></tr>
+            <tr><td class="text-2xl">💥</td><td>U+1F4A5</td></tr>
+            <tr><td class="text-2xl">💦</td><td>U+1F4A6</td></tr>
+            <tr><td class="text-2xl">💧</td><td>U+1F4A7</td></tr>
+            <tr><td class="text-2xl">💨</td><td>U+1F4A8</td></tr>
+            <tr><td class="text-2xl">💩</td><td>U+1F4A9</td></tr>
+            <tr><td class="text-2xl">💪</td><td>U+1F4AA</td></tr>
+            <tr><td class="text-2xl">💫</td><td>U+1F4AB</td></tr>
+            <tr><td class="text-2xl">💬</td><td>U+1F4AC</td></tr>
+            <tr><td class="text-2xl">💭</td><td>U+1F4AD</td></tr>
+            <tr><td class="text-2xl">💮</td><td>U+1F4AE</td></tr>
+            <tr><td class="text-2xl">💯</td><td>U+1F4AF</td></tr>
+            <tr><td class="text-2xl">💰</td><td>U+1F4B0</td></tr>
+            <tr><td class="text-2xl">💱</td><td>U+1F4B1</td></tr>
+            <tr><td class="text-2xl">💲</td><td>U+1F4B2</td></tr>
+            <tr><td class="text-2xl">💳</td><td>U+1F4B3</td></tr>
+            <tr><td class="text-2xl">💴</td><td>U+1F4B4</td></tr>
+            <tr><td class="text-2xl">💵</td><td>U+1F4B5</td></tr>
+            <tr><td class="text-2xl">💶</td><td>U+1F4B6</td></tr>
+            <tr><td class="text-2xl">💷</td><td>U+1F4B7</td></tr>
+            <tr><td class="text-2xl">💸</td><td>U+1F4B8</td></tr>
+            <tr><td class="text-2xl">💹</td><td>U+1F4B9</td></tr>
+            <tr><td class="text-2xl">💻</td><td>U+1F4BB</td></tr>
+            <tr><td class="text-2xl">💼</td><td>U+1F4BC</td></tr>
+            <tr><td class="text-2xl">💽</td><td>U+1F4BD</td></tr>
+            <tr><td class="text-2xl">💾</td><td>U+1F4BE</td></tr>
+            <tr><td class="text-2xl">💿</td><td>U+1F4BF</td></tr>
+            <tr><td class="text-2xl">📀</td><td>U+1F4C0</td></tr>
+            <tr><td class="text-2xl">📁</td><td>U+1F4C1</td></tr>
+            <tr><td class="text-2xl">📂</td><td>U+1F4C2</td></tr>
+            <tr><td class="text-2xl">📃</td><td>U+1F4C3</td></tr>
+            <tr><td class="text-2xl">📄</td><td>U+1F4C4</td></tr>
+            <tr><td class="text-2xl">📅</td><td>U+1F4C5</td></tr>
+            <tr><td class="text-2xl">📆</td><td>U+1F4C6</td></tr>
+            <tr><td class="text-2xl">📇</td><td>U+1F4C7</td></tr>
+            <tr><td class="text-2xl">📈</td><td>U+1F4C8</td></tr>
+            <tr><td class="text-2xl">📉</td><td>U+1F4C9</td></tr>
+            <tr><td class="text-2xl">📊</td><td>U+1F4CA</td></tr>
+            <tr><td class="text-2xl">📋</td><td>U+1F4CB</td></tr>
+            <tr><td class="text-2xl">📌</td><td>U+1F4CC</td></tr>
+            <tr><td class="text-2xl">📍</td><td>U+1F4CD</td></tr>
+            <tr><td class="text-2xl">📎</td><td>U+1F4CE</td></tr>
+            <tr><td class="text-2xl">📏</td><td>U+1F4CF</td></tr>
+            <tr><td class="text-2xl">📐</td><td>U+1F4D0</td></tr>
+            <tr><td class="text-2xl">📑</td><td>U+1F4D1</td></tr>
+            <tr><td class="text-2xl">📒</td><td>U+1F4D2</td></tr>
+            <tr><td class="text-2xl">📓</td><td>U+1F4D3</td></tr>
+            <tr><td class="text-2xl">📔</td><td>U+1F4D4</td></tr>
+            <tr><td class="text-2xl">📕</td><td>U+1F4D5</td></tr>
+            <tr><td class="text-2xl">📖</td><td>U+1F4D6</td></tr>
+            <tr><td class="text-2xl">📗</td><td>U+1F4D7</td></tr>
+            <tr><td class="text-2xl">📘</td><td>U+1F4D8</td></tr>
+            <tr><td class="text-2xl">📙</td><td>U+1F4D9</td></tr>
+            <tr><td class="text-2xl">📚</td><td>U+1F4DA</td></tr>
+            <tr><td class="text-2xl">📛</td><td>U+1F4DB</td></tr>
+            <tr><td class="text-2xl">📜</td><td>U+1F4DC</td></tr>
+            <tr><td class="text-2xl">📝</td><td>U+1F4DD</td></tr>
+            <tr><td class="text-2xl">📞</td><td>U+1F4DE</td></tr>
+            <tr><td class="text-2xl">📟</td><td>U+1F4DF</td></tr>
+            <tr><td class="text-2xl">📠</td><td>U+1F4E0</td></tr>
+            <tr><td class="text-2xl">📡</td><td>U+1F4E1</td></tr>
+            <tr><td class="text-2xl">📢</td><td>U+1F4E2</td></tr>
+            <tr><td class="text-2xl">📣</td><td>U+1F4E3</td></tr>
+            <tr><td class="text-2xl">📤</td><td>U+1F4E4</td></tr>
+            <tr><td class="text-2xl">📥</td><td>U+1F4E5</td></tr>
+            <tr><td class="text-2xl">📦</td><td>U+1F4E6</td></tr>
+            <tr><td class="text-2xl">📧</td><td>U+1F4E7</td></tr>
+            <tr><td class="text-2xl">📨</td><td>U+1F4E8</td></tr>
+            <tr><td class="text-2xl">📩</td><td>U+1F4E9</td></tr>
+            <tr><td class="text-2xl">📪</td><td>U+1F4EA</td></tr>
+            <tr><td class="text-2xl">📫</td><td>U+1F4EB</td></tr>
+            <tr><td class="text-2xl">📬</td><td>U+1F4EC</td></tr>
+            <tr><td class="text-2xl">📭</td><td>U+1F4ED</td></tr>
+            <tr><td class="text-2xl">📮</td><td>U+1F4EE</td></tr>
+            <tr><td class="text-2xl">📯</td><td>U+1F4EF</td></tr>
+            <tr><td class="text-2xl">📰</td><td>U+1F4F0</td></tr>
+            <tr><td class="text-2xl">📱</td><td>U+1F4F1</td></tr>
+            <tr><td class="text-2xl">📲</td><td>U+1F4F2</td></tr>
+            <tr><td class="text-2xl">📳</td><td>U+1F4F3</td></tr>
+            <tr><td class="text-2xl">📴</td><td>U+1F4F4</td></tr>
+            <tr><td class="text-2xl">📵</td><td>U+1F4F5</td></tr>
+            <tr><td class="text-2xl">📶</td><td>U+1F4F6</td></tr>
+            <tr><td class="text-2xl">📷</td><td>U+1F4F7</td></tr>
+            <tr><td class="text-2xl">📹</td><td>U+1F4F9</td></tr>
+            <tr><td class="text-2xl">📺</td><td>U+1F4FA</td></tr>
+            <tr><td class="text-2xl">📻</td><td>U+1F4FB</td></tr>
+            <tr><td class="text-2xl">📼</td><td>U+1F4FC</td></tr>
+            <tr><td class="text-2xl">🔊</td><td>U+1F50A</td></tr>
+            <tr><td class="text-2xl">📢</td><td>U+1F4E2</td></tr>
+            <tr><td class="text-2xl">📣</td><td>U+1F4E3</td></tr>
+            <tr><td class="text-2xl">🔋</td><td>U+1F50B</td></tr>
+            <tr><td class="text-2xl">🔌</td><td>U+1F50C</td></tr>
+            <tr><td class="text-2xl">🔍</td><td>U+1F50D</td></tr>
+            <tr><td class="text-2xl">🔎</td><td>U+1F50E</td></tr>
+            <tr><td class="text-2xl">🔏</td><td>U+1F50F</td></tr>
+            <tr><td class="text-2xl">🔐</td><td>U+1F510</td></tr>
+            <tr><td class="text-2xl">🔑</td><td>U+1F511</td></tr>
+            <tr><td class="text-2xl">🔒</td><td>U+1F512</td></tr>
+            <tr><td class="text-2xl">🔓</td><td>U+1F513</td></tr>
+            <tr><td class="text-2xl">🔔</td><td>U+1F514</td></tr>
+            <tr><td class="text-2xl">🔕</td><td>U+1F515</td></tr>
+            <tr><td class="text-2xl">🔖</td><td>U+1F516</td></tr>
+            <tr><td class="text-2xl">🔗</td><td>U+1F517</td></tr>
+            <tr><td class="text-2xl">🔘</td><td>U+1F518</td></tr>
+            <tr><td class="text-2xl">🔙</td><td>U+1F519</td></tr>
+            <tr><td class="text-2xl">🔚</td><td>U+1F51A</td></tr>
+            <tr><td class="text-2xl">🔛</td><td>U+1F51B</td></tr>
+            <tr><td class="text-2xl">🔜</td><td>U+1F51C</td></tr>
+            <tr><td class="text-2xl">🔝</td><td>U+1F51D</td></tr>
+            <tr><td class="text-2xl">🔞</td><td>U+1F51E</td></tr>
+            <tr><td class="text-2xl">🔟</td><td>U+1F51F</td></tr>
+            <tr><td class="text-2xl">🔠</td><td>U+1F520</td></tr>
+            <tr><td class="text-2xl">🔡</td><td>U+1F521</td></tr>
+            <tr><td class="text-2xl">🔢</td><td>U+1F522</td></tr>
+            <tr><td class="text-2xl">🔣</td><td>U+1F523</td></tr>
+            <tr><td class="text-2xl">🔤</td><td>U+1F524</td></tr>
+            <tr><td class="text-2xl">🔥</td><td>U+1F525</td></tr>
+            <tr><td class="text-2xl">🔦</td><td>U+1F526</td></tr>
+            <tr><td class="text-2xl">🔧</td><td>U+1F527</td></tr>
+            <tr><td class="text-2xl">🔧</td><td>U+1F527</td></tr>
+            <tr><td class="text-2xl">🔨</td><td>U+1F528</td></tr>
+            <tr><td class="text-2xl">🔩</td><td>U+1F529</td></tr>
+            <tr><td class="text-2xl">🔪</td><td>U+1F52A</td></tr>
+            <tr><td class="text-2xl">🔫</td><td>U+1F52B</td></tr>
+            <tr><td class="text-2xl">🔮</td><td>U+1F52E</td></tr>
+            <tr><td class="text-2xl">🔯</td><td>U+1F52F</td></tr>
+            <tr><td class="text-2xl">🔰</td><td>U+1F530</td></tr>
+            <tr><td class="text-2xl">🔱</td><td>U+1F531</td></tr>
+            <tr><td class="text-2xl">🔲</td><td>U+1F532</td></tr>
+            <tr><td class="text-2xl">🔳</td><td>U+1F533</td></tr>
+            <tr><td class="text-2xl">🔴</td><td>U+1F534</td></tr>
+            <tr><td class="text-2xl">🔵</td><td>U+1F535</td></tr>
+            <tr><td class="text-2xl">🔶</td><td>U+1F536</td></tr>
+            <tr><td class="text-2xl">🔷</td><td>U+1F537</td></tr>
+            <tr><td class="text-2xl">🔸</td><td>U+1F538</td></tr>
+            <tr><td class="text-2xl">🔹</td><td>U+1F539</td></tr>
+            <tr><td class="text-2xl">🔺</td><td>U+1F53A</td></tr>
+            <tr><td class="text-2xl">🔻</td><td>U+1F53B</td></tr>
+            <tr><td class="text-2xl">🔼</td><td>U+1F53C</td></tr>
+            <tr><td class="text-2xl">🔽</td><td>U+1F53D</td></tr>
+            <tr><td class="text-2xl">🕐</td><td>U+1F550</td></tr>
+            <tr><td class="text-2xl">🕑</td><td>U+1F551</td></tr>
+            <tr><td class="text-2xl">🕒</td><td>U+1F552</td></tr>
+            <tr><td class="text-2xl">🕓</td><td>U+1F553</td></tr>
+            <tr><td class="text-2xl">🕔</td><td>U+1F554</td></tr>
+            <tr><td class="text-2xl">🕕</td><td>U+1F555</td></tr>
+            <tr><td class="text-2xl">🕖</td><td>U+1F556</td></tr>
+            <tr><td class="text-2xl">🕗</td><td>U+1F557</td></tr>
+            <tr><td class="text-2xl">🕘</td><td>U+1F558</td></tr>
+            <tr><td class="text-2xl">🕙</td><td>U+1F559</td></tr>
+            <tr><td class="text-2xl">🕚</td><td>U+1F55A</td></tr>
+            <tr><td class="text-2xl">🕛</td><td>U+1F55B</td></tr>
+            <tr><td class="text-2xl">🗻</td><td>U+1F5FB</td></tr>
+            <tr><td class="text-2xl">🗼</td><td>U+1F5FC</td></tr>
+            <tr><td class="text-2xl">🗽</td><td>U+1F5FD</td></tr>
+            <tr><td class="text-2xl">🗾</td><td>U+1F5FE</td></tr>
+            <tr><td class="text-2xl">🗿</td><td>U+1F5FF</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <div id="toast-stack" class="pointer-events-none fixed.bottom-6 right-6 z-50 flex flex-col gap-3"></div>
+
+  <script>
+    (function enforceFreshLoad() {
+      const REFRESH_KEY = 'obscur-7wands-last-refresh';
+      const REFRESH_INFLIGHT_KEY = 'obscur-7wands-refresh-inflight';
+      const now = Date.now();
+      const lastRefresh = Number(localStorage.getItem(REFRESH_KEY) || 0);
+      const recentlyReloaded = sessionStorage.getItem(REFRESH_INFLIGHT_KEY);
+      if (!recentlyReloaded && (!lastRefresh || now - lastRefresh > 300000)) {
+        sessionStorage.setItem(REFRESH_INFLIGHT_KEY, 'true');
+        localStorage.setItem(REFRESH_KEY, String(now));
+        window.location.reload(true);
+        return;
+      }
+      sessionStorage.removeItem(REFRESH_INFLIGHT_KEY);
+    })();
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const STORAGE_KEY = 'obscur-7wands-data';
+      const content = document.getElementById('content');
+      const navButtons = document.querySelectorAll('[data-section]');
+      const toastStack = document.getElementById('toast-stack');
+      const mapImageUrl = 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80';
+      let customMapGallery = [];
+      let activeMapIndex = 0;
+      let mapGalleryEditing = false;
+      let mapReplaceMode = false;
+      let mapReplaceTargetIndex = null;
+      let currentSection = 'accueil';
+
+      const persistState = () => {
+        try {
+          const payload = JSON.stringify({ library, customMapGallery, activeMapIndex });
+          localStorage.setItem(STORAGE_KEY, payload);
+        } catch (error) {
+          console.warn('Impossible d\'enregistrer la session', error);
+        }
+      };
+
+      const hydrateState = () => {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) return;
+          const parsed = JSON.parse(raw);
+          if (parsed && typeof parsed === 'object') {
+            if (parsed.library && typeof parsed.library === 'object') {
+              Object.keys(library).forEach((key) => {
+                if (Array.isArray(parsed.library[key])) {
+                  library[key] = parsed.library[key];
+                }
+              });
+            }
+            if (Array.isArray(parsed.customMapGallery)) {
+              customMapGallery = normalizeMapGallery(parsed.customMapGallery);
+            }
+            if (typeof parsed.activeMapIndex === 'number') {
+              activeMapIndex = Math.max(0, Math.min(parsed.activeMapIndex, Math.max(customMapGallery.length - 1, 0)));
+            }
+          }
+        } catch (error) {
+          console.warn('Impossible de charger la session', error);
+        }
+      };
+
+      const order = ['recettes-cuisines', 'recettes-potions', 'cours', 'ingredients', 'notes', 'carte'];
+      const bookMeta = {
+        'recettes-cuisines': {
+          label: 'Recettes Cuisines',
+          description: 'Festins mystiques, relevés de sortilèges gustatifs et d’épices astrales.'
+        },
+        'recettes-potions': {
+          label: 'Recettes Potions',
+          description: 'Elixirs, sérums et distillations luminescentes pour chaque rituel.'
+        },
+        'cours': {
+          label: 'Cours',
+          description: 'Curriculum des arts occultes, sessions pratiques et exercices guidés.'
+        },
+        'ingredients': {
+          label: 'Ingrédients',
+          description: 'Index aromatique des essences rares, champignons lunaires et sels prismatiques.'
+        },
+        'notes': {
+          label: 'Notes',
+          description: 'Carnets d’observations, annotations rituelles et mémos de laboratoire.'
+        },
+        'carte': {
+          label: 'Cartes',
+          description: 'Atlas arcanique des territoires inexplorés et routes de convocation.'
+        }
+      };
+
+      const ingredientCategories = new Set(['recettes-cuisines', 'recettes-potions']);
+      const ingredientUsageLabels = {
+        cuisine: 'Ingrédients Cuisine',
+        potion: 'Ingrédients Potion'
+      };
+      const sectionsWithEditTips = new Set(['recettes-cuisines', 'recettes-potions', 'cours', 'ingredients', 'notes']);
+
+      let library = {
+        'recettes-cuisines': [
+          { id: 'cuisine-1', title: 'Soufflé Astral', content: 'Un nuage salé, gonflé par des vents stellaires et parfumé aux herbes lunaires.', ingredients: 'Blancs d’œuf astrals, herbes lunaires, poudre de stardust.' },
+          { id: 'cuisine-2', title: 'Ragoût des Veilleurs', content: 'Légumes racines caramélisés, bouillon de comète et miettes de quartz comestible.', ingredients: 'Racines caramélisées, bouillon de comète, éclats de quartz.' }
+        ],
+        'recettes-potions': [
+          { id: 'potion-1', title: 'Élixir du Crépuscule', content: 'Infusion ambrée qui équilibre l’esprit après un long voyage astral.', ingredients: 'Pétales de crépuscule, ambre liquide, eau des songes.', effects: 'Ré-équilibre le flux astral et stabilise les sens.', incantation: 'Murmuros astralis, ramenez l’équilibre de la nuit.' },
+          { id: 'potion-2', title: 'Distillat de Givre', content: 'Potion translucide qui apaise les brûlures d’énergie et réinitialise le mana.', ingredients: 'Givre éternel, menthe astrale, cristaux de mana.', effects: 'Apaise les brûlures d’énergie et relance la réserve de mana.', incantation: 'Gelum animae, apaisez la braise intérieure.' }
+        ],
+        'cours': [
+          { id: 'cours-1', title: 'Chorégraphies de runes', content: 'Séance pratique sur l’écriture gestuelle des glyphes protecteurs.', professor: 'Prof. Selene' },
+          { id: 'cours-2', title: 'Herboristerie noire', content: 'Découverte guidée des plantes nocturnes aux propriétés instables.', professor: 'Maître Orphos' }
+        ],
+        'ingredients': [
+          { id: 'ingredient-1', title: 'Pollen de Nyx', content: 'Grains luminescents récoltés au sommet des falaises nocturnes, utilisés pour stabiliser les sauces astrales.', location: 'Falaise de Nyx', usage: 'cuisine' },
+          { id: 'ingredient-2', title: 'Sel prismatique', content: 'Cristaux multicolores qui amplifient la saveur et la portée des sortilèges culinaires.', location: 'Salines prismatiques', usage: 'potion' }
+        ],
+        'notes': [
+          { id: 'note-1', title: 'Essais sur la chaleur runique', content: 'Observations sur la manière dont la chaleur séraphique impacte les textures des potages enchantés.' },
+          { id: 'note-2', title: 'Mémo de service minuit', content: 'Rappels pour coordonner les tables d’apprentis pendant les banquets nocturnes.' }
+        ]
+      };
+
+      hydrateState();
+
+      const editingState = {};
+
+      function escapeHtml(str = '') {
+        return str
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      }
+
+      function createExcerpt(text = '', length = 90) {
+        return text.length > length ? text.slice(0, length) + '…' : text;
+      }
+
+      function formatMultiline(text = '') {
+        return escapeHtml(text).replace(/\n/g, '<br />');
+      }
+
+      function emoteToSymbol(input = '') {
+        const trimmed = (input || '').trim();
+        if (!trimmed) return '';
+        if (/U\+/i.test(trimmed)) {
+          const parts = trimmed
+            .split(/\s+/)
+            .map((part) => part.toUpperCase().replace(/^U\+/, ''))
+            .filter(Boolean);
+          const symbols = parts
+            .map((part) => {
+              const codePoint = parseInt(part, 16);
+              return Number.isNaN(codePoint) ? '' : String.fromCodePoint(codePoint);
+            })
+            .join('');
+          return symbols || trimmed;
+        }
+        return trimmed;
+      }
+
+      function getItemEmote(item = {}) {
+        if (!item || typeof item !== 'object') return '';
+        if (item.emote && item.emote.trim()) return item.emote.trim();
+        if (item.emoteCode && item.emoteCode.trim()) {
+          return emoteToSymbol(item.emoteCode);
+        }
+        return '';
+      }
+
+      function getDisplayTitle(item = {}) {
+        const emote = getItemEmote(item);
+        const safeTitle = escapeHtml(item?.title || '');
+        if (emote) {
+          return `${safeTitle}<span class="ml-1">${escapeHtml(emote)}</span>`;
+        }
+        return safeTitle;
+      }
+
+      function normalizeMapEntry(entry, idx = 0) {
+        if (!entry) return null;
+        const fallbackTitle = `Carte ${idx + 1}`;
+        const stamp = Date.now();
+        if (typeof entry === 'string') {
+          return {
+            id: `map-${stamp}-${idx}`,
+            url: entry,
+            title: fallbackTitle
+          };
+        }
+        if (typeof entry === 'object' && entry.url) {
+          const cleanedTitle = typeof entry.title === 'string' && entry.title.trim() ? entry.title.trim() : fallbackTitle;
+          return {
+            id: entry.id || `map-${stamp}-${idx}`,
+            url: entry.url,
+            title: cleanedTitle
+          };
+        }
+        return null;
+      }
+
+      function normalizeMapGallery(entries = []) {
+        return entries.map((entry, idx) => normalizeMapEntry(entry, idx)).filter(Boolean);
+      }
+
+      function findMapByTitle(title = '') {
+        if (!title) return null;
+        const normalized = title.trim().toLowerCase();
+        return customMapGallery.find((entry) => entry.title.trim().toLowerCase() === normalized) || null;
+      }
+
+      function getActiveMapUrl() {
+        if (!customMapGallery.length) {
+          activeMapIndex = 0;
+          return mapImageUrl;
+        }
+        if (activeMapIndex >= customMapGallery.length) {
+          activeMapIndex = customMapGallery.length - 1;
+        }
+        return customMapGallery[activeMapIndex]?.url || mapImageUrl;
+      }
+
+      function readFileAsDataURL(file) {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result);
+          reader.onerror = reject;
+          reader.readAsDataURL(file);
+        });
+      }
+
+      function promptMapName(defaultName, fileName = '') {
+        const label = fileName ? `Nom pour ${fileName}` : 'Nom de la carte';
+        const response = window.prompt(label, defaultName);
+        return response && response.trim() ? response.trim() : defaultName;
+      }
+
+      function pushToast(message, tone = 'success') {
+        if (!toastStack) return;
+        const toast = document.createElement('div');
+        toast.className = `toast rounded-2xl border px-4 py-2 text-sm shadow-2xl ${tone === 'danger'
+          ? 'border-red-400/60 bg-red-500/20 text-red-100'
+          : 'border-emerald-300/60 bg-emerald-400/10 text-emerald-100'}`;
+        toast.textContent = message;
+        toastStack.appendChild(toast);
+        requestAnimationFrame(() => toast.classList.add('shown'));
+        setTimeout(() => toast.classList.remove('shown'), 2600);
+        setTimeout(() => toast.remove(), 3200);
+      }
+
+      function syncAndRender(callback) {
+        if (typeof callback === 'function') {
+          callback();
+        }
+        persistState();
+        if (currentSection === 'accueil') {
+          renderHome();
+        } else if (currentSection === 'carte') {
+          renderCarte();
+        } else {
+          renderCategory(currentSection);
+        }
+      }
+
+      function setActiveNav(section) {
+        navButtons.forEach((btn) => {
+          btn.classList.toggle('is-active', btn.dataset.section === section);
+        });
+      }
+
+      navButtons.forEach((btn) => {
+        btn.addEventListener('click', () => showSection(btn.dataset.section));
+      });
+
+      function showSection(section) {
+        currentSection = section;
+        setActiveNav(section);
+        if (section === 'accueil') {
+          renderHome();
+        } else if (section === 'carte') {
+          renderCarte();
+        } else {
+          renderCategory(section);
+        }
+      }
+
+      async function exportLibrary() {
+        try {
+          const payload = JSON.stringify({ library, customMapGallery, activeMapIndex }, null, 2);
+          const now = new Date();
+          const pad = (num) => String(num).padStart(2, '0');
+          const dateLabel = `${pad(now.getDate())}-${pad(now.getMonth() + 1)}`;
+          const fileName = `obscur-7wands-${dateLabel}.json`;
+
+          if (window.showSaveFilePicker) {
+            const fileHandle = await window.showSaveFilePicker({
+              suggestedName: fileName,
+              types: [
+                {
+                  description: 'Sauvegarde Obscur 7Wands',
+                  accept: { 'application/json': ['.json'] }
+                }
+              ]
+            });
+            const writable = await fileHandle.createWritable();
+            await writable.write(payload);
+            await writable.close();
+            pushToast('Sauvegarde enregistrée.');
+          } else {
+            const blob = new Blob([payload], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = fileName;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+            pushToast('Sauvegarde exportée.');
+          }
+        } catch (error) {
+          console.error(error);
+          pushToast('Impossible d’exporter la sauvegarde.', 'danger');
+        }
+      }
+
+      function handleImportSelection(event) {
+        const file = event.target.files && event.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = () => {
+          try {
+            const imported = JSON.parse(reader.result || '{}');
+            if (!imported || typeof imported !== 'object' || typeof imported.library !== 'object') {
+              throw new Error('Structure invalide');
+            }
+            syncAndRender(() => {
+              Object.keys(library).forEach((key) => {
+                if (Array.isArray(imported.library[key])) {
+                  library[key] = imported.library[key];
+                }
+              });
+              let nextGallery = Array.isArray(imported.customMapGallery)
+                ? normalizeMapGallery(imported.customMapGallery)
+                : [];
+              if (!nextGallery.length && typeof imported.customMapUrl === 'string' && imported.customMapUrl) {
+                nextGallery = normalizeMapGallery([imported.customMapUrl]);
+              }
+              customMapGallery = nextGallery;
+              activeMapIndex = typeof imported.activeMapIndex === 'number'
+                ? Math.min(Math.max(imported.activeMapIndex, 0), Math.max(customMapGallery.length - 1, 0))
+                : 0;
+            });
+            pushToast('Sauvegarde importée.');
+          } catch (error) {
+            console.error(error);
+            pushToast('Fichier de sauvegarde invalide.', 'danger');
+          } finally {
+            event.target.value = '';
+          }
+        };
+        reader.onerror = () => {
+          pushToast('Impossible de lire ce fichier.', 'danger');
+          event.target.value = '';
+        };
+        reader.readAsText(file);
+      }
+
+      function renderHome() {
+        const cards = order
+          .filter((key) => key !== 'accueil')
+          .map((key) => {
+            const itemsForModule = key === 'carte'
+              ? (customMapGallery.length ? customMapGallery : [{ title: 'Atlas Obscur', url: mapImageUrl }])
+              : library[key] || [];
+            const listMarkup = itemsForModule.length
+              ? `<div class="mt-4 grid gap-2 sm:grid-cols-2">
+                  ${itemsForModule.map((item) => `<div class="rounded-2xl border border-white/15 bg-white/5 px-3 py-2 text-sm text-white/90">${getDisplayTitle(item)}</div>`).join('')}
+                </div>`
+              : `<p class="mt-4 text-sm text-white/70">Ajoutez votre premier élément pour commencer.</p>`;
+            const mapThumbnail = key === 'carte'
+              ? `<div class="mt-4 flex justify-center">
+                  <div class="inline-flex items-center justify-center rounded-2xl border border-white/10 bg-slate-900/40 p-2">
+                    <img src="${getActiveMapUrl()}" alt="Aperçu carte" class="h-24 w-auto object-contain" />
+                  </div>
+                </div>`
+              : '';
+            return `
+            <article data-open-section="${key}" class="module-surface rounded-3xl border border-white/10 p-6 transition hover:-translate-y-1 hover:border-white/40 cursor-pointer">
+              <h3 class="text-2xl font-semibold text-white">${bookMeta[key].label}</h3>
+              ${mapThumbnail}
+              ${listMarkup}
+            </article>`;
+          }).join('');
+
+        content.innerHTML = `
+          <section class="space-y-8 animate-fade">
+            <div class="grid gap-6 md:grid-cols-2">
+              ${cards}
+            </div>
+            <div class="module-surface rounded-3xl border border-white/10 p-6 mt-6">
+              <div class="flex flex-col items-stretch gap-4 md:flex-row md:justify-center">
+                <div class="module-surface w-full rounded-2xl border border-white/10 p-4 md:w-72">
+                  <h3 class="text-lg font-semibold text-white">Exporter</h3>
+                  <p class="mt-1 text-xs text-white/80">Sauvegardez toutes vos données localement.</p>
+                  <button id="exportData" class="mt-4 inline-flex items-center gap-2 rounded-full bg-cyan-200/90 px-4 py-2 text-xs font-semibold text-slate-900 transition hover:bg-cyan-100">Crée une sauvegarde</button>
+                </div>
+                <div class="module-surface w-full rounded-2xl border border-white/10 p-4 md:w-72">
+                  <h3 class="text-lg font-semibold text-white">Importer</h3>
+                  <p class="mt-1 text-xs text-white/80">Chargez une sauvegarde précédente.</p>
+                  <p class="mt-1 text-[11px] text-amber-100">⚠️ ATTENTION : Toujours effectué une sauvegarde forcé après avoir importer une sauvegarde ⚠️</p>
+                  <button id="importData" class="mt-4 inline-flex items-center gap-2 rounded-full border border-white/40 px-4 py-2 text-xs font-semibold text-white transition hover:border-cyan-300">Choisir un fichier</button>
+                  <input type="file" accept="application/json" id="importInput" class="hidden" />
+                </div>
+              </div>
+            </div>
+          </section>`;
+
+        content.querySelectorAll('[data-open-section]').forEach((btn) => {
+          btn.addEventListener('click', () => showSection(btn.dataset.openSection));
+        });
+
+        const exportBtn = document.getElementById('exportData');
+        const importBtn = document.getElementById('importData');
+        const importInput = document.getElementById('importInput');
+        if (exportBtn) {
+          exportBtn.addEventListener('click', exportLibrary);
+        }
+        if (importBtn && importInput) {
+          importBtn.addEventListener('click', () => importInput.click());
+          importInput.addEventListener('change', handleImportSelection);
+        }
+      }
+
+      function renderCarte() {
+        const meta = bookMeta['carte'];
+        const activeMapUrl = getActiveMapUrl();
+        const activeMapTitle = customMapGallery[activeMapIndex]?.title || 'Atlas Obscur';
+        const galleryMarkup = customMapGallery.length
+          ? customMapGallery.map((entry, index) => `
+              <div class="map-thumb rounded-xl border ${index === activeMapIndex ? 'border-cyan-200/80 bg-white/10' : 'border-white/15 bg-white/5'} p-2">
+                <div class="flex items-center gap-3">
+                  <button type="button" data-map-index="${index}" class="group relative block h-20 w-28 overflow-hidden rounded-lg" ${mapReplaceMode ? `data-replace-target="${index}"` : ''}>
+                    <img src="${entry.url}" alt="${escapeHtml(entry.title)}" class="h-full w-full object-cover" />
+                    <span class="absolute inset-0 flex items-center justify-center bg-black/40 text-xs font-semibold uppercase tracking-[0.3em] text-white opacity-0 transition group-hover:opacity-100">${mapReplaceMode ? 'Choisir' : 'Voir'}</span>
+                  </button>
+                  <p class="text-sm font-semibold text-white/90">${escapeHtml(entry.title)}</p>
+                </div>
+                <button type="button" class="delete-item ${mapGalleryEditing ? 'is-visible' : ''}" data-delete-map="${index}" aria-label="Supprimer ${escapeHtml(entry.title)}">✕</button>
+              </div>`).join('')
+          : '<p class="text-sm text-white/80">Ajoutez plusieurs cartes pour constituer votre galerie personnelle.</p>';
+
+        content.innerHTML = `
+          <section class="space-y-8 animate-fade">
+            <div class="module-surface rounded-3xl border border-white/10 p-8 shadow-2xl shadow-black/40">
+              <h2 class="text-3xl font-bold text-white">${meta.label}</h2>
+              <p class="mt-3 text-xs text-white/80">Sélectionnez plusieurs images pour créer votre collection de cartes personnelles.</p>
+              <div class="mt-6 flex flex-wrap gap-5">
+                <div class="flex flex-col gap-1">
+                  <button id="uploadMap" class="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-6 py-2 text-sm font-semibold text-white transition hover:bg-white/20">
+                    ⬆️ Charger des cartes
+                  </button>
+                </div>
+                <div class="flex flex-col gap-1">
+                  <button id="replaceMap" class="inline-flex items-center gap-2 rounded-full border border-amber-400/60 bg-amber-500/10 px-6 py-2 text-sm font-semibold text-amber-50 transition hover:bg-amber-500/20">
+                    ${mapReplaceMode ? 'Terminer les remplacements' : '✏️ Modifier une carte'}
+                  </button>
+                  ${mapReplaceMode ? '<p class="text-xs text-amber-100" id="replaceTips">Cliquez sur la photo à changer dans ALBUM pour changer la photo.</p>' : ''}
+                </div>
+                <div class="flex flex-col gap-1">
+                  <button id="toggleMapEditing" class="inline-flex items-center gap-2 rounded-full border border-red-400/60 bg-red-500/10 px-6 py-2 text-sm font-semibold text-red-100 transition hover:bg-red-500/20">
+                    ${mapGalleryEditing ? 'Terminer les suppressions' : '🗑️ Supprimer des cartes'}
+                  </button>
+                  ${mapGalleryEditing ? '<p class="text-xs text-red-100" id="deleteTips">Cliquez sur la croix rouge pour supprimé une image.</p>' : ''}
+                </div>
+                <input type="file" accept="image/*" id="mapUpload" class="hidden" multiple />
+                <input type="file" accept="image/*" id="mapReplaceInput" class="hidden" />
+              </div>
+            </div>
+            <div class="module-surface rounded-3xl border border-white/10 p-6">
+              <div class="grid gap-6 lg:grid-cols-[minmax(0,1fr)_260px]">
+                <div class="flex flex-col items-center gap-3">
+                  <p class="text-sm font-semibold text-white/90">${escapeHtml(activeMapTitle)}</p>
+                  <button type="button" class="map-preview-frame inline-flex items-center justify-center rounded-2xl border border-white/10 bg-slate-900/40 p-4" id="mapPreviewFrame" ${mapReplaceMode ? 'data-replace-target="preview"' : ''}>
+                    <img id="mapPreview" src="${activeMapUrl}" alt="Carte mystique" class="max-h-[420px] w-auto max-w-full object-contain" />
+                  </button>
+                </div>
+                <div>
+                  <p class="text-xs uppercase tracking-[0.4em] text-white/70">Galerie</p>
+                  <div id="mapGallery" class="map-gallery ${mapGalleryEditing ? 'editing' : ''} mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+                    ${galleryMarkup}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>`;
+
+        const previewFrame = document.getElementById('mapPreviewFrame');
+        if (previewFrame) {
+          previewFrame.addEventListener('click', () => openMapFullscreen(getActiveMapUrl()));
+        }
+
+        const uploadBtn = document.getElementById('uploadMap');
+        const fileInput = document.getElementById('mapUpload');
+        if (uploadBtn && fileInput) {
+          uploadBtn.addEventListener('click', () => fileInput.click());
+          fileInput.addEventListener('change', (event) => handleMapUpload(event));
+        }
+        const replaceBtn = document.getElementById('replaceMap');
+        const replaceInput = document.getElementById('mapReplaceInput');
+        if (replaceBtn && replaceInput) {
+          replaceBtn.addEventListener('click', () => {
+            mapReplaceMode = !mapReplaceMode;
+            mapReplaceTargetIndex = null;
+            renderCarte();
+          });
+          replaceInput.addEventListener('change', (event) => handleMapReplace(event));
+        }
+
+        content.querySelectorAll('[data-map-index]').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const indexValue = Number(btn.dataset.mapIndex) || 0;
+            if (mapReplaceMode) {
+              mapReplaceTargetIndex = indexValue;
+              const replaceInput = document.getElementById('mapReplaceInput');
+              if (replaceInput) {
+                replaceInput.click();
+              }
+            } else {
+              activeMapIndex = indexValue;
+              renderCarte();
+            }
+          });
+        });
+
+        const toggleEditingBtn = document.getElementById('toggleMapEditing');
+        if (toggleEditingBtn) {
+          toggleEditingBtn.addEventListener('click', () => {
+            if (mapReplaceMode) {
+              mapReplaceMode = false;
+              mapReplaceTargetIndex = null;
+            }
+            mapGalleryEditing = !mapGalleryEditing;
+            renderCarte();
+          });
+        }
+
+        content.querySelectorAll('[data-delete-map]').forEach((btn) => {
+          btn.addEventListener('click', (event) => {
+            event.stopPropagation();
+            const index = Number(btn.dataset.deleteMap);
+            if (Number.isNaN(index)) return;
+            customMapGallery.splice(index, 1);
+            if (activeMapIndex >= customMapGallery.length) {
+              activeMapIndex = Math.max(customMapGallery.length - 1, 0);
+            }
+            persistState();
+            pushToast('Carte supprimée.', 'danger');
+            renderCarte();
+          });
+        });
+      }
+
+      function handleMapUpload(event) {
+        const files = Array.from(event.target.files || []);
+        if (!files.length) return;
+        const imageFiles = files.filter((file) => file.type.startsWith('image/'));
+        if (!imageFiles.length) {
+          pushToast('Merci de sélectionner des images valides.', 'danger');
+          event.target.value = '';
+          return;
+        }
+        Promise.all(imageFiles.map((file, idx) => readFileAsDataURL(file).then((dataUrl) => ({ dataUrl, file, idx }))))
+          .then((payloads) => {
+            const nextEntries = payloads.map(({ dataUrl, file, idx }) => {
+              const defaultName = file.name ? file.name.replace(/\.[^.]+$/i, '') || `Carte ${idx + 1}` : `Carte ${idx + 1}`;
+              const chosenName = promptMapName(defaultName, file.name || '');
+              return normalizeMapEntry({ url: dataUrl, title: chosenName }, idx);
+            }).filter(Boolean);
+            customMapGallery = [...customMapGallery, ...nextEntries];
+            activeMapIndex = customMapGallery.length - 1;
+            pushToast(nextEntries.length > 1 ? 'Nouvelles cartes chargées.' : 'Nouvelle carte chargée.');
+            mapReplaceMode = false;
+            mapReplaceTargetIndex = null;
+            persistState();
+            if (currentSection === 'carte') {
+              renderCarte();
+            }
+          })
+          .catch(() => {
+            pushToast('Impossible de charger certaines images.', 'danger');
+          })
+          .finally(() => {
+            event.target.value = '';
+          });
+      }
+
+      function handleMapReplace(event) {
+        const file = event.target.files && event.target.files[0];
+        if (!file) {
+          event.target.value = '';
+          return;
+        }
+        if (!mapReplaceMode || mapReplaceTargetIndex === null || !customMapGallery[mapReplaceTargetIndex]) {
+          pushToast('Merci de sélectionner une carte à modifier.', 'danger');
+          event.target.value = '';
+          return;
+        }
+        if (!file.type.startsWith('image/')) {
+          pushToast('Sélectionnez une image valide.', 'danger');
+          event.target.value = '';
+          return;
+        }
+        readFileAsDataURL(file)
+          .then((dataUrl) => {
+            const currentEntry = customMapGallery[mapReplaceTargetIndex];
+            const defaultName = file.name ? file.name.replace(/\.[^.]+$/i, '') || currentEntry.title : currentEntry.title;
+            const chosenName = promptMapName(defaultName, file.name || '') || currentEntry.title;
+            customMapGallery[mapReplaceTargetIndex] = {
+              ...currentEntry,
+              url: dataUrl,
+              title: chosenName
+            };
+            activeMapIndex = mapReplaceTargetIndex;
+            pushToast('Carte mise à jour.');
+            mapReplaceMode = false;
+            mapReplaceTargetIndex = null;
+            persistState();
+            renderCarte();
+          })
+          .catch(() => {
+            pushToast('Impossible de remplacer cette carte.', 'danger');
+          })
+          .finally(() => {
+            event.target.value = '';
+          });
+      }
+
+      function openMapFullscreen(url) {
+        if (!url) {
+          pushToast('Aucune carte à afficher.', 'danger');
+          return;
+        }
+        const win = window.open('', '_blank');
+        if (!win) {
+          pushToast('Impossible d\'ouvrir la carte. Veuillez autoriser les pop-ups.', 'danger');
+          return;
+        }
+        win.document.write(`<!DOCTYPE html><html lang="fr"><head><title>Carte Obscur 7Wands</title><style>body{margin:0;background:#020617;display:flex;align-items:center;justify-content:center;height:100vh;}img{max-width:100%;max-height:100%;object-fit:contain;}</style></head><body><img src="${url}" alt="Carte Obscur 7Wands" /></body></html>`);
+        win.document.close();
+      }
+
+      function toggleEmojiOverlay(show) {
+        const overlay = document.getElementById('emojiOverlay');
+        if (!overlay) return;
+        overlay.classList.toggle('is-visible', show);
+      }
+
+      function renderCategory(key) {
+        const meta = bookMeta[key];
+        const items = library[key] || [];
+        const isEditing = !!editingState[key];
+        const showEditTips = sectionsWithEditTips.has(key);
+        const chipList = items.length
+          ? items.map((item) => `<span class="rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs text-white/90">${getDisplayTitle(item)}</span>`).join(' ')
+          : '<span class="rounded-full border border-dashed border-white/20 px-3 py-1 text-xs text-white/80">Aucun élément pour l’instant</span>';
+
+        const createItemCard = (item) => {
+          const isRecipeCategory = ingredientCategories.has(key);
+          const contentLabel = key === 'recettes-potions' ? 'Instructions' : isRecipeCategory ? 'Information' : 'Détails';
+          const effectsTeaser = key === 'recettes-potions' && item.effects
+            ? `<p class="mt-1 text-xs text-cyan-100/80">${escapeHtml(createExcerpt(item.effects, 90))}</p>`
+            : '';
+          const ingredientsBlock = isRecipeCategory && item.ingredients
+            ? `<div>
+                  <p class="text-xs uppercase tracking-[0.2em] text-emerald-200">Ingrédients</p>
+                  <p class="text-sm text-white/90">${formatMultiline(item.ingredients)}</p>
+                </div>`
+            : '';
+          const effectsBlock = key === 'recettes-potions' && item.effects
+            ? `<div>
+                  <p class="text-xs uppercase tracking-[0.2em] text-cyan-200">Effets</p>
+                  <p class="text-sm text-white/90">${formatMultiline(item.effects)}</p>
+                </div>`
+            : '';
+          const incantationBlock = key === 'recettes-potions' && item.incantation
+            ? `<div>
+                  <p class="text-xs uppercase tracking-[0.2em] text-purple-200">Incantation</p>
+                  <p class="text-sm text-white/90">${formatMultiline(item.incantation)}</p>
+                </div>`
+            : '';
+          const matchedMap = key === 'ingredients' ? findMapByTitle(item.location || '') : null;
+          const locationBlock = key === 'ingredients' && item.location
+            ? `<div>
+                  <p class="text-xs uppercase tracking-[0.2em] text-lime-200">Emplacement</p>
+                  <p class="text-sm text-white/90">${matchedMap
+                    ? `<button type="button" class="map-location-link underline decoration-dotted decoration-lime-200/60 hover:text-lime-100" data-map-location-url="${matchedMap.url}" data-map-location-title="${escapeHtml(matchedMap.title)}">${escapeHtml(matchedMap.title)}</button>`
+                    : formatMultiline(item.location)}</p>
+                </div>`
+            : '';
+          const contentBlock = item.content
+            ? `<div>
+                  <p class="text-xs uppercase tracking-[0.2em] text-white/70">${contentLabel}</p>
+                  <p class="text-sm text-white/90">${formatMultiline(item.content)}</p>
+                </div>`
+            : '';
+          const detailBlocks = [];
+          if (key === 'recettes-potions') {
+            if (effectsBlock) detailBlocks.push(effectsBlock);
+            if (ingredientsBlock) detailBlocks.push(ingredientsBlock);
+            if (contentBlock) detailBlocks.push(contentBlock);
+            if (incantationBlock) detailBlocks.push(incantationBlock);
+          } else {
+            if (ingredientsBlock) detailBlocks.push(ingredientsBlock);
+            if (contentBlock) detailBlocks.push(contentBlock);
+            if (locationBlock) detailBlocks.push(locationBlock);
+            if (incantationBlock) detailBlocks.push(incantationBlock);
+          }
+          const detailsMarkup = detailBlocks.join('');
+          return `
+              <li data-id="${item.id}" data-expanded="false" class="module-surface item-card group cursor-pointer rounded-2xl border border-white/10 p-4 transition hover:-translate-y-0.5 hover:border-cyan-200/60" draggable="${isEditing}">
+                <div class="flex items-start justify-between gap-3">
+                  <div>
+                    <h4 class="mt-0 text-lg font-semibold text-white">${getDisplayTitle(item)}</h4>
+                    ${key === 'recettes-potions' ? effectsTeaser : ''}
+                    ${key === 'cours' && item.professor ? `<p class="text-xs uppercase tracking-[0.2em] text-emerald-200">${escapeHtml(item.professor)}</p>` : ''}
+                  </div>
+                  <button type="button" class="edit-item rounded-full border border-white/30 px-3 py-1 text-xs font-semibold text-white/80 transition hover:border-cyan-300 hover:text-white">Éditer</button>
+                </div>
+                <div class="item-details mt-3 space-y-2 hidden">
+                  ${detailsMarkup}
+                </div>
+                <button type="button" class="delete-item" aria-label="Supprimer ${escapeHtml(item.title)}">✕</button>
+              </li>`;
+        };
+
+        const listMarkup = items.length
+          ? items.map((item) => createItemCard(item)).join('')
+          : '<li class="module-surface rounded-2xl border border-dashed border-white/20 p-6 text-center text-white/90">Ajoutez votre premier élément pour commencer.</li>';
+
+        const inventoryLabelMap = {
+          'recettes-cuisines': 'Liste des Recettes',
+          'recettes-potions': 'Liste des Potions',
+          'cours': 'Notes sur les Cours',
+          'ingredients': 'Liste des Ingredients',
+          'notes': 'Liste des Notes'
+        };
+        const inventoryLabel = inventoryLabelMap[key] || 'Inventaire';
+
+        const ingredientColumnsMarkup = key === 'ingredients'
+          ? (() => {
+              const emptyColumn = '<li class="rounded-2xl border border-dashed border-white/20 p-4 text-center text-white/80">Ajoutez votre premier ingrédient.</li>';
+              const cuisineItems = items.filter((item) => (item.usage || 'cuisine') === 'cuisine');
+              const potionItems = items.filter((item) => (item.usage || 'cuisine') === 'potion');
+              const cuisineMarkup = cuisineItems.length ? cuisineItems.map((item) => createItemCard(item)).join('') : emptyColumn;
+              const potionMarkup = potionItems.length ? potionItems.map((item) => createItemCard(item)).join('') : emptyColumn;
+              return `
+                <div class="mt-4 grid grid-cols-1 gap-4 lg:grid-cols-2">
+                  <div class="rounded-2xl border border-white/15 bg-white/5 p-4">
+                    <p class="text-sm font-semibold text-white">Ingrédients Cuisine</p>
+                    <ul data-item-list data-usage="cuisine" class="mt-3 space-y-3${isEditing ? ' list-editing' : ''}">
+                      ${cuisineMarkup}
+                    </ul>
+                  </div>
+                  <div class="rounded-2xl border border-white/15 bg-white/5 p-4">
+                    <p class="text-sm font-semibold text-white">Ingrédients Potion</p>
+                    <ul data-item-list data-usage="potion" class="mt-3 space-y-3${isEditing ? ' list-editing' : ''}">
+                      ${potionMarkup}
+                    </ul>
+                  </div>
+                </div>`;
+            })()
+          : '';
+
+        content.innerHTML = `
+          <section class="space-y-8 animate-fade">
+            <div class="module-surface rounded-3xl border border-white/10 p-8 shadow-2xl shadow-black/40">
+              <h2 class="text-3xl font-bold text-white">${meta.label}</h2>
+              <div class="mt-4 flex flex-wrap gap-2 text-xs" id="chipList">${chipList}</div>
+              <button id="addItem" class="mt-6 inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/10 px-6 py-2 text-sm font-semibold text-white transition hover:bg-white/20">+ Ajouter un élément</button>
+            </div>
+            <div class="module-surface rounded-2xl border border-white/10 p-6 backdrop-blur">
+              <div class="flex flex-wrap items-center justify-between gap-4">
+                <div>
+                  <p class="text-xs uppercase tracking-[0.4em] text-white/80">${items.length} élément${items.length > 1 ? 's' : ''}</p>
+                  <h3 class="text-2xl font-semibold text-white mt-1">${inventoryLabel}</h3>
+                </div>
+                ${showEditTips
+                  ? `<div class="flex flex-col items-end gap-2 text-right">
+                      <button type="button" id="toggleEditing" class="text-xs font-semibold text-white/80 underline-offset-4 hover:text-white">${isEditing ? 'Terminer les modifications' : 'Cliquez pour modifier'}</button>
+                      <div class="text-xs text-white/80 ${isEditing ? '' : 'hidden'}" id="editTips">
+                        <p>Cliquez sur la croix rouge pour supprimé</p>
+                        <p class="mt-1">Restez clique sur la section pour la déplacer</p>
+                      </div>
+                    </div>`
+                  : `<button type="button" id="toggleEditing" class="text-xs font-semibold text-white/80 underline-offset-4 hover:text-white">${isEditing ? 'Terminer les modifications' : 'Cliquez pour modifier'}</button>`}
+              </div>
+              ${key === 'ingredients'
+                ? ingredientColumnsMarkup
+                : `<ul id="itemList" class="mt-4 space-y-3${isEditing ? ' list-editing' : ''}">${listMarkup}</ul>`}
+            </div>
+          </section>`;
+
+        document.getElementById('addItem').addEventListener('click', () => openEditor(key));
+        enableItemListInteractions(key);
+      }
+
+      function openEditor(key, id) {
+        closeEditor();
+        const isNew = !id;
+        const item = isNew ? { title: '', content: '', ingredients: '', professor: '', effects: '', incantation: '', location: '', usage: 'cuisine', emoteCode: '', emote: '' } : (library[key] || []).find((entry) => entry.id === id);
+        const isRecipe = ingredientCategories.has(key);
+        const titleLabel = isRecipe ? 'Nom de la recette' : key === 'cours' ? 'Cours' : 'Titre';
+        const titlePlaceholder = isRecipe ? 'Nom captivant de la recette' : key === 'cours' ? 'Titre du cours' : 'Nom captivant';
+        const contentLabel = isRecipe
+          ? (key === 'recettes-potions' ? 'Instructions' : 'Information')
+          : key === 'cours'
+            ? 'Note sur le Cours'
+            : 'Description détaillée';
+        const contentPlaceholder = isRecipe
+          ? (key === 'recettes-potions' ? 'Déroulé, incantations, observations (facultatif)' : 'Étapes, notes, observations (facultatif)')
+          : key === 'cours'
+            ? 'Consignes, objectifs, détails du cours'
+            : 'Ingrédients, étapes, objectifs…';
+
+        const overlay = document.createElement('div');
+        overlay.id = 'editorOverlay';
+        overlay.className = 'editor-overlay';
+        overlay.innerHTML = `
+          <div class="editor-panel module-surface border border-white/10 p-6 shadow-2xl shadow-black/40">
+            <div>
+              <p class="text-xs uppercase tracking-[0.4em] text-white/80">${isNew ? 'Création' : 'Édition'}</p>
+              <h3 class="mt-1 text-2xl font-semibold text-white">${isNew ? 'Nouvel élément' : escapeHtml(item?.title || '')}</h3>
+            </div>
+            <div class="mt-6 grid gap-4 md:grid-cols-2">
+              <label class="block text-sm font-medium text-white/90">
+                ${titleLabel}
+                <input id="itemTitle" type="text" value="${escapeHtml(item?.title || '')}" class="mt-2 w-full rounded-2xl border border-white/30 bg-white/10 px-4 py-2 text-white placeholder-white/60 focus:border-cyan-300 focus:outline-none" placeholder="${titlePlaceholder}" />
+              </label>
+              <label class="block text-sm font-medium text-white/90">
+                Code emote (Unicode)
+                <input id="itemEmoteCode" type="text" value="${escapeHtml(item?.emoteCode || '')}" class="mt-2 w-full rounded-2xl border border-white/30 bg-white/10 px-4 py-2 text-white placeholder-white/60 focus:border-cyan-300 focus:outline-none" placeholder="Ex: U+1F40D ou 🐍" />
+                <p class="mt-1 text-[11px] text-white/70">Astuce: saisissez un emoji ou un code Unicode (ex: U+1F31F).</p>
+              </label>
+            </div>
+            ${key === 'recettes-potions' ? `
+            <label class="mt-4 block text-sm font-medium text-white/90">
+              Effets
+              <textarea id="itemEffects" rows="3" class="mt-2 w-full rounded-2xl border border-white/30 bg-white/10 px-4 py-2 text-white placeholder-white/60 focus:border-cyan-300 focus:outline-none" placeholder="Impact, usage et résonance de la potion">${escapeHtml(item?.effects || '')}</textarea>
+            </label>` : ''}
+            ${key === 'cours' ? `
+            <label class="mt-4 block text-sm font-medium text-white/90">
+              Professeur
+              <input id="itemProfessor" type="text" value="${escapeHtml(item?.professor || '')}" class="mt-2 w-full rounded-2xl border border-white/30 bg-white/10 px-4 py-2 text-white placeholder-white/60 focus:border-cyan-300 focus:outline-none" placeholder="Nom du professeur" />
+            </label>` : ''}
+            ${isRecipe ? `
+            <label class="mt-4 block text-sm font-medium text-white/90">
+              Ingrédients
+              <textarea id="itemIngredients" rows="4" class="mt-2 w-full rounded-2xl border border-white/30 bg-white/10 px-4 py-3 text-white placeholder-white/60 focus:border-cyan-300 focus:outline-none" placeholder="Liste des composants essentiels">${escapeHtml(item?.ingredients || '')}</textarea>
+            </label>` : ''}
+            <label class="mt-4 block text-sm font-medium text-white/90">
+              ${contentLabel}
+              <textarea id="itemContent" rows="6" class="mt-2 w-full rounded-2xl border border-white/30 bg-white/10 px-4 py-3 text-white placeholder-white/60 focus:border-cyan-300 focus:outline-none" placeholder="${contentPlaceholder}">${escapeHtml(item?.content || '')}</textarea>
+            </label>
+            ${key === 'ingredients' ? `
+            <label class="mt-4 block text-sm font-medium text-white/90">
+              Utilisation
+              <select id="itemUsage" class="mt-2 w-full rounded-2xl border border-white/30 bg-white px-4 py-2 text-slate-900 focus:border-cyan-300 focus:outline-none">
+                <option value="cuisine" ${(!item?.usage || item?.usage === 'cuisine') ? 'selected' : ''}>Ingrédient Cuisine</option>
+                <option value="potion" ${(item?.usage === 'potion') ? 'selected' : ''}>Ingrédients Potion</option>
+              </select>
+            </label>
+            <label class="mt-4 block text-sm font-medium text-white/90">
+              Emplacement
+              <input id="itemLocation" type="text" value="${escapeHtml(item?.location || '')}" class="mt-2 w-full rounded-2xl border border-white/30 bg-white/10 px-4 py-2 text-white placeholder-white/60 focus:border-cyan-300 focus:outline-none" placeholder="Indiquez un lieu ou laissez vide pour choisir une carte" />
+            </label>
+            <label class="mt-4 block text-sm font-medium text-white/90">
+              Sélectionner depuis les cartes
+              <select id="itemLocationSelect" class="mt-2 w-full rounded-2xl border border-white/30 bg-white px-4 py-2 text-slate-900 focus:border-cyan-300 focus:outline-none">
+                <option value="">Aucune carte sélectionnée</option>
+                ${customMapGallery.map((map) => `<option value="${escapeHtml(map.title)}" ${item?.location === map.title ? 'selected' : ''}>${escapeHtml(map.title)}</option>`).join('')}
+              </select>
+            </label>` : ''}
+            ${key === 'recettes-potions' ? `
+            <label class="mt-4 block text-sm font-medium text-white/90">
+              Incantation
+              <textarea id="itemIncantation" rows="3" class="mt-2 w-full rounded-2xl border border-white/30 bg-white/10 px-4 py-2 text-white placeholder-white/60 focus:border-cyan-300 focus:outline-none" placeholder="Formule verbale ou gestuelle">${escapeHtml(item?.incantation || '')}</textarea>
+            </label>` : ''}
+            <div class="mt-6 flex flex-wrap gap-3">
+              <button id="saveItem" class="inline-flex items-center gap-2 rounded-full bg-cyan-200 px-6 py-2 font-semibold text-slate-900 transition hover:bg-cyan-100">${isNew ? 'Enregistrer' : 'Mettre à jour'}</button>
+              ${!isNew ? '<button id="deleteItem" class="inline-flex items-center gap-2 rounded-full border border-red-400/60 bg-red-500/10 px-5 py-2 text-red-100 transition hover:bg-red-500/20">Effacer</button>' : ''}
+              <button id="cancelEdit" class="inline-flex items-center gap-2 rounded-full border border-white/40 px-5 py-2 text-white transition hover:border-white/70">Fermer</button>
+            </div>
+          </div>`;
+
+        document.body.appendChild(overlay);
+
+        const stopProp = overlay.querySelector('.editor-panel');
+        if (stopProp) {
+          stopProp.addEventListener('click', (event) => event.stopPropagation());
+        }
+
+        overlay.addEventListener('click', closeEditor);
+        document.getElementById('saveItem').addEventListener('click', () => saveItem(key, id));
+        const deleteBtn = document.getElementById('deleteItem');
+        if (deleteBtn) {
+          deleteBtn.addEventListener('click', () => deleteItem(key, id));
+        }
+        document.getElementById('cancelEdit').addEventListener('click', closeEditor);
+      }
+
+      function closeEditor() {
+        const overlay = document.getElementById('editorOverlay');
+        if (overlay) {
+          overlay.remove();
+        }
+      }
+
+      function saveItem(key, id) {
+        const titleField = document.getElementById('itemTitle');
+        const emoteCodeField = document.getElementById('itemEmoteCode');
+        const contentField = document.getElementById('itemContent');
+        const ingredientsField = document.getElementById('itemIngredients');
+        const effectsField = document.getElementById('itemEffects');
+        const incantationField = document.getElementById('itemIncantation');
+        const professorField = document.getElementById('itemProfessor');
+        const locationField = document.getElementById('itemLocation');
+        const locationSelect = document.getElementById('itemLocationSelect');
+        if (!titleField || !contentField) return;
+        const title = titleField.value.trim();
+        const emoteCodeInput = emoteCodeField ? emoteCodeField.value.trim() : '';
+        const normalizedEmote = emoteToSymbol(emoteCodeInput);
+        const body = contentField.value.trim();
+        const ingredients = ingredientsField ? ingredientsField.value.trim() : undefined;
+        const effects = effectsField ? effectsField.value.trim() : undefined;
+        const incantation = incantationField ? incantationField.value.trim() : undefined;
+        const professor = professorField ? professorField.value.trim() : undefined;
+        const usageSelect = document.getElementById('itemUsage');
+        const usageValue = usageSelect ? usageSelect.value : undefined;
+        const manualLocation = locationField ? locationField.value.trim() : '';
+        const selectedLocation = locationSelect ? locationSelect.value.trim() : '';
+        const finalLocation = manualLocation || selectedLocation || undefined;
+        const isRecipe = ingredientCategories.has(key);
+        if (!title) {
+          pushToast('Veuillez nommer votre élément.', 'danger');
+          return;
+        }
+        if (!isRecipe && !body && key !== 'ingredients') {
+          pushToast('Merci d’ajouter une description.', 'danger');
+          return;
+        }
+        if (key === 'ingredients' && !finalLocation) {
+          pushToast('Merci de préciser un emplacement ou une carte.', 'danger');
+          return;
+        }
+        const nextItem = {
+          title,
+          emoteCode: emoteCodeInput,
+          emote: normalizedEmote,
+          content: body,
+          ...(ingredientsField ? { ingredients } : {}),
+          ...(effectsField ? { effects } : {}),
+          ...(incantationField ? { incantation } : {}),
+          ...(professorField ? { professor } : {}),
+          ...(key === 'ingredients' ? { location: finalLocation || '', usage: usageValue || 'cuisine' } : {})
+        };
+        if (id) {
+          library[key] = (library[key] || []).map((entry) => entry.id === id ? { ...entry, ...nextItem } : entry);
+          pushToast('Élément mis à jour.');
+        } else {
+          const newItem = { id: `${key}-${Date.now()}`, ...nextItem };
+          library[key] = [...(library[key] || []), newItem];
+          pushToast('Nouvel élément enregistré.');
+        }
+        persistState();
+        closeEditor();
+        renderCategory(key);
+      }
+
+      function deleteItem(key, id) {
+        library[key] = (library[key] || []).filter((entry) => entry.id !== id);
+        pushToast('Élément effacé.', 'danger');
+        persistState();
+        closeEditor();
+        renderCategory(key);
+      }
+
+      function enableItemListInteractions(key) {
+        const toggleBtn = document.getElementById('toggleEditing');
+        const listContainers = key === 'ingredients'
+          ? Array.from(document.querySelectorAll('[data-item-list]'))
+          : [document.getElementById('itemList')].filter(Boolean);
+        if (!toggleBtn || !listContainers.length) return;
+        toggleBtn.addEventListener('click', () => {
+          editingState[key] = !editingState[key];
+          applyEditingState(key);
+        });
+        listContainers.forEach((itemList) => {
+          itemList.addEventListener('click', (event) => handleListClick(event, key));
+          itemList.addEventListener('dragstart', (event) => handleDragStart(event, key));
+          itemList.addEventListener('dragover', (event) => handleDragOver(event, key));
+          itemList.addEventListener('dragend', (event) => handleDragEnd(event, key));
+          itemList.addEventListener('drop', (event) => event.preventDefault());
+          itemList.addEventListener('click', (event) => {
+            const locationLink = event.target.closest('[data-map-location-url]');
+            if (locationLink) {
+              event.stopPropagation();
+              const url = locationLink.dataset.mapLocationUrl;
+              openMapFullscreen(url);
+            }
+          });
+        });
+        applyEditingState(key);
+      }
+
+      function applyEditingState(key) {
+        const toggleBtn = document.getElementById('toggleEditing');
+        if (!toggleBtn) return;
+        const editing = !!editingState[key];
+        toggleBtn.textContent = editing ? 'Terminer les modifications' : 'Cliquez pour modifier';
+        const lists = key === 'ingredients'
+          ? document.querySelectorAll('[data-item-list]')
+          : [document.getElementById('itemList')].filter(Boolean);
+        lists.forEach((itemList) => {
+          if (!itemList) return;
+          itemList.classList.toggle('list-editing', editing);
+          itemList.querySelectorAll('li[data-id]').forEach((node) => node.setAttribute('draggable', editing));
+        });
+        if (sectionsWithEditTips.has(key)) {
+          const editTips = document.getElementById('editTips');
+          if (editTips) {
+            editTips.classList.toggle('hidden', !editing);
+          }
+        }
+      }
+
+      function handleListClick(event, key) {
+        const deleteBtn = event.target.closest('.delete-item');
+        if (deleteBtn) {
+          const li = deleteBtn.closest('li[data-id]');
+          if (li) {
+            deleteItem(key, li.dataset.id);
+          }
+          return;
+        }
+        const editBtn = event.target.closest('.edit-item');
+        if (editBtn) {
+          const li = editBtn.closest('li[data-id]');
+          if (li) {
+            openEditor(key, li.dataset.id);
+          }
+          return;
+        }
+        if (editingState[key]) {
+          return;
+        }
+        const itemCard = event.target.closest('li[data-id]');
+        if (itemCard) {
+          const details = itemCard.querySelector('.item-details');
+          const expanded = itemCard.dataset.expanded === 'true';
+          itemCard.dataset.expanded = (!expanded).toString();
+          if (details) {
+            details.classList.toggle('hidden', expanded);
+          }
+        }
+      }
+
+      function handleDragStart(event, key) {
+        if (!editingState[key]) {
+          event.preventDefault();
+          return;
+          }
+        const itemCard = event.target.closest('li[data-id]');
+        if (!itemCard) {
+          event.preventDefault();
+          return;
+        }
+        event.dataTransfer.effectAllowed = 'move';
+        event.dataTransfer.setData('text/plain', itemCard.dataset.id);
+        itemCard.classList.add('dragging');
+      }
+
+      function handleDragOver(event, key) {
+        if (!editingState[key]) return;
+        const itemList = event.currentTarget;
+        if (!itemList) return;
+        const dragging = itemList.querySelector('.dragging');
+        if (!dragging) return;
+        const target = event.target.closest('li[data-id]');
+        if (!target || target === dragging || !itemList.contains(target)) return;
+        event.preventDefault();
+        const rect = target.getBoundingClientRect();
+        const shouldPlaceBefore = event.clientY < rect.top + rect.height / 2;
+        if (shouldPlaceBefore) {
+          itemList.insertBefore(dragging, target);
+        } else {
+          itemList.insertBefore(dragging, target.nextSibling);
+        }
+      }
+
+      function handleDragEnd(event, key) {
+        if (!editingState[key]) return;
+        const lists = key === 'ingredients'
+          ? document.querySelectorAll('[data-item-list]')
+          : [document.getElementById('itemList')].filter(Boolean);
+        lists.forEach((list) => {
+          const dragging = list?.querySelector('.dragging');
+          if (dragging) dragging.classList.remove('dragging');
+        });
+        updateLibraryOrder(key);
+      }
+
+      function updateLibraryOrder(key) {
+        const current = library[key] || [];
+        if (key === 'ingredients') {
+          const cuisineList = document.querySelector('[data-item-list][data-usage="cuisine"]');
+          const potionList = document.querySelector('[data-item-list][data-usage="potion"]');
+          const cuisineIds = cuisineList ? Array.from(cuisineList.querySelectorAll('li[data-id]')).map((node) => node.dataset.id) : [];
+          const potionIds = potionList ? Array.from(potionList.querySelectorAll('li[data-id]')).map((node) => node.dataset.id) : [];
+          const orderedIds = [...cuisineIds, ...potionIds];
+          if (!orderedIds.length) {
+            renderCategory(key);
+            return;
+          }
+          const newOrder = orderedIds
+            .map((id) => current.find((item) => item.id === id))
+            .filter(Boolean)
+            .concat(current.filter((item) => !orderedIds.includes(item.id)));
+          const hasChanged = newOrder.some((item, idx) => item?.id !== current[idx]?.id);
+          library[key] = newOrder;
+          if (hasChanged) {
+            pushToast('Ordre mis à jour.');
+          }
+          editingState[key] = true;
+          renderCategory(key);
+          return;
+        }
+        const itemList = document.getElementById('itemList');
+        if (!itemList) return;
+        const ids = Array.from(itemList.querySelectorAll('li[data-id]')).map((node) => node.dataset.id);
+        if (!ids.length) {
+          renderCategory(key);
+          return;
+        }
+        const newOrder = ids
+          .map((id) => current.find((item) => item.id === id))
+          .filter(Boolean)
+          .concat(current.filter((item) => !ids.includes(item.id)));
+        const hasChanged = newOrder.some((item, idx) => item?.id !== current[idx]?.id);
+        library[key] = newOrder;
+        if (hasChanged) {
+          pushToast('Ordre mis à jour.');
+        }
+        editingState[key] = true;
+        renderCategory(key);
+      }
+
+      showSection('accueil');
+
+      const emojiToggle = document.getElementById('emojiToggle');
+      const emojiOverlay = document.getElementById('emojiOverlay');
+      const closeEmoji = document.getElementById('closeEmoji');
+      if (emojiToggle && emojiOverlay) {
+        emojiToggle.addEventListener('click', () => toggleEmojiOverlay(true));
+        emojiOverlay.addEventListener('click', () => toggleEmojiOverlay(false));
+        const panel = emojiOverlay.querySelector('.emoji-panel');
+        if (panel) {
+          panel.addEventListener('click', (event) => event.stopPropagation());
+        }
+      }
+      if (closeEmoji) {
+        closeEmoji.addEventListener('click', () => toggleEmojiOverlay(false));
+      }
+    });
+  </script>
+</body>
+</html>      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35);
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(0.85);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+    .list-editing li[data-id] {
+      cursor: grab;
+    }
+    .list-editing li[data-id]:active {
+      cursor: grabbing;
+    }
+    .list-editing .delete-item {
+      opacity: 1;
+      pointer-events: auto;
+      transform: scale(1);
+    }
+    .list-editing li.dragging {
+      opacity: 0.55;
+    }
+    .map-gallery {
+      display: grid;
+    }
+    .map-thumb {
+      position: relative;
+    }
+    .map-thumb .delete-item {
+      top: 8px;
+      right: 8px;
+      width: 32px;
+      height: 32px;
+    }
+    .map-gallery .delete-item {
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(0.85);
+    }
+    .map-gallery.editing .delete-item {
+      opacity: 1;
+      pointer-events: auto;
+      transform: scale(1);
+    }
+    .delete-item.is-visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: scale(1);
+    }
+    .map-preview-frame {
+      cursor: zoom-in;
+    }
+    .map-preview-frame img {
+      pointer-events: none;
+    }
+    .editor-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 6, 23, 0.78);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      z-index: 60;
+    }
+    .editor-panel {
+      width: min(520px, 100%);
+      border-radius: 1.5rem;
+    }
+    .emoji-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 6, 23, 0.78);
+      backdrop-filter: blur(10px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      z-index: 70;
+    }
+    .emoji-overlay.is-visible {
+      display: flex;
+    }
+    .emoji-panel {
+      width: min(720px, 100%);
+      max-height: 90vh;
+      border-radius: 1.5rem;
+      display: flex;
+      flex-direction: column;
+    }
+    .emoji-scroll {
+      overflow: auto;
+      max-height: 60vh;
+      border-radius: 1.25rem;
+    }
+    .emoji-table th,
+    .emoji-table td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .emoji-table th {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.7);
+    }
+    .emoji-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+    .emoji-table tbody tr:hover {
+      background: rgba(45, 212, 191, 0.08);
+    }
+  </style>
+</head>
+<body class="text-slate-100">
+  <div class="min-h-screen flex flex-col">
+    <header class="site-header sticky top-0 z-30 border-b border-white/10">
       <div class="mx-auto flex max-w-6xl flex-col items-center gap-4 px-6 py-5 text-center">
         <div>
           <p class="text-sm tracking-[0.35em] text-lime-100/80">OBSCUR</p>
