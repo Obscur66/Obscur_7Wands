@@ -392,40 +392,31 @@
       const order = ['recettes-cuisines', 'recettes-potions', 'sorts', 'cours', 'creatures', 'ingredients', 'botanique', 'notes', 'carte'];
       const bookMeta = {
         'recettes-cuisines': {
-          label: 'Recettes Cuisines',
-          description: 'Festins mystiques, relevés de sortilèges gustatifs et d’épices astrales.'
+          label: 'Recettes Cuisines'
         },
         'recettes-potions': {
-          label: 'Recettes Potions',
-          description: 'Elixirs, sérums et distillations luminescentes pour chaque rituel.'
+          label: 'Recettes Potions'
         },
         'sorts': {
-          label: 'Sorts',
-          description: 'Grimoire de sorts, incantations et effets magiques canalisés.'
+          label: 'Sorts'
         },
         'cours': {
-          label: 'Cours',
-          description: 'Curriculum des arts occultes, sessions pratiques et exercices guidés.'
+          label: 'Cours'
         },
         'creatures': {
-          label: '🐉 Créatures 🐉',
-          description: 'Bestiaire vivant : profils, dangers et habitats des entités rencontrées.'
+          label: '🐉 Créatures 🐉'
         },
         'ingredients': {
-          label: 'Ingrédients',
-          description: 'Index aromatique des essences rares, champignons lunaires et sels prismatiques.'
+          label: 'Ingrédients'
         },
         'botanique': {
-          label: 'Botanique',
-          description: 'Herbier ésotérique : plantes, fleurs, spores et baies aux vertus secrètes.'
+          label: 'Botanique'
         },
         'notes': {
-          label: 'Notes',
-          description: 'Carnets d’observations, annotations rituelles et mémos de laboratoire.'
+          label: 'Notes'
         },
         'carte': {
-          label: 'Cartes',
-          description: 'Atlas arcanique des territoires inexplorés et routes de convocation.'
+          label: 'Cartes'
         }
       };
 
@@ -1103,6 +1094,12 @@
                   <p class="text-sm text-white/90">${formatMultiline(item.incantation)}</p>
                 </div>`
             : '';
+          const extraInfoBlock = key === 'recettes-potions' && item.extraInfo
+            ? `<div>
+                  <p class="text-xs uppercase tracking-[0.2em] text-slate-200">Informations complémentaires</p>
+                  <p class="text-sm text-white/90">${formatMultiline(item.extraInfo)}</p>
+                </div>`
+            : '';
           const creatureBlocks = key === 'creatures'
             ? (() => {
                 const pieces = [];
@@ -1175,6 +1172,7 @@
             if (ingredientsBlock) detailBlocks.push(ingredientsBlock);
             if (contentBlock) detailBlocks.push(contentBlock);
             if (incantationBlock) detailBlocks.push(incantationBlock);
+            if (extraInfoBlock) detailBlocks.push(extraInfoBlock);
           } else if (key === 'creatures') {
             if (creatureBlocks) detailBlocks.push(creatureBlocks);
           } else if (key === 'botanique') {
@@ -1316,6 +1314,7 @@
               professor: '',
               effects: '',
               incantation: '',
+              extraInfo: '',
               location: '',
               usage: 'cuisine',
               classification: 'normale',
@@ -1497,6 +1496,10 @@
             <label class="mt-4 block text-sm font-medium text-white/90">
               Incantation
               <textarea id="itemIncantation" rows="3" class="mt-2 w-full rounded-2xl border border-white/30 bg-white/10 px-4 py-2 text-white placeholder-white/60 focus:border-cyan-300 focus:outline-none" placeholder="Formule verbale ou gestuelle">${escapeHtml(item?.incantation || '')}</textarea>
+            </label>
+            <label class="mt-4 block text-sm font-medium text-white/90">
+              Informations complémentaires
+              <textarea id="itemExtraInfo" rows="3" class="mt-2 w-full rounded-2xl border border-dashed border-white/30 bg-white/5 px-4 py-2 text-white placeholder-white/50 focus:border-cyan-300 focus:outline-none" placeholder="Notes additionnelles, observations, contexte rituel">${escapeHtml(item?.extraInfo || '')}</textarea>
             </label>` : ''}
             <div class="mt-6 flex flex-wrap gap-3">
               <button id="saveItem" class="inline-flex items-center gap-2 rounded-full bg-cyan-200 px-6 py-2 font-semibold text-slate-900 transition hover:bg-cyan-100">${isNew ? 'Enregistrer' : 'Mettre à jour'}</button>
@@ -1576,7 +1579,10 @@
           ...(incantationField ? { incantation } : {}),
           ...(professorField ? { professor } : {}),
           ...(key === 'ingredients' ? { location: finalLocation || '', usage: usageValue || 'cuisine' } : {}),
-          ...(key === 'recettes-potions' ? { classification: document.getElementById('itemClassification')?.value || 'normale' } : {}),
+          ...(key === 'recettes-potions' ? {
+            classification: document.getElementById('itemClassification')?.value || 'normale',
+            extraInfo: document.getElementById('itemExtraInfo')?.value.trim() || ''
+          } : {}),
           ...((key === 'creatures' || key === 'botanique')
             ? {
                 danger: document.getElementById('itemDanger')?.value.trim() || '',
