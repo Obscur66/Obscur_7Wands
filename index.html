@@ -437,37 +437,14 @@
       const sectionsWithEditTips = new Set(['recettes-cuisines', 'recettes-potions', 'cours', 'creatures', 'ingredients', 'notes']);
 
       let library = {
-        'recettes-cuisines': [
-          { id: 'cuisine-1', title: 'Soufflé Astral', content: 'Un nuage salé, gonflé par des vents stellaires et parfumé aux herbes lunaires.', ingredients: 'Blancs d’œuf astrals, herbes lunaires, poudre de stardust.' },
-          { id: 'cuisine-2', title: 'Ragoût des Veilleurs', content: 'Légumes racines caramélisés, bouillon de comète et miettes de quartz comestible.', ingredients: 'Racines caramélisées, bouillon de comète, éclats de quartz.' }
-        ],
-        'recettes-potions': [
-          { id: 'potion-1', title: 'Élixir du Crépuscule', content: 'Infusion ambrée qui équilibre l’esprit après un long voyage astral.', ingredients: 'Pétales de crépuscule, ambre liquide, eau des songes.', effects: 'Ré-équilibre le flux astral et stabilise les sens.', incantation: 'Murmuros astralis, ramenez l’équilibre de la nuit.' },
-          { id: 'potion-2', title: 'Distillat de Givre', content: 'Potion translucide qui apaise les brûlures d’énergie et réinitialise le mana.', ingredients: 'Givre éternel, menthe astrale, cristaux de mana.', effects: 'Apaise les brûlures d’énergie et relance la réserve de mana.', incantation: 'Gelum animae, apaisez la braise intérieure.' }
-        ],
-        'sorts': [
-          { id: 'sort-1', title: 'Orbe de brume', content: 'Un voile de brume qui masque la présence et réduit les sons environnants.' },
-          { id: 'sort-2', title: 'Trait prismatique', content: 'Projectile de lumière réfractée infligeant des dégâts spectraux.' }
-        ],
-        'cours': [
-          { id: 'cours-1', title: 'Chorégraphies de runes', content: 'Séance pratique sur l’écriture gestuelle des glyphes protecteurs.', professor: 'Prof. Selene' },
-          { id: 'cours-2', title: 'Herboristerie noire', content: 'Découverte guidée des plantes nocturnes aux propriétés instables.', professor: 'Maître Orphos' }
-        ],
-        'creatures': [
-          { id: 'creature-1', title: 'Lupus Prismatique', danger: 'Élevée', size: '2 m au garrot', sex: 'Femelle', weight: '120 kg', physical: 'Pelage iridescent, crocs cristallins.', habitat: 'Forêts prismatiques', info: 'Voyage en meute réduite, hurlements qui désorientent.', photo: '' },
-          { id: 'creature-2', title: 'Gargouille de Brume', danger: 'Moyenne', size: '1,4 m', sex: 'Mâle', weight: '80 kg', physical: 'Ailes de pierre poreuse, yeux luminescents.', habitat: 'Remparts oubliés', info: 'Se nourrit d’éclairs et protège les artefacts abandonnés.', photo: '' }
-        ],
-        'ingredients': [
-          { id: 'ingredient-1', title: 'Pollen de Nyx', content: 'Grains luminescents récoltés au sommet des falaises nocturnes, utilisés pour stabiliser les sauces astrales.', location: 'Falaise de Nyx', usage: 'cuisine' },
-          { id: 'ingredient-2', title: 'Sel prismatique', content: 'Cristaux multicolores qui amplifient la saveur et la portée des sortilèges culinaires.', location: 'Salines prismatiques', usage: 'potion' }
-        ],
-        'botanique': [
-          { id: 'botanique-1', title: 'Liane Lumifère', content: 'Plante grimpante bioluminescente utilisée pour éclairer les serres nocturnes.', location: 'Serres suspendues de Lyria', usage: 'cuisine' }
-        ],
-        'notes': [
-          { id: 'note-1', title: 'Essais sur la chaleur runique', content: 'Observations sur la manière dont la chaleur séraphique impacte les textures des potages enchantés.' },
-          { id: 'note-2', title: 'Mémo de service minuit', content: 'Rappels pour coordonner les tables d’apprentis pendant les banquets nocturnes.' }
-        ]
+        'recettes-cuisines': [],
+        'recettes-potions': [],
+        'sorts': [],
+        'cours': [],
+        'creatures': [],
+        'ingredients': [],
+        'botanique': [],
+        'notes': []
       };
 
       hydrateState();
