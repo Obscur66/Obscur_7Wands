@@ -230,6 +230,16 @@
     .emoji-table tbody tr:hover {
       background: rgba(45, 212, 191, 0.08);
     }
+    .editor-panel select {
+      background: linear-gradient(140deg, #2f6840, #1d3c24) !important;
+      color: #fff !important;
+      border: 1px solid rgba(255, 255, 255, 0.3) !important;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    }
+    .editor-panel select option {
+      background: #1d3c24;
+      color: #fff;
+    }
   </style>
 </head>
 <body class="text-slate-100">
@@ -245,7 +255,9 @@
           <button data-section="recettes-cuisines" class="rounded-full border border-white/10 px-4 py-2 text-white/80 transition hover:border-white/40">🍳 Recettes cuisines 🍳</button>
           <button data-section="recettes-potions" class="rounded-full border border-white/10 px-4 py-2 text-white/80 transition hover:border-white/40">🧪 Recettes potions 🧪</button>
           <button data-section="cours" class="rounded-full border border-white/10 px-4 py-2 text-white/80 transition hover:border-white/40">💼 Cours 💼</button>
+          <button data-section="creatures" class="rounded-full border border-white/10 px-4 py-2 text-white/80 transition hover:border-white/40">🐉 Créatures 🐉</button>
           <button data-section="ingredients" class="rounded-full border border-white/10 px-4 py-2 text-white/80 transition hover:border-white/40">🌱 Ingrédients 🌱</button>
+          <button data-section="botanique" class="rounded-full border border-white/10 px-4 py-2 text-white/80 transition hover:border-white/40">🌿 Botanique 🌿</button>
           <button data-section="notes" class="rounded-full border border-white/10 px-4 py-2 text-white/80 transition hover:border-white/40">📝 Notes 📝</button>
           <button data-section="carte" class="rounded-full border border-white/10 px-4 py-2 text-white/80 transition hover:border-white/40">🗺️ Cartes 🗺️</button>
         </nav>
@@ -807,21 +819,6 @@
   <div id="toast-stack" class="pointer-events-none fixed.bottom-6 right-6 z-50 flex flex-col gap-3"></div>
 
   <script>
-    (function enforceFreshLoad() {
-      const REFRESH_KEY = 'obscur-7wands-last-refresh';
-      const REFRESH_INFLIGHT_KEY = 'obscur-7wands-refresh-inflight';
-      const now = Date.now();
-      const lastRefresh = Number(localStorage.getItem(REFRESH_KEY) || 0);
-      const recentlyReloaded = sessionStorage.getItem(REFRESH_INFLIGHT_KEY);
-      if (!recentlyReloaded && (!lastRefresh || now - lastRefresh > 300000)) {
-        sessionStorage.setItem(REFRESH_INFLIGHT_KEY, 'true');
-        localStorage.setItem(REFRESH_KEY, String(now));
-        window.location.reload(true);
-        return;
-      }
-      sessionStorage.removeItem(REFRESH_INFLIGHT_KEY);
-    })();
-
     document.addEventListener('DOMContentLoaded', () => {
       const STORAGE_KEY = 'obscur-7wands-data';
       const content = document.getElementById('content');
@@ -883,7 +880,7 @@
         }
       };
 
-      const order = ['recettes-cuisines', 'recettes-potions', 'cours', 'ingredients', 'notes', 'carte'];
+      const order = ['recettes-cuisines', 'recettes-potions', 'cours', 'creatures', 'ingredients', 'botanique', 'notes', 'carte'];
       const bookMeta = {
         'recettes-cuisines': {
           label: 'Recettes Cuisines',
@@ -897,9 +894,17 @@
           label: 'Cours',
           description: 'Curriculum des arts occultes, sessions pratiques et exercices guidés.'
         },
+        'creatures': {
+          label: '🐉 Créatures 🐉',
+          description: 'Bestiaire vivant : profils, dangers et habitats des entités rencontrées.'
+        },
         'ingredients': {
           label: 'Ingrédients',
           description: 'Index aromatique des essences rares, champignons lunaires et sels prismatiques.'
+        },
+        'botanique': {
+          label: 'Botanique',
+          description: 'Herbier ésotérique : plantes, fleurs, spores et baies aux vertus secrètes.'
         },
         'notes': {
           label: 'Notes',
@@ -916,7 +921,7 @@
         cuisine: 'Ingrédients Cuisine',
         potion: 'Ingrédients Potion'
       };
-      const sectionsWithEditTips = new Set(['recettes-cuisines', 'recettes-potions', 'cours', 'ingredients', 'notes']);
+      const sectionsWithEditTips = new Set(['recettes-cuisines', 'recettes-potions', 'cours', 'creatures', 'ingredients', 'notes']);
 
       let library = {
         'recettes-cuisines': [
@@ -931,9 +936,16 @@
           { id: 'cours-1', title: 'Chorégraphies de runes', content: 'Séance pratique sur l’écriture gestuelle des glyphes protecteurs.', professor: 'Prof. Selene' },
           { id: 'cours-2', title: 'Herboristerie noire', content: 'Découverte guidée des plantes nocturnes aux propriétés instables.', professor: 'Maître Orphos' }
         ],
+        'creatures': [
+          { id: 'creature-1', title: 'Lupus Prismatique', danger: 'Élevée', size: '2 m au garrot', sex: 'Femelle', weight: '120 kg', physical: 'Pelage iridescent, crocs cristallins.', habitat: 'Forêts prismatiques', info: 'Voyage en meute réduite, hurlements qui désorientent.', photo: '' },
+          { id: 'creature-2', title: 'Gargouille de Brume', danger: 'Moyenne', size: '1,4 m', sex: 'Mâle', weight: '80 kg', physical: 'Ailes de pierre poreuse, yeux luminescents.', habitat: 'Remparts oubliés', info: 'Se nourrit d’éclairs et protège les artefacts abandonnés.', photo: '' }
+        ],
         'ingredients': [
           { id: 'ingredient-1', title: 'Pollen de Nyx', content: 'Grains luminescents récoltés au sommet des falaises nocturnes, utilisés pour stabiliser les sauces astrales.', location: 'Falaise de Nyx', usage: 'cuisine' },
           { id: 'ingredient-2', title: 'Sel prismatique', content: 'Cristaux multicolores qui amplifient la saveur et la portée des sortilèges culinaires.', location: 'Salines prismatiques', usage: 'potion' }
+        ],
+        'botanique': [
+          { id: 'botanique-1', title: 'Liane Lumifère', content: 'Plante grimpante bioluminescente utilisée pour éclairer les serres nocturnes.', location: 'Serres suspendues de Lyria', usage: 'cuisine' }
         ],
         'notes': [
           { id: 'note-1', title: 'Essais sur la chaleur runique', content: 'Observations sur la manière dont la chaleur séraphique impacte les textures des potages enchantés.' },
@@ -1108,32 +1120,6 @@
         } else {
           renderCategory(currentSection);
         }
-      }
-
-      function handleHeaderBackgroundUpload(event) {
-        const file = event.target.files && event.target.files[0];
-        if (!file) {
-          event.target.value = '';
-          return;
-        }
-        if (!file.type.startsWith('image/')) {
-          pushToast('Sélectionnez une image valide.', 'danger');
-          event.target.value = '';
-          return;
-        }
-        readFileAsDataURL(file)
-          .then((dataUrl) => {
-            headerBackgroundUrl = dataUrl;
-            applyHeaderBackground();
-            persistState();
-            pushToast('Fond de l’en-tête mis à jour.');
-          })
-          .catch(() => {
-            pushToast('Impossible de charger cette image.', 'danger');
-          })
-          .finally(() => {
-            event.target.value = '';
-          });
       }
 
       function handleBodyBackgroundUpload(event) {
@@ -1563,7 +1549,7 @@
 
         const createItemCard = (item) => {
           const isRecipeCategory = ingredientCategories.has(key);
-          const contentLabel = key === 'recettes-potions' ? 'Instructions' : isRecipeCategory ? 'Information' : 'Détails';
+          const contentLabel = key === 'recettes-potions' ? 'Instructions' : key === 'creatures' ? 'Informations' : isRecipeCategory ? 'Information' : 'Détails';
           const effectsTeaser = key === 'recettes-potions' && item.effects
             ? `<p class="mt-1 text-xs text-cyan-100/80">${escapeHtml(createExcerpt(item.effects, 90))}</p>`
             : '';
@@ -1585,6 +1571,33 @@
                   <p class="text-sm text-white/90">${formatMultiline(item.incantation)}</p>
                 </div>`
             : '';
+          const creatureBlocks = key === 'creatures'
+            ? (() => {
+                const pieces = [];
+                if (item.danger) {
+                  pieces.push(`<p class="text-xs uppercase tracking-[0.2em] text-red-200">Dangerosité</p><p class="text-sm text-white/90">${escapeHtml(item.danger)}</p>`);
+                }
+                if (item.size || item.sex || item.weight) {
+                  pieces.push(`<p class="text-xs uppercase tracking-[0.2em] text-amber-200">Mensurations</p><p class="text-sm text-white/90">${[item.size, item.sex, item.weight].filter(Boolean).map(escapeHtml).join(' · ')}</p>`);
+                }
+                if (item.physical) {
+                  pieces.push(`<p class="text-xs uppercase tracking-[0.2em] text-emerald-200">Caractéristiques physiques</p><p class="text-sm text-white/90">${formatMultiline(item.physical)}</p>`);
+                }
+                if (item.habitat) {
+                  pieces.push(`<p class="text-xs uppercase tracking-[0.2em] text-lime-200">Lieu de vie</p><p class="text-sm text-white/90">${formatMultiline(item.habitat)}</p>`);
+                }
+                if (item.info) {
+                  pieces.push(`<p class="text-xs uppercase tracking-[0.2em] text-white/70">Informations supplémentaires</p><p class="text-sm text-white/90">${formatMultiline(item.info)}</p>`);
+                }
+                if (item.content) {
+                  pieces.push(`<p class="text-xs uppercase tracking-[0.2em] text-white/70">${contentLabel}</p><p class="text-sm text-white/90">${formatMultiline(item.content)}</p>`);
+                }
+                if (item.photo) {
+                  pieces.push(`<div class="mt-2"><img src="${item.photo}" alt="${escapeHtml(item.title || 'Créature')}" class="mt-2 w-full rounded-xl border border-white/20 object-cover" /></div>`);
+                }
+                return pieces.length ? `<div class="space-y-2">${pieces.map((piece) => `<div>${piece}</div>`).join('')}</div>` : '';
+              })()
+            : '';
           const matchedMap = key === 'ingredients' ? findMapByTitle(item.location || '') : null;
           const locationBlock = key === 'ingredients' && item.location
             ? `<div>
@@ -1594,11 +1607,35 @@
                     : formatMultiline(item.location)}</p>
                 </div>`
             : '';
-          const contentBlock = item.content
+          const contentBlock = item.content && key !== 'creatures'
             ? `<div>
                   <p class="text-xs uppercase tracking-[0.2em] text-white/70">${contentLabel}</p>
                   <p class="text-sm text-white/90">${formatMultiline(item.content)}</p>
                 </div>`
+            : '';
+          const botaniqueBlocks = key === 'botanique'
+            ? (() => {
+                const pieces = [];
+                if (item.danger) {
+                  pieces.push(`<p class="text-xs uppercase tracking-[0.2em] text-red-200">Dangerosité</p><p class="text-sm text-white/90">${escapeHtml(item.danger)}</p>`);
+                }
+                if (item.size) {
+                  pieces.push(`<p class="text-xs uppercase tracking-[0.2em] text-amber-200">Taille</p><p class="text-sm text-white/90">${escapeHtml(item.size)}</p>`);
+                }
+                if (item.physical) {
+                  pieces.push(`<p class="text-xs uppercase tracking-[0.2em] text-emerald-200">Caractéristiques</p><p class="text-sm text-white/90">${formatMultiline(item.physical)}</p>`);
+                }
+                if (item.habitat) {
+                  pieces.push(`<p class="text-xs uppercase tracking-[0.2em] text-lime-200">Lieu de vie</p><p class="text-sm text-white/90">${formatMultiline(item.habitat)}</p>`);
+                }
+                if (item.info) {
+                  pieces.push(`<p class="text-xs uppercase tracking-[0.2em] text-white/70">Informations supplémentaires</p><p class="text-sm text-white/90">${formatMultiline(item.info)}</p>`);
+                }
+                if (item.photo) {
+                  pieces.push(`<div class="mt-2"><img src="${item.photo}" alt="${escapeHtml(item.title || 'Plante')}" class="mt-2 w-full rounded-xl border border-white/20 object-cover" /></div>`);
+                }
+                return pieces.length ? `<div class="space-y-2">${pieces.map((piece) => `<div>${piece}</div>`).join('')}</div>` : '';
+              })()
             : '';
           const detailBlocks = [];
           if (key === 'recettes-potions') {
@@ -1606,6 +1643,10 @@
             if (ingredientsBlock) detailBlocks.push(ingredientsBlock);
             if (contentBlock) detailBlocks.push(contentBlock);
             if (incantationBlock) detailBlocks.push(incantationBlock);
+          } else if (key === 'creatures') {
+            if (creatureBlocks) detailBlocks.push(creatureBlocks);
+          } else if (key === 'botanique') {
+            if (botaniqueBlocks) detailBlocks.push(botaniqueBlocks);
           } else {
             if (ingredientsBlock) detailBlocks.push(ingredientsBlock);
             if (contentBlock) detailBlocks.push(contentBlock);
@@ -1620,6 +1661,7 @@
                     <h4 class="mt-0 text-lg font-semibold text-white">${getDisplayTitle(item)}</h4>
                     ${key === 'recettes-potions' ? effectsTeaser : ''}
                     ${key === 'cours' && item.professor ? `<p class="text-xs uppercase tracking-[0.2em] text-emerald-200">${escapeHtml(item.professor)}</p>` : ''}
+                    ${key === 'creatures' && item.danger ? `<p class="text-xs uppercase tracking-[0.4em] text-red-200">${escapeHtml(item.danger)}</p>` : ''}
                   </div>
                   <button type="button" class="edit-item rounded-full border border-white/30 px-3 py-1 text-xs font-semibold text-white/80 transition hover:border-cyan-300 hover:text-white">Éditer</button>
                 </div>
@@ -1638,7 +1680,9 @@
           'recettes-cuisines': 'Liste des Recettes',
           'recettes-potions': 'Liste des Potions',
           'cours': 'Notes sur les Cours',
+          'creatures': 'Bestiaire vivant',
           'ingredients': 'Liste des Ingredients',
+          'botanique': 'Herbier Botanique',
           'notes': 'Liste des Notes'
         };
         const inventoryLabel = inventoryLabelMap[key] || 'Inventaire';
@@ -1706,21 +1750,68 @@
       function openEditor(key, id) {
         closeEditor();
         const isNew = !id;
-        const item = isNew ? { title: '', content: '', ingredients: '', professor: '', effects: '', incantation: '', location: '', usage: 'cuisine', emoteCode: '', emote: '' } : (library[key] || []).find((entry) => entry.id === id);
+        const item = isNew
+          ? {
+              title: '',
+              content: '',
+              ingredients: '',
+              professor: '',
+              effects: '',
+              incantation: '',
+              location: '',
+              usage: 'cuisine',
+              emoteCode: '',
+              emote: '',
+              danger: '',
+              size: '',
+              sex: '',
+              weight: '',
+              physical: '',
+              habitat: '',
+              info: '',
+              photo: ''
+            }
+          : (library[key] || []).find((entry) => entry.id === id);
         const isRecipe = ingredientCategories.has(key);
+        const isCreature = key === 'creatures';
+        const isBotanique = key === 'botanique';
         document.body.classList.add('overflow-hidden');
-        const titleLabel = isRecipe ? 'Nom de la recette' : key === 'cours' ? 'Cours' : 'Titre';
-        const titlePlaceholder = isRecipe ? 'Nom captivant de la recette' : key === 'cours' ? 'Titre du cours' : 'Nom captivant';
+        const titleLabel = isRecipe
+          ? 'Nom de la recette'
+          : isCreature
+            ? 'Nom de la créature'
+            : isBotanique
+              ? 'Nom de la Plante ou Arbre'
+              : key === 'cours'
+                ? 'Cours'
+                : 'Titre';
+        const titlePlaceholder = isRecipe
+          ? 'Nom captivant de la recette'
+          : isCreature
+            ? 'Nom de la créature'
+            : isBotanique
+              ? 'Nom de la plante ou de l’arbre'
+              : key === 'cours'
+                ? 'Titre du cours'
+                : 'Nom captivant';
         const contentLabel = isRecipe
           ? (key === 'recettes-potions' ? 'Instructions' : 'Information')
-          : key === 'cours'
-            ? 'Note sur le Cours'
-            : 'Description détaillée';
+          : isCreature
+            ? 'Informations générales'
+            : isBotanique
+              ? 'Description détaillée'
+              : key === 'cours'
+                ? 'Note sur le Cours'
+                : 'Description détaillée';
         const contentPlaceholder = isRecipe
           ? (key === 'recettes-potions' ? 'Déroulé, incantations, observations (facultatif)' : 'Étapes, notes, observations (facultatif)')
-          : key === 'cours'
-            ? 'Consignes, objectifs, détails du cours'
-            : 'Ingrédients, étapes, objectifs…';
+          : isCreature
+            ? 'Notes complémentaires sur la créature'
+            : isBotanique
+              ? 'Notes complémentaires sur la plante ou l’arbre'
+              : key === 'cours'
+                ? 'Consignes, objectifs, détails du cours'
+                : 'Ingrédients, étapes, objectifs…';
 
         const overlay = document.createElement('div');
         overlay.id = 'editorOverlay';
@@ -1761,6 +1852,57 @@
               ${contentLabel}
               <textarea id="itemContent" rows="6" class="mt-2 w-full rounded-2xl border border-white/30 bg-white/10 px-4 py-3 text-white placeholder-white/60 focus:border-cyan-300 focus:outline-none" placeholder="${contentPlaceholder}">${escapeHtml(item?.content || '')}</textarea>
             </label>
+            ${(isCreature || isBotanique) ? `
+            <div class="mt-4 grid gap-4 md:grid-cols-2">
+              <label class="block text-sm font-medium text-white/90">
+                Dangerosité
+                <select id="itemDanger" class="mt-2 w-full rounded-2xl border border-white/30 bg-white px-4 py-2 text-slate-900 focus:border-cyan-300 focus:outline-none">
+                  <option value="">Choisir</option>
+                  <option value="1🌟" ${item?.danger === '1🌟' ? 'selected' : ''}>1🌟</option>
+                  <option value="2🌟" ${item?.danger === '2🌟' ? 'selected' : ''}>2🌟</option>
+                  <option value="3🌟" ${item?.danger === '3🌟' ? 'selected' : ''}>3🌟</option>
+                  <option value="4🌟" ${item?.danger === '4🌟' ? 'selected' : ''}>4🌟</option>
+                  <option value="5🌟" ${item?.danger === '5🌟' ? 'selected' : ''}>5🌟</option>
+                  <option value="6🌟" ${item?.danger === '6🌟' ? 'selected' : ''}>6🌟</option>
+                </select>
+              </label>
+              <label class="block text-sm font-medium text-white/90">
+                Taille
+                <input id="itemSize" type="text" value="${escapeHtml(item?.size || '')}" class="mt-2 w-full rounded-2xl border border-white/30 bg-white/10 px-4 py-2 text-white placeholder-white/60 focus:border-cyan-300 focus:outline-none" placeholder="Ex: 2 m au garrot" />
+              </label>
+              ${isCreature ? `
+              <label class="block text-sm font-medium text-white/90">
+                Sexe
+                <select id="itemSex" class="mt-2 w-full rounded-2xl border border-white/30 bg-white px-4 py-2 text-slate-900 focus:border-cyan-300 focus:outline-none">
+                  <option value="">Choisir</option>
+                  <option value="Seulement Mâle" ${item?.sex === 'Seulement Mâle' ? 'selected' : ''}>Seulement Mâle</option>
+                  <option value="Seulement Femelle" ${item?.sex === 'Seulement Femelle' ? 'selected' : ''}>Seulement Femelle</option>
+                  <option value="Les deux" ${item?.sex === 'Les deux' ? 'selected' : ''}>Les deux</option>
+                </select>
+              </label>
+              <label class="block text-sm font-medium text-white/90">
+                Poids
+                <input id="itemWeight" type="text" value="${escapeHtml(item?.weight || '')}" class="mt-2 w-full rounded-2xl border border-white/30 bg-white/10 px-4 py-2 text-white placeholder-white/60 focus:border-cyan-300 focus:outline-none" placeholder="Ex: 120 kg" />
+              </label>
+              ` : ''}
+            </div>
+            <label class="mt-4 block text-sm font-medium text-white/90">
+              Caractéristique
+              <textarea id="itemPhysical" rows="3" class="mt-2 w-full rounded-2xl border border-white/30 bg-white/10 px-4 py-2 text-white placeholder-white/60 focus:border-cyan-300 focus:outline-none" placeholder="Pelage, crocs, ailes, feuillage, épines, etc.">${escapeHtml(item?.physical || '')}</textarea>
+            </label>
+            <label class="mt-4 block text-sm font-medium text-white/90">
+              Lieu de vie
+              <input id="itemHabitat" type="text" value="${escapeHtml(item?.habitat || '')}" class="mt-2 w-full rounded-2xl border border-white/30 bg-white/10 px-4 py-2 text-white placeholder-white/60 focus:border-cyan-300 focus:outline-none" placeholder="Forêts prismatiques, marécages, grottes..." />
+            </label>
+            <label class="mt-4 block text-sm font-medium text-white/90">
+              Informations supplémentaires
+              <textarea id="itemInfo" rows="3" class="mt-2 w-full rounded-2xl border border-white/30 bg-white/10 px-4 py-2 text-white placeholder-white/60 focus:border-cyan-300 focus:outline-none" placeholder="Comportement, faiblesses, anecdotes, vertus">${escapeHtml(item?.info || '')}</textarea>
+            </label>
+            <label class="mt-4 block text-sm font-medium text-white/90">
+              Photo
+              <input id="itemPhoto" type="text" value="${escapeHtml(item?.photo || '')}" class="mt-2 w-full rounded-2xl border border-white/30 bg-white/10 px-4 py-2 text-white placeholder-white/60 focus:border-cyan-300 focus:outline-none" placeholder="URL de l'image de la créature ou de la plante" />
+            </label>
+            ` : ''}
             ${key === 'ingredients' ? `
             <label class="mt-4 block text-sm font-medium text-white/90">
               Utilisation
@@ -1862,7 +2004,19 @@
           ...(effectsField ? { effects } : {}),
           ...(incantationField ? { incantation } : {}),
           ...(professorField ? { professor } : {}),
-          ...(key === 'ingredients' ? { location: finalLocation || '', usage: usageValue || 'cuisine' } : {})
+          ...(key === 'ingredients' ? { location: finalLocation || '', usage: usageValue || 'cuisine' } : {}),
+          ...((key === 'creatures' || key === 'botanique')
+            ? {
+                danger: document.getElementById('itemDanger')?.value.trim() || '',
+                size: document.getElementById('itemSize')?.value.trim() || '',
+                sex: key === 'creatures' ? document.getElementById('itemSex')?.value.trim() || '' : undefined,
+                weight: key === 'creatures' ? document.getElementById('itemWeight')?.value.trim() || '' : undefined,
+                physical: document.getElementById('itemPhysical')?.value.trim() || '',
+                habitat: document.getElementById('itemHabitat')?.value.trim() || '',
+                info: document.getElementById('itemInfo')?.value.trim() || '',
+                photo: document.getElementById('itemPhoto')?.value.trim() || ''
+              }
+            : {})
         };
         if (id) {
           library[key] = (library[key] || []).map((entry) => entry.id === id ? { ...entry, ...nextItem } : entry);
@@ -2022,9 +2176,13 @@
             renderCategory(key);
             return;
           }
+          const idToUsage = new Map();
+          cuisineIds.forEach((id) => idToUsage.set(id, 'cuisine'));
+          potionIds.forEach((id) => idToUsage.set(id, 'potion'));
           const newOrder = orderedIds
             .map((id) => current.find((item) => item.id === id))
             .filter(Boolean)
+            .map((item) => ({ ...item, usage: idToUsage.get(item.id) || item.usage || 'cuisine' }))
             .concat(current.filter((item) => !orderedIds.includes(item.id)));
           const hasChanged = newOrder.some((item, idx) => item?.id !== current[idx]?.id);
           library[key] = newOrder;
@@ -2096,7 +2254,9 @@
         closeBgEditor.addEventListener('click', () => toggleBgEditorOverlay(false));
       }
       if (editHeaderBgBtn && headerBgInput) {
-        editHeaderBgBtn.addEventListener('click', () => headerBgInput.click());
+        editHeaderBgBtn.addEventListener('click', () => {
+          pushToast('Upload d’arrière-plan d’en-tête désactivé en production.', 'danger');
+        });
       }
       if (editBodyBgBtn && bodyBgInput) {
         editBodyBgBtn.addEventListener('click', () => bodyBgInput.click());
