@@ -2147,7 +2147,7 @@
         if (!toggleBtn) return;
         const editing = !!editingState[key];
         toggleBtn.textContent = editing ? 'Terminer les modifications' : 'Cliquez pour modifier';
-        const lists = key === 'ingredients'
+        const lists = (key === 'ingredients' || key === 'recettes-potions')
           ? document.querySelectorAll('[data-item-list]')
           : [document.getElementById('itemList')].filter(Boolean);
         lists.forEach((itemList) => {
@@ -2160,6 +2160,10 @@
           if (editTips) {
             editTips.classList.toggle('hidden', !editing);
           }
+        }
+        // Persist order immediately when exiting edit mode for consistency
+        if (!editing) {
+          updateLibraryOrder(key);
         }
       }
 
@@ -2213,17 +2217,16 @@
         if (!editingState[key]) return;
         const itemList = event.currentTarget;
         if (!itemList) return;
-        const dragging = itemList.querySelector('.dragging');
+        const dragging = document.querySelector('.dragging');
         if (!dragging) return;
-        const target = event.target.closest('li[data-id]');
-        if (!target || target === dragging || !itemList.contains(target)) return;
         event.preventDefault();
-        const rect = target.getBoundingClientRect();
-        const shouldPlaceBefore = event.clientY < rect.top + rect.height / 2;
-        if (shouldPlaceBefore) {
-          itemList.insertBefore(dragging, target);
-        } else {
-          itemList.insertBefore(dragging, target.nextSibling);
+        const target = event.target.closest('li[data-id]');
+        if (target && target !== dragging) {
+          const rect = target.getBoundingClientRect();
+          const shouldPlaceBefore = event.clientY < rect.top + rect.height / 2;
+          itemList.insertBefore(dragging, shouldPlaceBefore ? target : target.nextSibling);
+        } else if (!target && !itemList.contains(dragging)) {
+          itemList.appendChild(dragging);
         }
       }
 
@@ -2265,7 +2268,6 @@
             pushToast('Ordre mis à jour.');
           }
           persistState();
-          editingState[key] = true;
           renderCategory(key);
           return;
         }
@@ -2293,7 +2295,6 @@
             pushToast('Ordre mis à jour.');
           }
           persistState();
-          editingState[key] = true;
           renderCategory(key);
           return;
         }
@@ -2314,7 +2315,6 @@
           pushToast('Ordre mis à jour.');
         }
         persistState();
-        editingState[key] = true;
         renderCategory(key);
       }
 
