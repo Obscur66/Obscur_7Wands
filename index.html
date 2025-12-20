@@ -2161,10 +2161,6 @@
             editTips.classList.toggle('hidden', !editing);
           }
         }
-        // Persist order immediately when exiting edit mode for consistency
-        if (!editing) {
-          updateLibraryOrder(key);
-        }
       }
 
       function handleListClick(event, key) {
@@ -2217,16 +2213,17 @@
         if (!editingState[key]) return;
         const itemList = event.currentTarget;
         if (!itemList) return;
-        const dragging = document.querySelector('.dragging');
+        const dragging = itemList.querySelector('.dragging');
         if (!dragging) return;
-        event.preventDefault();
         const target = event.target.closest('li[data-id]');
-        if (target && target !== dragging) {
-          const rect = target.getBoundingClientRect();
-          const shouldPlaceBefore = event.clientY < rect.top + rect.height / 2;
-          itemList.insertBefore(dragging, shouldPlaceBefore ? target : target.nextSibling);
-        } else if (!target && !itemList.contains(dragging)) {
-          itemList.appendChild(dragging);
+        if (!target || target === dragging || !itemList.contains(target)) return;
+        event.preventDefault();
+        const rect = target.getBoundingClientRect();
+        const shouldPlaceBefore = event.clientY < rect.top + rect.height / 2;
+        if (shouldPlaceBefore) {
+          itemList.insertBefore(dragging, target);
+        } else {
+          itemList.insertBefore(dragging, target.nextSibling);
         }
       }
 
@@ -2268,6 +2265,7 @@
             pushToast('Ordre mis à jour.');
           }
           persistState();
+          editingState[key] = true;
           renderCategory(key);
           return;
         }
@@ -2295,6 +2293,7 @@
             pushToast('Ordre mis à jour.');
           }
           persistState();
+          editingState[key] = true;
           renderCategory(key);
           return;
         }
@@ -2315,6 +2314,7 @@
           pushToast('Ordre mis à jour.');
         }
         persistState();
+        editingState[key] = true;
         renderCategory(key);
       }
 
