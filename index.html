@@ -254,6 +254,7 @@
           <button data-section="accueil" class="rounded-full border border-white/10 px-4 py-2 text-white/80 transition hover:border-white/40">🏠 Accueil 🏠</button>
           <button data-section="recettes-cuisines" class="rounded-full border border-white/10 px-4 py-2 text-white/80 transition hover:border-white/40">🍳 Recettes cuisines 🍳</button>
           <button data-section="recettes-potions" class="rounded-full border border-white/10 px-4 py-2 text-white/80 transition hover:border-white/40">🧪 Recettes potions 🧪</button>
+          <button data-section="sorts" class="rounded-full border border-white/10 px-4 py-2 text-white/80 transition hover:border-white/40">🔱 Sorts 🔱</button>
           <button data-section="cours" class="rounded-full border border-white/10 px-4 py-2 text-white/80 transition hover:border-white/40">💼 Cours 💼</button>
           <button data-section="creatures" class="rounded-full border border-white/10 px-4 py-2 text-white/80 transition hover:border-white/40">🐉 Créatures 🐉</button>
           <button data-section="ingredients" class="rounded-full border border-white/10 px-4 py-2 text-white/80 transition hover:border-white/40">🌱 Ingrédients 🌱</button>
@@ -880,7 +881,7 @@
         }
       };
 
-      const order = ['recettes-cuisines', 'recettes-potions', 'cours', 'creatures', 'ingredients', 'botanique', 'notes', 'carte'];
+      const order = ['recettes-cuisines', 'recettes-potions', 'sorts', 'cours', 'creatures', 'ingredients', 'botanique', 'notes', 'carte'];
       const bookMeta = {
         'recettes-cuisines': {
           label: 'Recettes Cuisines',
@@ -889,6 +890,10 @@
         'recettes-potions': {
           label: 'Recettes Potions',
           description: 'Elixirs, sérums et distillations luminescentes pour chaque rituel.'
+        },
+        'sorts': {
+          label: 'Sorts',
+          description: 'Grimoire de sorts, incantations et effets magiques canalisés.'
         },
         'cours': {
           label: 'Cours',
@@ -931,6 +936,10 @@
         'recettes-potions': [
           { id: 'potion-1', title: 'Élixir du Crépuscule', content: 'Infusion ambrée qui équilibre l’esprit après un long voyage astral.', ingredients: 'Pétales de crépuscule, ambre liquide, eau des songes.', effects: 'Ré-équilibre le flux astral et stabilise les sens.', incantation: 'Murmuros astralis, ramenez l’équilibre de la nuit.' },
           { id: 'potion-2', title: 'Distillat de Givre', content: 'Potion translucide qui apaise les brûlures d’énergie et réinitialise le mana.', ingredients: 'Givre éternel, menthe astrale, cristaux de mana.', effects: 'Apaise les brûlures d’énergie et relance la réserve de mana.', incantation: 'Gelum animae, apaisez la braise intérieure.' }
+        ],
+        'sorts': [
+          { id: 'sort-1', title: 'Orbe de brume', content: 'Un voile de brume qui masque la présence et réduit les sons environnants.' },
+          { id: 'sort-2', title: 'Trait prismatique', content: 'Projectile de lumière réfractée infligeant des dégâts spectraux.' }
         ],
         'cours': [
           { id: 'cours-1', title: 'Chorégraphies de runes', content: 'Séance pratique sur l’écriture gestuelle des glyphes protecteurs.', professor: 'Prof. Selene' },
@@ -2215,6 +2224,7 @@
           if (hasChanged) {
             pushToast('Ordre mis à jour.');
           }
+          persistState();
           editingState[key] = true;
           renderCategory(key);
           return;
@@ -2235,6 +2245,7 @@
         if (hasChanged) {
           pushToast('Ordre mis à jour.');
         }
+        persistState();
         editingState[key] = true;
         renderCategory(key);
       }
