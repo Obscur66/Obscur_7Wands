@@ -1,5 +1,5 @@
 
-                             APPLICATION ICI (RELEASE V x.x.x ) -------------------------------------------->
+                      APPLICATION ICI (RELEASE V x.x.x ) -------------------------------------------->
 
 
 🪄 Obscur 7Wands - 
