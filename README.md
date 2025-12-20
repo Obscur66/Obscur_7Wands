@@ -1,3 +1,7 @@
+
+                                                                            APPLICATION ICI ---------------------------------------------------------->
+
+
 🪄 Obscur 7Wands - 
 Le Compagnon du Sorcier
 Votre grimoire numérique ultime pour le serveur GTA RP 7Wands.
