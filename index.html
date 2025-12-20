@@ -1122,6 +1122,32 @@
         }
       }
 
+      function handleHeaderBackgroundUpload(event) {
+        const file = event.target.files && event.target.files[0];
+        if (!file) {
+          event.target.value = '';
+          return;
+        }
+        if (!file.type.startsWith('image/')) {
+          pushToast('Sélectionnez une image valide.', 'danger');
+          event.target.value = '';
+          return;
+        }
+        readFileAsDataURL(file)
+          .then((dataUrl) => {
+            headerBackgroundUrl = dataUrl;
+            applyHeaderBackground();
+            persistState();
+            pushToast('Fond de l’en-tête mis à jour.');
+          })
+          .catch(() => {
+            pushToast('Impossible de charger cette image.', 'danger');
+          })
+          .finally(() => {
+            event.target.value = '';
+          });
+      }
+
       function handleBodyBackgroundUpload(event) {
         const file = event.target.files && event.target.files[0];
         if (!file) {
@@ -2254,9 +2280,10 @@
         closeBgEditor.addEventListener('click', () => toggleBgEditorOverlay(false));
       }
       if (editHeaderBgBtn && headerBgInput) {
-        editHeaderBgBtn.addEventListener('click', () => {
-          pushToast('Upload d’arrière-plan d’en-tête désactivé en production.', 'danger');
-        });
+        editHeaderBgBtn.addEventListener('click', () => headerBgInput.click());
+      }
+      if (headerBgInput) {
+        headerBgInput.addEventListener('change', handleHeaderBackgroundUpload);
       }
       if (editBodyBgBtn && bodyBgInput) {
         editBodyBgBtn.addEventListener('click', () => bodyBgInput.click());
