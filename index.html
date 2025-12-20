@@ -1749,6 +1749,30 @@
             })()
           : '';
 
+        const potionColumnsMarkup = key === 'recettes-potions'
+          ? (() => {
+              const empty = '<li class="rounded-2xl border border-dashed border-white/20 p-4 text-center text-white/80">Ajoutez votre première potion.</li>';
+              const byClass = (cls) => items.filter((item) => (item.classification || 'normale') === cls);
+              const renderCol = (title, cls) => {
+                const colItems = byClass(cls);
+                const markup = colItems.length ? colItems.map((item) => createItemCard(item)).join('') : empty;
+                return `
+                  <div class="rounded-2xl border border-white/15 bg-white/5 p-4">
+                    <p class="text-sm font-semibold text-white">${title}</p>
+                    <p class="text-xs uppercase tracking-[0.4em] text-white/80 mt-1">${formatCountLabel(colItems.length)}</p>
+                    <ul data-item-list data-classification="${cls}" class="mt-3 space-y-3${isEditing ? ' list-editing' : ''}">${markup}</ul>
+                  </div>`;
+              };
+              return `
+                <div class="mt-4 grid grid-cols-1 gap-4 lg:grid-cols-2">
+                  ${renderCol('Naniss', 'naniss')}
+                  ${renderCol('Normale', 'normale')}
+                  ${renderCol('Grande', 'grande')}
+                  ${renderCol('Mega', 'mega')}
+                </div>`;
+            })()
+          : '';
+
         content.innerHTML = `
           <section class="space-y-8 animate-fade">
             <div class="module-surface rounded-3xl border border-white/10 p-8 shadow-2xl shadow-black/40">
@@ -1774,7 +1798,9 @@
               </div>
               ${key === 'ingredients'
                 ? ingredientColumnsMarkup
-                : `<ul id="itemList" class="mt-4 space-y-3${isEditing ? ' list-editing' : ''}">${listMarkup}</ul>`}
+                : key === 'recettes-potions'
+                  ? potionColumnsMarkup
+                  : `<ul id="itemList" class="mt-4 space-y-3${isEditing ? ' list-editing' : ''}">${listMarkup}</ul>`}
             </div>
           </section>`;
 
@@ -1795,6 +1821,7 @@
               incantation: '',
               location: '',
               usage: 'cuisine',
+              classification: 'normale',
               emoteCode: '',
               emote: '',
               danger: '',
@@ -1808,6 +1835,7 @@
             }
           : (library[key] || []).find((entry) => entry.id === id);
         const isRecipe = ingredientCategories.has(key);
+        const isPotion = key === 'recettes-potions';
         const isCreature = key === 'creatures';
         const isBotanique = key === 'botanique';
         document.body.classList.add('overflow-hidden');
@@ -1838,6 +1866,7 @@
               : key === 'cours'
                 ? 'Note sur le Cours'
                 : 'Description détaillée';
+        const potionClassifications = ['naniss', 'normale', 'grande', 'mega'];
         const contentPlaceholder = isRecipe
           ? (key === 'recettes-potions' ? 'Déroulé, incantations, observations (facultatif)' : 'Étapes, notes, observations (facultatif)')
           : isCreature
@@ -1882,6 +1911,16 @@
             <label class="mt-4 block text-sm font-medium text-white/90">
               Ingrédients
               <textarea id="itemIngredients" rows="4" class="mt-2 w-full rounded-2xl border border-white/30 bg-white/10 px-4 py-3 text-white placeholder-white/60 focus:border-cyan-300 focus:outline-none" placeholder="Liste des composants essentiels">${escapeHtml(item?.ingredients || '')}</textarea>
+            </label>` : ''}
+            ${isPotion ? `
+            <label class="mt-4 block text-sm font-medium text-white/90">
+              Classification
+              <select id="itemClassification" class="mt-2 w-full rounded-2xl border border-white/30 bg-white px-4 py-2 text-slate-900 focus:border-cyan-300 focus:outline-none">
+                <option value="naniss" ${(!item?.classification || item?.classification === 'naniss') ? 'selected' : ''}>Naniss</option>
+                <option value="normale" ${(item?.classification === 'normale') ? 'selected' : ''}>Normale</option>
+                <option value="grande" ${(item?.classification === 'grande') ? 'selected' : ''}>Grande</option>
+                <option value="mega" ${(item?.classification === 'mega') ? 'selected' : ''}>Mega</option>
+              </select>
             </label>` : ''}
             <label class="mt-4 block text-sm font-medium text-white/90">
               ${contentLabel}
@@ -2040,6 +2079,7 @@
           ...(incantationField ? { incantation } : {}),
           ...(professorField ? { professor } : {}),
           ...(key === 'ingredients' ? { location: finalLocation || '', usage: usageValue || 'cuisine' } : {}),
+          ...(key === 'recettes-potions' ? { classification: document.getElementById('itemClassification')?.value || 'normale' } : {}),
           ...((key === 'creatures' || key === 'botanique')
             ? {
                 danger: document.getElementById('itemDanger')?.value.trim() || '',
@@ -2076,7 +2116,7 @@
 
       function enableItemListInteractions(key) {
         const toggleBtn = document.getElementById('toggleEditing');
-        const listContainers = key === 'ingredients'
+        const listContainers = (key === 'ingredients' || key === 'recettes-potions')
           ? Array.from(document.querySelectorAll('[data-item-list]'))
           : [document.getElementById('itemList')].filter(Boolean);
         if (!toggleBtn || !listContainers.length) return;
@@ -2218,6 +2258,34 @@
             .map((id) => current.find((item) => item.id === id))
             .filter(Boolean)
             .map((item) => ({ ...item, usage: idToUsage.get(item.id) || item.usage || 'cuisine' }))
+            .concat(current.filter((item) => !orderedIds.includes(item.id)));
+          const hasChanged = newOrder.some((item, idx) => item?.id !== current[idx]?.id);
+          library[key] = newOrder;
+          if (hasChanged) {
+            pushToast('Ordre mis à jour.');
+          }
+          persistState();
+          editingState[key] = true;
+          renderCategory(key);
+          return;
+        }
+        if (key === 'recettes-potions') {
+          const columns = ['naniss', 'normale', 'grande', 'mega'];
+          const idsPerCol = columns.map((cls) => {
+            const list = document.querySelector(`[data-item-list][data-classification="${cls}"]`);
+            return list ? Array.from(list.querySelectorAll('li[data-id]')).map((node) => node.dataset.id) : [];
+          });
+          const orderedIds = idsPerCol.flat();
+          if (!orderedIds.length) {
+            renderCategory(key);
+            return;
+          }
+          const idToClass = new Map();
+          columns.forEach((cls, idx) => idsPerCol[idx].forEach((id) => idToClass.set(id, cls)));
+          const newOrder = orderedIds
+            .map((id) => current.find((item) => item.id === id))
+            .filter(Boolean)
+            .map((item) => ({ ...item, classification: idToClass.get(item.id) || item.classification || 'normale' }))
             .concat(current.filter((item) => !orderedIds.includes(item.id)));
           const hasChanged = newOrder.some((item, idx) => item?.id !== current[idx]?.id);
           library[key] = newOrder;
