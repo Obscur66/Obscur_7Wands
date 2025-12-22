@@ -444,7 +444,7 @@
           label: 'Cours'
         },
         'creatures': {
-          label: '🐉 Créatures 🐉'
+          label: 'Créatures'
         },
         'ingredients': {
           label: 'Ingrédients'
@@ -1483,7 +1483,7 @@
               </div>
               <div id="itemContent" class="mt-2 rich-area" contenteditable="true" placeholder="${contentPlaceholder}">${sanitizeRich(item?.content || '')}</div>
             </div>
-            ${(isCreature || isBotanique) ? `
+            ${isCreature ? `
             <div class="mt-4 grid gap-4 md:grid-cols-2">
               <label class="block text-sm font-medium text-white/90">
                 Dangerosité
@@ -1501,7 +1501,6 @@
                 Taille
                 <input id="itemSize" type="text" value="${escapeHtml(item?.size || '')}" class="mt-2 w-full rounded-2xl border border-white/30 bg-white/10 px-4 py-2 text-white placeholder-white/60 focus:border-cyan-300 focus:outline-none" placeholder="Ex: 2 m au garrot" />
               </label>
-              ${isCreature ? `
               <label class="block text-sm font-medium text-white/90">
                 Sexe
                 <select id="itemSex" class="mt-2 w-full rounded-2xl border border-white/30 bg-white px-4 py-2 text-slate-900 focus:border-cyan-300 focus:outline-none">
@@ -1515,7 +1514,6 @@
                 Poids
                 <input id="itemWeight" type="text" value="${escapeHtml(item?.weight || '')}" class="mt-2 w-full rounded-2xl border border-white/30 bg-white/10 px-4 py-2 text-white placeholder-white/60 focus:border-cyan-300 focus:outline-none" placeholder="Ex: 120 kg" />
               </label>
-              ` : ''}
             </div>
             <div class="mt-4 block text-sm font-medium text-white/90">
               <div class="flex items-center justify-between gap-2">
@@ -1546,6 +1544,15 @@
             <label class="mt-4 block text-sm font-medium text-white/90">
               Photo
               <input id="itemPhoto" type="text" value="${escapeHtml(item?.photo || '')}" class="mt-2 w-full rounded-2xl border border-white/30 bg-white/10 px-4 py-2 text-white placeholder-white/60 focus:border-cyan-300 focus:outline-none" placeholder="URL de l'image de la créature ou de la plante" />
+            </label>
+            ` : isBotanique ? `
+            <label class="mt-4 block text-sm font-medium text-white/90">
+              Lieu de vie
+              <input id="itemHabitat" type="text" value="${escapeHtml(item?.habitat || '')}" class="mt-2 w-full rounded-2xl border border-white/30 bg-white/10 px-4 py-2 text-white placeholder-white/60 focus:border-cyan-300 focus:outline-none" placeholder="Forêts prismatiques, marécages, grottes..." />
+            </label>
+            <label class="mt-4 block text-sm font-medium text-white/90">
+              Photo
+              <input id="itemPhoto" type="text" value="${escapeHtml(item?.photo || '')}" class="mt-2 w-full rounded-2xl border border-white/30 bg-white/10 px-4 py-2 text-white placeholder-white/60 focus:border-cyan-300 focus:outline-none" placeholder="URL de l'image de la plante" />
             </label>
             ` : ''}
             ${key === 'ingredients' ? `
