@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Obscur 7Wands</title>
+  <title>ObscurA 7Wands</title>
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <style>
     body {
@@ -240,12 +240,52 @@
       background: #1d3c24;
       color: #fff;
     }
+    .rich-toolbar {
+      display: inline-flex;
+      gap: 0.25rem;
+      padding: 0.35rem 0.5rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+    .rich-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(255, 255, 255, 0.08);
+      color: #f8fafc;
+      font-weight: 700;
+      transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+    }
+    .rich-btn:hover {
+      transform: translateY(-1px);
+      border-color: rgba(94, 234, 212, 0.9);
+      background: rgba(94, 234, 212, 0.15);
+    }
+    .rich-area {
+      min-height: 180px;
+      border-radius: 1rem;
+      padding: 0.85rem;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+      outline: none;
+      line-height: 1.5;
+      overflow: auto;
+      white-space: pre-wrap;
+    }
+    .rich-area:focus {
+      border-color: rgba(94, 234, 212, 0.8);
+      box-shadow: 0 0 0 2px rgba(94, 234, 212, 0.25);
+    }
   </style>
 </head>
 <body class="text-slate-100">
   <div class="min-h-screen flex flex-col">
     <header class="site-header sticky top-0 z-30 border-b border-white/10">
-      <div class="relative mx-auto flex w-full max-w-6xl flex-col items-center gap-4 px-6 py-5 text-center">
+      <div class="relative mx-auto flex w/full max-w-6xl flex-col items-center gap-4 px-6 py-5 text-center">
         <div class="flex flex-col items-center">
           <p class="text-4xl tracking-[0.35em] text-white header-outline">OBSCUR</p>
           <h1 id="headerTitle" class="text-2xl font-bold text-white header-outline"><span class="snake-emote">🐍</span> 7Wands <span class="snake-emote">🐍</span></h1>
@@ -276,7 +316,7 @@
     <footer class="border-t border-white/10 px-6 py-6 text-xs text-white/70">
       <div class="mx-auto max-w-5xl relative flex items-center justify-center">
         <button id="emojiToggle" class="absolute left-0 text-left text-white/80 underline-offset-4 hover:text-white hover:underline">Code Emoticone</button>
-        <p class="w-full text-center">Obscur 7Wands · Propriété de ObscurCorp.</p>
+        <p class="w-full text-center">ObscurA 7Wands · Propriété de ObscurCorp.</p>
         <button id="bgEditorToggle" class="absolute right-0 text-right text-white/80 underline-offset-4 hover:text-white hover:underline">Image Arrière Plan</button>
       </div>
     </footer>
@@ -329,7 +369,7 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const STORAGE_KEY = 'obscur-7wands-data';
+      const STORAGE_KEY = 'obscuri-7wands-data';
       const content = document.getElementById('content');
       const navButtons = document.querySelectorAll('[data-section]');
       const toastStack = document.getElementById('toast-stack');
@@ -477,12 +517,27 @@
           .replace(/'/g, '&#039;');
       }
 
+      function stripHtml(html = '') {
+        const tmp = document.createElement('div');
+        tmp.innerHTML = html;
+        return tmp.textContent || tmp.innerText || '';
+      }
+
       function createExcerpt(text = '', length = 90) {
         return text.length > length ? text.slice(0, length) + '…' : text;
       }
 
       function formatMultiline(text = '') {
         return escapeHtml(text).replace(/\n/g, '<br />');
+      }
+
+      function sanitizeRich(text = '') {
+        if (!text) return '';
+        const tmp = document.createElement('div');
+        tmp.innerHTML = text;
+        // Remove script/style tags for safety
+        tmp.querySelectorAll('script, style').forEach((node) => node.remove());
+        return tmp.innerHTML;
       }
 
       function emoteToSymbol(input = '') {
@@ -687,14 +742,14 @@
           const now = new Date();
           const pad = (num) => String(num).padStart(2, '0');
           const dateLabel = `${pad(now.getDate())}-${pad(now.getMonth() + 1)}`;
-          const fileName = `obscur-7wands-${dateLabel}.json`;
+          const fileName = `obscuri-7wands-${dateLabel}.json`;
 
           if (window.showSaveFilePicker) {
             const fileHandle = await window.showSaveFilePicker({
               suggestedName: fileName,
               types: [
                 {
-                  description: 'Sauvegarde Obscur 7Wands',
+                  description: 'Sauvegarde Obscuri 7Wands',
                   accept: { 'application/json': ['.json'] }
                 }
               ]
@@ -768,7 +823,7 @@
           .filter((key) => key !== 'accueil')
           .map((key) => {
             const itemsForModule = key === 'carte'
-              ? (customMapGallery.length ? customMapGallery : [{ title: 'Atlas Obscur', url: mapImageUrl }])
+              ? (customMapGallery.length ? customMapGallery : [{ title: 'Atlas Obscuri', url: mapImageUrl }])
               : library[key] || [];
             const listMarkup = itemsForModule.length
               ? `<div class="mt-4 grid gap-2 sm:grid-cols-2">
@@ -827,7 +882,7 @@
       function renderCarte() {
         const meta = bookMeta['carte'];
         const activeMapUrl = getActiveMapUrl();
-        const activeMapTitle = customMapGallery[activeMapIndex]?.title || 'Atlas Obscur';
+        const activeMapTitle = customMapGallery[activeMapIndex]?.title || 'Atlas Obscuri';
         const galleryMarkup = customMapGallery.length
           ? customMapGallery.map((entry, index) => `
               <div class="map-thumb rounded-xl border ${index === activeMapIndex ? 'border-cyan-200/80 bg-white/10' : 'border-white/15 bg-white/5'} p-2">
@@ -1038,11 +1093,10 @@
           pushToast('Impossible d\'ouvrir la carte. Veuillez autoriser les pop-ups.', 'danger');
           return;
         }
-        win.document.write(`<!DOCTYPE html><html lang="fr"><head><title>Carte Obscur 7Wands</title><style>body{margin:0;background:#020617;display:flex;align-items:center;justify-content:center;height:100vh;}img{max-width:100%;max-height:100%;object-fit:contain;}</style></head><body><img src="${url}" alt="Carte Obscur 7Wands" /></body></html>`);
+        win.document.write(`<!DOCTYPE html><html lang="fr"><head><title>Carte Obscuri 7Wands</title><style>body{margin:0;background:#020617;display:flex;align-items:center;justify-content:center;height:100vh;}img{max-width:100%;max-height:100%;object-fit:contain;}</style></head><body><img src="${url}" alt="Carte Obscuri 7Wands" /></body></html>`);
         win.document.close();
       }
 
-      // Dynamically load emoji table to keep HTML small
       const emojiRows = [
         ['🌍','U+1F30D'],['🌎','U+1F30E'],['🌏','U+1F30F'],['🌐','U+1F310'],['🌑','U+1F311'],['🌒','U+1F312'],['🌓','U+1F313'],['🌔','U+1F314'],['🌕','U+1F315'],['🌖','U+1F316'],['🌗','U+1F317'],['🌘','U+1F318'],['🌙','U+1F319'],['🌚','U+1F31A'],['🌛','U+1F31B'],['🌜','U+1F31C'],['🌝','U+1F31D'],['🌞','U+1F31E'],['🌟','U+1F31F'],['🌠','U+1F320'],['🌰','U+1F330'],['🌱','U+1F331'],['🌲','U+1F332'],['🌳','U+1F333'],['🌴','U+1F334'],['🌵','U+1F335'],['🌷','U+1F337'],['🌸','U+1F338'],['🌹','U+1F339'],['🌺','U+1F33A'],['🌻','U+1F33B'],['🌼','U+1F33C'],['🌽','U+1F33D'],['🌾','U+1F33E'],['🌿','U+1F33F'],['🍀','U+1F340'],['🍁','U+1F341'],['🍂','U+1F342'],['🍃','U+1F343'],['🍄','U+1F344'],['🍅','U+1F345'],['🍆','U+1F346'],['🍇','U+1F347'],['🍈','U+1F348'],['🍉','U+1F349'],['🍊','U+1F34A'],['🍋','U+1F34B'],['🍌','U+1F34C'],['🍍','U+1F34D'],['🍎','U+1F34E'],['🍏','U+1F34F'],['🍐','U+1F350'],['🍑','U+1F351'],['🍒','U+1F352'],['🍓','U+1F353'],['🍔','U+1F354'],['🍕','U+1F355'],['🍖','U+1F356'],['🍗','U+1F357'],['🍘','U+1F358'],['🍙','U+1F359'],['🍚','U+1F35A'],['🍛','U+1F35B'],['🍜','U+1F35C'],['🍝','U+1F35D'],['🍞','U+1F35E'],['🍟','U+1F35F'],['🍠','U+1F360'],['🍡','U+1F361'],['🍢','U+1F362'],['🍣','U+1F363'],['🍤','U+1F364'],['🍥','U+1F365'],['🍦','U+1F366'],['🍧','U+1F367'],['🍨','U+1F368'],['🍩','U+1F369'],['🍪','U+1F36A'],['🍫','U+1F36B'],['🍬','U+1F36C'],['🍭','U+1F36D'],['🍮','U+1F36E'],['🍯','U+1F36F'],['🍰','U+1F370'],['🍱','U+1F371'],['🍲','U+1F372'],['🍳','U+1F373'],['🍴','U+1F374'],['🍵','U+1F375'],['🍶','U+1F376'],['🍷','U+1F377'],['🍸','U+1F378'],['🍹','U+1F379'],['🍺','U+1F37A'],['🍻','U+1F37B'],['🍼','U+1F37C'],['🎀','U+1F380'],['🎁','U+1F381'],['🎂','U+1F382'],['🎃','U+1F383'],['🎄','U+1F384'],['🎅','U+1F385'],['🎆','U+1F386'],['🎇','U+1F387'],['🎈','U+1F388'],['🎉','U+1F389'],['🎊','U+1F38A'],['🎋','U+1F38B'],['🎌','U+1F38C'],['🎍','U+1F38D'],['🎎','U+1F38E'],['🎏','U+1F38F'],['🎐','U+1F390'],['🎑','U+1F391'],['🎒','U+1F392'],['🎓','U+1F393'],['🎠','U+1F3A0'],['🎡','U+1F3A1'],['🎢','U+1F3A2'],['🎣','U+1F3A3'],['🎤','U+1F3A4'],['🎥','U+1F3A5'],['🎦','U+1F3A6'],['🎧','U+1F3A7'],['🎨','U+1F3A8'],['🎩','U+1F3A9'],['🎪','U+1F3AA'],['🎫','U+1F3AB'],['🎬','U+1F3AC'],['🎭','U+1F3AD'],['🎮','U+1F3AE'],['🎯','U+1F3AF'],['🎰','U+1F3B0'],['🎱','U+1F3B1'],['🎲','U+1F3B2'],['🎳','U+1F3B3'],['🎴','U+1F3B4'],['🎵','U+1F3B5'],['🎶','U+1F3B6'],['🎷','U+1F3B7'],['🎸','U+1F3B8'],['🎹','U+1F3B9'],['🎺','U+1F3BA'],['🎻','U+1F3BB'],['🎼','U+1F3BC'],['🎽','U+1F3BD'],['🎾','U+1F3BE'],['🎿','U+1F3BF'],['🏀','U+1F3C0'],['🏁','U+1F3C1'],['🏂','U+1F3C2'],['🏃','U+1F3C3'],['🏄','U+1F3C4'],['🏆','U+1F3C6'],['🏇','U+1F3C7'],['🏈','U+1F3C8'],['🏉','U+1F3C9'],['🏊','U+1F3CA'],['🏠','U+1F3E0'],['🏡','U+1F3E1'],['🏢','U+1F3E2'],['🏣','U+1F3E3'],['🏤','U+1F3E4'],['🏥','U+1F3E5'],['🏦','U+1F3E6'],['🏧','U+1F3E7'],['🏨','U+1F3E8'],['🏩','U+1F3E9'],['🏪','U+1F3EA'],['🏫','U+1F3EB'],['🏬','U+1F3EC'],['🏭','U+1F3ED'],['🏮','U+1F3EE'],['🏯','U+1F3EF'],['🏰','U+1F3F0'],['🐀','U+1F400'],['🐁','U+1F401'],['🐂','U+1F402'],['🐃','U+1F403'],['🐄','U+1F404'],['🐅','U+1F405'],['🐆','U+1F406'],['🐇','U+1F407'],['🐈','U+1F408'],['🐉','U+1F409'],['🐊','U+1F40A'],['🐋','U+1F40B'],['🐌','U+1F40C'],['🐍','U+1F40D'],['🐎','U+1F40E'],['🐏','U+1F40F'],['🐐','U+1F410'],['🐑','U+1F411'],['🐒','U+1F412'],['🐓','U+1F413'],['🐔','U+1F414'],['🐕','U+1F415'],['🐖','U+1F416'],['🐗','U+1F417'],['🐘','U+1F418'],['🐙','U+1F419'],['🐚','U+1F41A'],['🐛','U+1F41B'],['🐜','U+1F41C'],['🐝','U+1F41D'],['🐞','U+1F41E'],['🐟','U+1F41F'],['🐠','U+1F420'],['🐡','U+1F421'],['🐢','U+1F422'],['🐣','U+1F423'],['🐤','U+1F424'],['🐥','U+1F425'],['🐦','U+1F426'],['🐧','U+1F427'],['🐨','U+1F428'],['🐩','U+1F429'],['🐪','U+1F42A'],['🐫','U+1F42B'],['🐬','U+1F42C'],['🐭','U+1F42D'],['🐮','U+1F42E'],['🐯','U+1F42F'],['🐰','U+1F430'],['🐱','U+1F431'],['🐲','U+1F432'],['🐳','U+1F433'],['🐴','U+1F434'],['🐵','U+1F435'],['🐶','U+1F436'],['🐷','U+1F437'],['🐸','U+1F438'],['🐹','U+1F439'],['🐺','U+1F43A'],['🐻','U+1F43B'],['🐼','U+1F43C'],['🐽','U+1F43D'],['🐾','U+1F43E'],['👀','U+1F440'],['👂','U+1F442'],['👃','U+1F443'],['👄','U+1F444'],['👅','U+1F445'],['👆','U+1F446'],['👇','U+1F447'],['👈','U+1F448'],['👉','U+1F449'],['👊','U+1F44A'],['👋','U+1F44B'],['👌','U+1F44C'],['👍','U+1F44D'],['👎','U+1F44E'],['👏','U+1F44F'],['👐','U+1F450'],['👑','U+1F451'],['👒','U+1F452'],['👓','U+1F453'],['👔','U+1F454'],['👕','U+1F455'],['👖','U+1F456'],['👗','U+1F457'],['👘','U+1F458'],['👙','U+1F459'],['👚','U+1F45A'],['👛','U+1F45B'],['👜','U+1F45C'],['👝','U+1F45D'],['👞','U+1F45E'],['👟','U+1F45F'],['👠','U+1F460'],['👡','U+1F461'],['👢','U+1F462'],['👣','U+1F463'],['👤','U+1F464'],['👥','U+1F465'],['👦','U+1F466'],['👧','U+1F467'],['👨','U+1F468'],['👩','U+1F469'],['👪','U+1F46A'],['👫','U+1F46B'],['👬','U+1F46C'],['👭','U+1F46D'],['👮','U+1F46E'],['👯','U+1F46F'],['👰','U+1F470'],['👱','U+1F471'],['👲','U+1F472'],['👳','U+1F473'],['👴','U+1F474'],['👵','U+1F475'],['👶','U+1F476'],['👷','U+1F477'],['👸','U+1F478'],['👹','U+1F479'],['👺','U+1F47A'],['👻','U+1F47B'],['👼','U+1F47C'],['👽','U+1F47D'],['👾','U+1F47E'],['👿','U+1F47F'],['💀','U+1F480'],['💁','U+1F481'],['💂','U+1F482'],['💃','U+1F483'],['💄','U+1F484'],['💅','U+1F485'],['💆','U+1F486'],['💇','U+1F487'],['💈','U+1F488'],['💉','U+1F489'],['💊','U+1F48A'],['💋','U+1F48B'],['💌','U+1F48C'],['💍','U+1F48D'],['💎','U+1F48E'],['💏','U+1F48F'],['💐','U+1F490'],['💑','U+1F491'],['💒','U+1F492'],['💓','U+1F493'],['💔','U+1F494'],['💕','U+1F495'],['💖','U+1F496'],['💗','U+1F497'],['💘','U+1F498'],['💙','U+1F499'],['💚','U+1F49A'],['💛','U+1F49B'],['💜','U+1F49C'],['💝','U+1F49D'],['💞','U+1F49E'],['💟','U+1F49F'],['💡','U+1F4A1'],['💢','U+1F4A2'],['💣','U+1F4A3'],['💤','U+1F4A4'],['💥','U+1F4A5'],['💦','U+1F4A6'],['💧','U+1F4A7'],['💨','U+1F4A8'],['💩','U+1F4A9'],['💪','U+1F4AA'],['💫','U+1F4AB'],['💬','U+1F4AC'],['💭','U+1F4AD'],['💮','U+1F4AE'],['💯','U+1F4AF'],['💰','U+1F4B0'],['💱','U+1F4B1'],['💲','U+1F4B2'],['💳','U+1F4B3'],['💴','U+1F4B4'],['💵','U+1F4B5'],['💶','U+1F4B6'],['💷','U+1F4B7'],['💸','U+1F4B8'],['💹','U+1F4B9'],['💻','U+1F4BB'],['💼','U+1F4BC'],['💽','U+1F4BD'],['💾','U+1F4BE'],['💿','U+1F4BF'],['📀','U+1F4C0'],['📁','U+1F4C1'],['📂','U+1F4C2'],['📃','U+1F4C3'],['📄','U+1F4C4'],['📅','U+1F4C5'],['📆','U+1F4C6'],['📇','U+1F4C7'],['📈','U+1F4C8'],['📉','U+1F4C9'],['📊','U+1F4CA'],['📋','U+1F4CB'],['📌','U+1F4CC'],['📍','U+1F4CD'],['📎','U+1F4CE'],['📏','U+1F4CF'],['📐','U+1F4D0'],['📑','U+1F4D1'],['📒','U+1F4D2'],['📓','U+1F4D3'],['📔','U+1F4D4'],['📕','U+1F4D5'],['📖','U+1F4D6'],['📗','U+1F4D7'],['📘','U+1F4D8'],['📙','U+1F4D9'],['📚','U+1F4DA'],['📛','U+1F4DB'],['📜','U+1F4DC'],['📝','U+1F4DD'],['📞','U+1F4DE'],['📟','U+1F4DF'],['📠','U+1F4E0'],['📡','U+1F4E1'],['📢','U+1F4E2'],['📣','U+1F4E3'],['📤','U+1F4E4'],['📥','U+1F4E5'],['📦','U+1F4E6'],['📧','U+1F4E7'],['📨','U+1F4E8'],['📩','U+1F4E9'],['📪','U+1F4EA'],['📫','U+1F4EB'],['📬','U+1F4EC'],['📭','U+1F4ED'],['📮','U+1F4EE'],['📯','U+1F4EF'],['📰','U+1F4F0'],['📱','U+1F4F1'],['📲','U+1F4F2'],['📳','U+1F4F3'],['📴','U+1F4F4'],['📵','U+1F4F5'],['📶','U+1F4F6'],['📷','U+1F4F7'],['📹','U+1F4F9'],['📺','U+1F4FA'],['📻','U+1F4FB'],['📼','U+1F4FC'],['🔊','U+1F50A'],['📢','U+1F4E2'],['📣','U+1F4E3'],['🔋','U+1F50B'],['🔌','U+1F50C'],['🔍','U+1F50D'],['🔎','U+1F50E'],['🔏','U+1F50F'],['🔐','U+1F510'],['🔑','U+1F511'],['🔒','U+1F512'],['🔓','U+1F513'],['🔔','U+1F514'],['🔕','U+1F515'],['🔖','U+1F516'],['🔗','U+1F517'],['🔘','U+1F518'],['🔙','U+1F519'],['🔚','U+1F51A'],['🔛','U+1F51B'],['🔜','U+1F51C'],['🔝','U+1F51D'],['🔞','U+1F51E'],['🔟','U+1F51F'],['🔠','U+1F520'],['🔡','U+1F521'],['🔢','U+1F522'],['🔣','U+1F523'],['🔤','U+1F524'],['🔥','U+1F525'],['🔦','U+1F526'],['🔧','U+1F527'],['🔧','U+1F527'],['🔨','U+1F528'],['🔩','U+1F529'],['🔪','U+1F52A'],['🔫','U+1F52B'],['🔮','U+1F52E'],['🔯','U+1F52F'],['🔰','U+1F530'],['🔱','U+1F531'],['🔲','U+1F532'],['🔳','U+1F533'],['🔴','U+1F534'],['🔵','U+1F535'],['🔶','U+1F536'],['🔷','U+1F537'],['🔸','U+1F538'],['🔹','U+1F539'],['🔺','U+1F53A'],['🔻','U+1F53B'],['🔼','U+1F53C'],['🔽','U+1F53D'],['🕐','U+1F550'],['🕑','U+1F551'],['🕒','U+1F552'],['🕓','U+1F553'],['🕔','U+1F554'],['🕕','U+1F555'],['🕖','U+1F556'],['🕗','U+1F557'],['🕘','U+1F558'],['🕙','U+1F559'],['🕚','U+1F55A'],['🕛','U+1F55B'],['🗻','U+1F5FB'],['🗼','U+1F5FC'],['🗽','U+1F5FD'],['🗾','U+1F5FE'],['🗿','U+1F5FF']
       ];
@@ -1085,19 +1139,19 @@
           const effectsBlock = key === 'recettes-potions' && item.effects
             ? `<div>
                   <p class="text-xs uppercase tracking-[0.2em] text-cyan-200">Effets</p>
-                  <p class="text-sm text-white/90">${formatMultiline(item.effects)}</p>
+                  <div class="text-sm text-white/90">${sanitizeRich(item.effects)}</div>
                 </div>`
             : '';
           const incantationBlock = key === 'recettes-potions' && item.incantation
             ? `<div>
                   <p class="text-xs uppercase tracking-[0.2em] text-purple-200">Incantation</p>
-                  <p class="text-sm text-white/90">${formatMultiline(item.incantation)}</p>
+                  <div class="text-sm text-white/90">${sanitizeRich(item.incantation)}</div>
                 </div>`
             : '';
           const extraInfoBlock = key === 'recettes-potions' && item.extraInfo
             ? `<div>
                   <p class="text-xs uppercase tracking-[0.2em] text-slate-200">Informations complémentaires</p>
-                  <p class="text-sm text-white/90">${formatMultiline(item.extraInfo)}</p>
+                  <div class="prose prose-invert max-w-none text-sm text-white/90">${sanitizeRich(item.extraInfo)}</div>
                 </div>`
             : '';
           const creatureBlocks = key === 'creatures'
@@ -1139,7 +1193,7 @@
           const contentBlock = item.content && key !== 'creatures'
             ? `<div>
                   <p class="text-xs uppercase tracking-[0.2em] text-white/70">${contentLabel}</p>
-                  <p class="text-sm text-white/90">${formatMultiline(item.content)}</p>
+                  <div class="text-sm text-white/90 prose prose-invert max-w-none">${sanitizeRich(item.content)}</div>
                 </div>`
             : '';
           const botaniqueBlocks = key === 'botanique'
@@ -1152,13 +1206,13 @@
                   pieces.push(`<p class="text-xs uppercase tracking-[0.2em] text-amber-200">Taille</p><p class="text-sm text-white/90">${escapeHtml(item.size)}</p>`);
                 }
                 if (item.physical) {
-                  pieces.push(`<p class="text-xs uppercase tracking-[0.2em] text-emerald-200">Caractéristiques</p><p class="text-sm text-white/90">${formatMultiline(item.physical)}</p>`);
+                  pieces.push(`<p class="text-xs uppercase tracking-[0.2em] text-emerald-200">Caractéristiques</p><div class="text-sm text-white/90 prose prose-invert max-w-none">${sanitizeRich(item.physical)}</div>`);
                 }
                 if (item.habitat) {
-                  pieces.push(`<p class="text-xs uppercase tracking-[0.2em] text-lime-200">Lieu de vie</p><p class="text-sm text-white/90">${formatMultiline(item.habitat)}</p>`);
+                  pieces.push(`<p class="text-xs uppercase tracking-[0.2em] text-lime-200">Lieu de vie</p><div class="text-sm text-white/90 prose prose-invert max-w-none">${sanitizeRich(item.habitat)}</div>`);
                 }
                 if (item.info) {
-                  pieces.push(`<p class="text-xs uppercase tracking-[0.2em] text-white/70">Informations supplémentaires</p><p class="text-sm text-white/90">${formatMultiline(item.info)}</p>`);
+                  pieces.push(`<p class="text-xs uppercase tracking-[0.2em] text-white/70">Informations supplémentaires</p><div class="text-sm text-white/90 prose prose-invert max-w-none">${sanitizeRich(item.info)}</div>`);
                 }
                 if (item.photo) {
                   pieces.push(`<div class="mt-2"><img src="${item.photo}" alt="${escapeHtml(item.title || 'Plante')}" class="mt-2 w-full rounded-xl border border-white/20 object-cover" /></div>`);
@@ -1418,10 +1472,17 @@
                 <option value="mega" ${(item?.classification === 'mega') ? 'selected' : ''}>Mega</option>
               </select>
             </label>` : ''}
-            <label class="mt-4 block text-sm font-medium text-white/90">
-              ${contentLabel}
-              <textarea id="itemContent" rows="6" class="mt-2 w-full rounded-2xl border border-white/30 bg-white/10 px-4 py-3 text-white placeholder-white/60 focus:border-cyan-300 focus:outline-none" placeholder="${contentPlaceholder}">${escapeHtml(item?.content || '')}</textarea>
-            </label>
+            <div class="mt-4 block text-sm font-medium text-white/90">
+              <div class="flex items-center justify-between gap-2">
+                <span>${contentLabel}</span>
+                <div class="rich-toolbar" aria-label="Outils de mise en forme">
+                  <button type="button" class="rich-btn" data-format="bold" title="Gras">B</button>
+                  <button type="button" class="rich-btn" data-format="italic" title="Italique">I</button>
+                  <button type="button" class="rich-btn" data-format="underline" title="Souligné">U</button>
+                </div>
+              </div>
+              <div id="itemContent" class="mt-2 rich-area" contenteditable="true" placeholder="${contentPlaceholder}">${sanitizeRich(item?.content || '')}</div>
+            </div>
             ${(isCreature || isBotanique) ? `
             <div class="mt-4 grid gap-4 md:grid-cols-2">
               <label class="block text-sm font-medium text-white/90">
@@ -1456,18 +1517,32 @@
               </label>
               ` : ''}
             </div>
-            <label class="mt-4 block text-sm font-medium text-white/90">
-              Caractéristique
-              <textarea id="itemPhysical" rows="3" class="mt-2 w-full rounded-2xl border border-white/30 bg-white/10 px-4 py-2 text-white placeholder-white/60 focus:border-cyan-300 focus:outline-none" placeholder="Pelage, crocs, ailes, feuillage, épines, etc.">${escapeHtml(item?.physical || '')}</textarea>
-            </label>
+            <div class="mt-4 block text-sm font-medium text-white/90">
+              <div class="flex items-center justify-between gap-2">
+                <span>Caractéristique</span>
+                <div class="rich-toolbar" aria-label="Outils de mise en forme Caractéristique">
+                  <button type="button" class="rich-btn" data-format="bold" title="Gras">B</button>
+                  <button type="button" class="rich-btn" data-format="italic" title="Italique">I</button>
+                  <button type="button" class="rich-btn" data-format="underline" title="Souligné">U</button>
+                </div>
+              </div>
+              <div id="itemPhysical" class="mt-2 rich-area" contenteditable="true" placeholder="Pelage, crocs, ailes, feuillage, épines, etc.">${sanitizeRich(item?.physical || '')}</div>
+            </div>
             <label class="mt-4 block text-sm font-medium text-white/90">
               Lieu de vie
               <input id="itemHabitat" type="text" value="${escapeHtml(item?.habitat || '')}" class="mt-2 w-full rounded-2xl border border-white/30 bg-white/10 px-4 py-2 text-white placeholder-white/60 focus:border-cyan-300 focus:outline-none" placeholder="Forêts prismatiques, marécages, grottes..." />
             </label>
-            <label class="mt-4 block text-sm font-medium text-white/90">
-              Informations supplémentaires
-              <textarea id="itemInfo" rows="3" class="mt-2 w-full rounded-2xl border border-white/30 bg-white/10 px-4 py-2 text-white placeholder-white/60 focus:border-cyan-300 focus:outline-none" placeholder="Comportement, faiblesses, anecdotes, vertus">${escapeHtml(item?.info || '')}</textarea>
-            </label>
+            <div class="mt-4 block text-sm font-medium text-white/90">
+              <div class="flex items-center justify-between gap-2">
+                <span>Informations supplémentaires</span>
+                <div class="rich-toolbar" aria-label="Outils de mise en forme Informations supplémentaires">
+                  <button type="button" class="rich-btn" data-format="bold" title="Gras">B</button>
+                  <button type="button" class="rich-btn" data-format="italic" title="Italique">I</button>
+                  <button type="button" class="rich-btn" data-format="underline" title="Souligné">U</button>
+                </div>
+              </div>
+              <div id="itemInfo" class="mt-2 rich-area" contenteditable="true" placeholder="Comportement, faiblesses, anecdotes, vertus">${sanitizeRich(item?.info || '')}</div>
+            </div>
             <label class="mt-4 block text-sm font-medium text-white/90">
               Photo
               <input id="itemPhoto" type="text" value="${escapeHtml(item?.photo || '')}" class="mt-2 w-full rounded-2xl border border-white/30 bg-white/10 px-4 py-2 text-white placeholder-white/60 focus:border-cyan-300 focus:outline-none" placeholder="URL de l'image de la créature ou de la plante" />
@@ -1497,10 +1572,17 @@
               Incantation
               <textarea id="itemIncantation" rows="3" class="mt-2 w-full rounded-2xl border border-white/30 bg-white/10 px-4 py-2 text-white placeholder-white/60 focus:border-cyan-300 focus:outline-none" placeholder="Formule verbale ou gestuelle">${escapeHtml(item?.incantation || '')}</textarea>
             </label>
-            <label class="mt-4 block text-sm font-medium text-white/90">
-              Informations complémentaires
-              <textarea id="itemExtraInfo" rows="3" class="mt-2 w-full rounded-2xl border border-dashed border-white/30 bg-white/5 px-4 py-2 text-white placeholder-white/50 focus:border-cyan-300 focus:outline-none" placeholder="Notes additionnelles, observations, contexte rituel">${escapeHtml(item?.extraInfo || '')}</textarea>
-            </label>` : ''}
+            <div class="mt-4 block text-sm font-medium text-white/90">
+              <div class="flex items-center justify-between gap-2">
+                <span>Informations complémentaires</span>
+                <div class="rich-toolbar" aria-label="Outils de mise en forme complémentaires">
+                  <button type="button" class="rich-btn" data-format="bold" title="Gras">B</button>
+                  <button type="button" class="rich-btn" data-format="italic" title="Italique">I</button>
+                  <button type="button" class="rich-btn" data-format="underline" title="Souligné">U</button>
+                </div>
+              </div>
+              <div id="itemExtraInfo" class="mt-2 rich-area" contenteditable="true" placeholder="Notes additionnelles, observations, contexte rituel">${sanitizeRich(item?.extraInfo || '')}</div>
+            </div>` : ''}
             <div class="mt-6 flex flex-wrap gap-3">
               <button id="saveItem" class="inline-flex items-center gap-2 rounded-full bg-cyan-200 px-6 py-2 font-semibold text-slate-900 transition hover:bg-cyan-100">${isNew ? 'Enregistrer' : 'Mettre à jour'}</button>
               ${!isNew ? '<button id="deleteItem" class="inline-flex items-center gap-2 rounded-full border border-red-400/60 bg-red-500/10 px-5 py-2 text-red-100 transition hover:bg-red-500/20">Effacer</button>' : ''}
@@ -1522,6 +1604,22 @@
           deleteBtn.addEventListener('click', () => deleteItem(key, id));
         }
         document.getElementById('cancelEdit').addEventListener('click', closeEditor);
+
+        const toolbars = overlay.querySelectorAll('.rich-toolbar');
+        toolbars.forEach((toolbar) => {
+          const targetArea = toolbar.parentElement?.parentElement?.querySelector('.rich-area');
+          toolbar.addEventListener('click', (e) => {
+            const btn = e.target.closest('[data-format]');
+            if (!btn) return;
+            const cmd = btn.dataset.format;
+            const area = (document.activeElement && document.activeElement.classList.contains('rich-area'))
+              ? document.activeElement
+              : targetArea || toolbar.closest('.mt-4')?.querySelector('.rich-area') || overlay.querySelector('.rich-area');
+            if (!area) return;
+            area.focus();
+            document.execCommand(cmd, false);
+          });
+        });
       }
 
       function closeEditor() {
@@ -1536,6 +1634,9 @@
         const titleField = document.getElementById('itemTitle');
         const emoteCodeField = document.getElementById('itemEmoteCode');
         const contentField = document.getElementById('itemContent');
+        const extraInfoField = document.getElementById('itemExtraInfo');
+        const infoField = document.getElementById('itemInfo');
+        const physicalField = document.getElementById('itemPhysical');
         const ingredientsField = document.getElementById('itemIngredients');
         const effectsField = document.getElementById('itemEffects');
         const incantationField = document.getElementById('itemIncantation');
@@ -1546,10 +1647,13 @@
         const title = titleField.value.trim();
         const emoteCodeInput = emoteCodeField ? emoteCodeField.value.trim() : '';
         const normalizedEmote = emoteToSymbol(emoteCodeInput);
-        const body = contentField.value.trim();
+        const body = contentField ? contentField.innerHTML.trim() : '';
         const ingredients = ingredientsField ? ingredientsField.value.trim() : undefined;
         const effects = effectsField ? effectsField.value.trim() : undefined;
         const incantation = incantationField ? incantationField.value.trim() : undefined;
+        const extraInfo = extraInfoField ? extraInfoField.innerHTML.trim() : undefined;
+        const infoRich = infoField ? infoField.innerHTML.trim() : undefined;
+        const physicalRich = physicalField ? physicalField.innerHTML.trim() : undefined;
         const professor = professorField ? professorField.value.trim() : undefined;
         const usageSelect = document.getElementById('itemUsage');
         const usageValue = usageSelect ? usageSelect.value : undefined;
@@ -1581,7 +1685,7 @@
           ...(key === 'ingredients' ? { location: finalLocation || '', usage: usageValue || 'cuisine' } : {}),
           ...(key === 'recettes-potions' ? {
             classification: document.getElementById('itemClassification')?.value || 'normale',
-            extraInfo: document.getElementById('itemExtraInfo')?.value.trim() || ''
+            extraInfo: extraInfo || ''
           } : {}),
           ...((key === 'creatures' || key === 'botanique')
             ? {
@@ -1589,9 +1693,9 @@
                 size: document.getElementById('itemSize')?.value.trim() || '',
                 sex: key === 'creatures' ? document.getElementById('itemSex')?.value.trim() || '' : undefined,
                 weight: key === 'creatures' ? document.getElementById('itemWeight')?.value.trim() || '' : undefined,
-                physical: document.getElementById('itemPhysical')?.value.trim() || '',
+                physical: physicalRich || '',
                 habitat: document.getElementById('itemHabitat')?.value.trim() || '',
-                info: document.getElementById('itemInfo')?.value.trim() || '',
+                info: infoRich || '',
                 photo: document.getElementById('itemPhoto')?.value.trim() || ''
               }
             : {})
