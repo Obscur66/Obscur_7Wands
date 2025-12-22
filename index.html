@@ -1597,7 +1597,12 @@
           stopProp.addEventListener('click', (event) => event.stopPropagation());
         }
 
-        overlay.addEventListener('click', closeEditor);
+        overlay.addEventListener('click', (event) => {
+          if (event.target !== overlay) return;
+          const selection = window.getSelection();
+          if (selection && selection.type === 'Range') return;
+          closeEditor();
+        });
         document.getElementById('saveItem').addEventListener('click', () => saveItem(key, id));
         const deleteBtn = document.getElementById('deleteItem');
         if (deleteBtn) {
